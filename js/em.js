@@ -129,6 +129,14 @@ var EM = (function(){
 			
 			}else{
 				
+				var x = ME.touchArray[0].x - ME.w / 2,
+				y = ME.touchArray[0].y - ME.h / 2;
+				
+				a = Math.atan2(y - ME.y, x - ME.x),
+				d = distance(x, y, ME.x, ME.y);
+				
+				ME.dx = Math.cos(a) * (d / 10);
+		    	ME.dy = Math.sin(a) * (d / 10);
 			}
 			
 			ME.x += ME.dx;
