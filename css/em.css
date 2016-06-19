@@ -1,3 +1,10 @@
+body{
+	
+	margin: 0px;
+	padding: 0px;
+	
+}
+
 #theCanvas{
 
 position:absolute; left:0px; top:0px;
