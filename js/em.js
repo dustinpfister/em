@@ -15,6 +15,7 @@ var EM = (function(){
 		touchArray : [],
 		maxTouch : 10,
 		lastTouch : new Date(0),
+		lastPurge : new Date(0),
 		touchLife : 1000,
 		happy : 0.1
 	
@@ -37,6 +38,22 @@ var EM = (function(){
 		
 		    //this.ME.cx += this.ME.dx;
 			//this.ME.cy += this.ME.dy;
+		
+		    var now = new Date();
+			
+			if(now - ME.lastTouch >= ME.touchLife){
+				
+				
+				
+				if(now - ME.lastPurge >= 1000 && ME.touchArray.length > 0){
+					
+					ME.touchArray.shift();
+					
+					ME.lastPurge = new Date();
+					
+				}
+				
+			}
 		
 		
 		},
@@ -65,10 +82,12 @@ var EM = (function(){
 			ME.touchArray.push({
 				
 				x: x,
-				y: y,
-				time: new Date()
+				y: y
+				//time: new Date()
 				
 			});
+			
+			ME.lastTouch = new Date();
 			
 		},
 		
