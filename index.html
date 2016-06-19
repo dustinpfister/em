@@ -112,6 +112,8 @@
     canvas.addEventListener('touchstart', EM.inMaster);
     canvas.addEventListener('touchend', EM.inMaster);
     canvas.addEventListener('touchmove', EM.inMaster);
+	
+	window.addEventListener('resize', scaleCanvas);
 
     // start the app
     start();
