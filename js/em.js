@@ -75,12 +75,9 @@ var EM = (function(){
 	    // update is to be called on each frame tick
 	    update : function(){
 		
-		    //this.ME.cx += this.ME.dx;
-			//this.ME.cy += this.ME.dy;
-		
 		    var now = new Date(), 
 			aToCenter = Math.atan2(ME.cy - ME.y, ME.cx - ME.x),
-			dToCenter = distance(ME.x,ME.y,ME.cx,ME.cy), a, d;
+			dToCenter = distance(ME.x,ME.y,ME.cx,ME.cy), a, d,avg,x,y;
 			
 			// if the amount of time that has passed sense the last touch is greater then touchLife
 			if(now - ME.lastTouch >= ME.touchLife){
@@ -105,38 +102,13 @@ var EM = (function(){
 					
 				   ME.deltaHappy = ME.touchArray.length / ME.maxTouch * 0.05;	
 					
-				   //ME.x = ME.touchArray[0].x - ME.w / 2;
-				   //ME.y = ME.touchArray[0].y - ME.h / 2;
-					
-                   //ME.x += 5;
-				   
-				// no touching
-				}else{
-					
-					//ME.x = ME.cx;
-					//ME.y = ME.cy;
-					
-					//console.log(ME.cx - ME.x);
-					
-					// find angle and dustance to center
-					/*
-					var aToCenter = Math.atan2(ME.cy - ME.y, ME.cx - ME.x),
-					dToCenter = distance(ME.x,ME.y,ME.cx,ME.cy);
-					
-				    ME.dx = Math.cos(aToCenter) * (dToCenter);
-					ME.dy = Math.sin(aToCenter) * (dToCenter);
-					*/
-					
-					
 				}
 				
 				ME.happy += ME.deltaHappy;
 				if(ME.happy < 0){ ME.happy = 0; }
 				if(ME.happy > 1){ ME.happy = 1; }
 				
-				
 				ME.lastUpdate = new Date();
-				
 				
 			}
 			
@@ -150,12 +122,9 @@ var EM = (function(){
 			
 			}else{
 				
-				//var x = ME.touchArray[0].x - ME.w / 2,
-				//y = ME.touchArray[0].y - ME.h / 2;
-				
-				var avg = ME.findAVGTouch();
-				
-				var x = avg.x - ME.w / 2, y = avg.y - ME.h / 2;
+				avg = ME.findAVGTouch();
+				x = avg.x - ME.w / 2; 
+				y = avg.y - ME.h / 2;
 				
 				a = Math.atan2(y - ME.y, x - ME.x),
 				d = distance(x, y, ME.x, ME.y);
@@ -167,7 +136,6 @@ var EM = (function(){
 			ME.x += ME.dx;
 			ME.y += ME.dy;
 		
-		
 		},
 		
 		// setup EM
@@ -178,8 +146,7 @@ var EM = (function(){
 			if(options.h === undefined){ options.h = 240;}
 		    if(options.xMax === undefined){ options.xMax = 640;}
 			if(options.yMax === undefined){ options.yMax = 480;}
-		
-		
+				
 		    ME.xMax = options.xMax;
 			ME.yMax = options.yMax;
 			ME.w = options.w;
@@ -220,7 +187,6 @@ var EM = (function(){
 				
 				x: x,
 				y: y
-				//time: new Date()
 				
 			});
 			
@@ -237,9 +203,6 @@ var EM = (function(){
 	
 	        if(e.touches){
 	
-	            //x = e.touches[0].clientX;
-				//y = e.touches[0].clientY;
-	
 	            t = 0, tLen = e.touches.length;
 				
 				while(t < tLen){
@@ -250,15 +213,10 @@ var EM = (function(){
 				}
 	
 	        }else{
-				
-				//x = e.clientX;
-				//y = e.clientY;
 	
 	            EM.pushTouch(e.clientX - box.left, e.clientY - box.top);
 	
 	        }
-			
-			
 		
 		}
 		
