@@ -41,7 +41,30 @@
         ctx.fillStyle = '#00ffff';
         ctx.fillRect(EM.ME.cx, EM.ME.cy, EM.ME.w, EM.ME.h);
 
+		drawTouchArray();
+		
     },
+	
+	drawTouchArray = function(){
+	
+	    var t = 0, tLen = EM.ME.touchArray.length, touch;
+	
+        console.log(tLen);
+	
+		ctx.strokeStyle = '#ffffff';
+		while(t < tLen){
+		
+		    touch = EM.ME.touchArray[t];
+		
+		    ctx.beginPath();
+		    ctx.arc(touch.x, touch.y, 10, 0, Math.PI*2);
+		    ctx.closePath();
+			ctx.stroke();
+		
+		    t += 1;
+		}
+	
+	},
 
 	// the main app loop
     loop = function () {

@@ -56,7 +56,7 @@ var EM = (function(){
 		// push a new touch at location x, y
 		pushTouch : function(x, y){
 			
-			if(ME.touchArray === ME.maxTouch){
+			if(ME.touchArray.length === ME.maxTouch){
 				
 				ME.touchArray.shift();
 				
@@ -75,46 +75,34 @@ var EM = (function(){
 		inMaster : function(e){
 		
 		    var box = e.target.getBoundingClientRect(),
-			x,y;
+			x,y,t,tLen;
 		
 		    e.preventDefault();
 	
 	        if(e.touches){
 	
-	            x = e.touches[0].clientX;
-				y = e.touches[0].clientY;
+	            //x = e.touches[0].clientX;
+				//y = e.touches[0].clientY;
+	
+	            t = 0, tLen = e.touches.length;
+				
+				while(t < tLen){
+					
+					EM.pushTouch(e.touches[t].clientX, e.touches[t].clientY);
+					
+					t += 1;
+				}
 	
 	        }else{
 				
-				x = e.clientX;
-				y = e.clientY;
+				//x = e.clientX;
+				//y = e.clientY;
+	
+	            EM.pushTouch(e.clientX - box.left, e.clientY - box.top);
 	
 	        }
 			
-			EM.pushTouch(x - EM.ME.w / 2 - box.left, y - EM.ME.h / 2 - box.top);
 			
-			//EM.ME.cx = x - EM.ME.w / 2 - box.left;
-			//EM.ME.cy = y - EM.ME.h / 2 - box.top;
-	
-	/*
-	        if(e.touches){
-	
-	            console.log('touch');
-				
-				console.log(e.touches[0].clientX);
-	
-	            EM.ME.cx = e.touches[0].clientX - EM.ME.w / 2;
-				EM.ME.cy = e.touches[0].clientY - EM.ME.h / 2;
-	
-	        }else{
-	
-	            console.log('mouse');
-				
-				EM.ME.cx = e.clientX - EM.ME.w / 2;;
-				EM.ME.cy = e.clientY - EM.ME.h / 2;
-	
-	        }
-		*/
 		
 		}
 		
