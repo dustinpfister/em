@@ -11,6 +11,11 @@ var EM = (function(){
 		
 		totalOrbits: 3,
 		orbits : [],
+		
+		touchArray : [],
+		maxTouch : 10,
+		lastTouch : new Date(0),
+		touchLife : 1000,
 		happy : 0.1
 	
 	},
@@ -30,8 +35,8 @@ var EM = (function(){
 	    // update is to be called on each frame tick
 	    update : function(){
 		
-		    this.ME.cx += this.ME.dx;
-			this.ME.cy += this.ME.dy;
+		    //this.ME.cx += this.ME.dx;
+			//this.ME.cy += this.ME.dy;
 		
 		
 		},
@@ -46,6 +51,25 @@ var EM = (function(){
 		    ME.cx = options.width / 2 - ME.w / 2;
 		    ME.cy = options.height / 2 - ME.h / 2;
 		
+		},
+		
+		// push a new touch at location x, y
+		pushTouch : function(x, y){
+			
+			if(ME.touchArray === ME.maxTouch){
+				
+				ME.touchArray.shift();
+				
+			}
+			
+			ME.touchArray.push({
+				
+				x: x,
+				y: y,
+				time: new Date()
+				
+			});
+			
 		},
 		
 		inMaster : function(e){
@@ -67,8 +91,10 @@ var EM = (function(){
 	
 	        }
 			
-			EM.ME.cx = x - EM.ME.w / 2 - box.left;
-			EM.ME.cy = y - EM.ME.h / 2 - box.top;
+			EM.pushTouch(x - EM.ME.w / 2 - box.left, y - EM.ME.h / 2 - box.top);
+			
+			//EM.ME.cx = x - EM.ME.w / 2 - box.left;
+			//EM.ME.cy = y - EM.ME.h / 2 - box.top;
 	
 	/*
 	        if(e.touches){
