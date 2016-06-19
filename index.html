@@ -25,13 +25,17 @@
 	// this will be called first
     start = function () {
 
+	    scaleCanvas();
+	
         EM.setup({
 
-            width : 640,
-            height : 480
+            width : canvas.width,
+            height : canvas.height
 
         });
 
+		
+		
         loop();
 
     },
@@ -40,7 +44,7 @@
     draw = function () {
 
         ctx.fillStyle = '#000000';
-        ctx.fillRect(0, 0, 640, 480);
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         ctx.fillStyle = '#00ffff';
         ctx.fillRect(EM.ME.cx, EM.ME.cy, EM.ME.w, EM.ME.h);
@@ -67,7 +71,17 @@
 		}
 	
 	},
-
+	
+	// scale the canvas to the window
+	scaleCanvas = function(){
+	
+	    canvas.width = window.innerWidth;
+		canvas.height = window.innerHeight;
+		
+		console.log('yes');
+	
+	},
+	
 	// the main app loop
     loop = function () {
 
