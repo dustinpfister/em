@@ -29,7 +29,28 @@ var EM = (function(){
 		happy : 0.1,
 		deltaHappy : -0.01,
 		updateRate : 1000,
-		lastUpdate : new Date(0)
+		lastUpdate : new Date(0),
+		
+		findAVGTouch : function(){
+			
+			var t = 0, tLen = this.touchArray.length, x = 0, y = 0;
+			
+			while(t < tLen){
+				
+				x += this.touchArray[t].x;
+				y += this.touchArray[t].y;
+				
+				t += 1;
+			}
+			
+			return {
+				
+				x: x / tLen,
+				y: y / tLen
+				
+			};
+			
+		}
 	
 	},
 	
@@ -129,8 +150,12 @@ var EM = (function(){
 			
 			}else{
 				
-				var x = ME.touchArray[0].x - ME.w / 2,
-				y = ME.touchArray[0].y - ME.h / 2;
+				//var x = ME.touchArray[0].x - ME.w / 2,
+				//y = ME.touchArray[0].y - ME.h / 2;
+				
+				var avg = ME.findAVGTouch();
+				
+				var x = avg.x - ME.w / 2, y = avg.y - ME.h / 2;
 				
 				a = Math.atan2(y - ME.y, x - ME.x),
 				d = distance(x, y, ME.x, ME.y);
