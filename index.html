@@ -1,0 +1,75 @@
+<html>
+
+<head>
+
+<title>EM</title>
+
+</head>
+
+<body>
+
+<canvas id="thecanvas" width="640" height="480"></canvas>
+
+<script src="./js/em.js"></script>
+<script>
+
+(function () {
+
+    var canvas = document.getElementById('thecanvas'),
+    ctx = canvas.getContext('2d'),
+
+	// this will be called first
+    start = function () {
+
+        EM.setup({
+
+            width : 640,
+            height : 480
+
+        });
+
+        loop();
+
+    },
+
+	// what to draw on each frame tick
+    draw = function () {
+
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(0, 0, 640, 480);
+
+        ctx.fillStyle = '#00ffff';
+        ctx.fillRect(EM.ME.cx, EM.ME.cy, EM.ME.w, EM.ME.h);
+
+    },
+
+	// the main app loop
+    loop = function () {
+
+        setTimeout(loop, 33);
+
+        EM.update();
+        draw();
+
+    };
+
+    // attach mouse events
+    canvas.addEventListener('mousedown', EM.inMaster);
+    canvas.addEventListener('mouseup', EM.inMaster);
+    canvas.addEventListener('mousemove', EM.inMaster);
+
+    // attach touch events
+    canvas.addEventListener('touchstart', EM.inMaster);
+    canvas.addEventListener('touchend', EM.inMaster);
+    canvas.addEventListener('touchmove', EM.inMaster);
+
+    // start the app
+    start();
+
+}());
+
+</script>
+
+</body>
+
+</html>
