@@ -16,7 +16,7 @@ var EM = (function(){
 		maxTouch : 10,
 		lastTouch : new Date(0),
 		lastPurge : new Date(0),
-		touchLife : 1000,
+		touchLife : 5000,
 		happy : 0.1
 	
 	},
