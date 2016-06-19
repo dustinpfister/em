@@ -75,6 +75,14 @@ var EM = (function(){
 					
 				   ME.deltaHappy = ME.touchArray.length / ME.maxTouch * 0.05;	
 					
+				   ME.x = ME.touchArray[0].x - ME.w / 2;
+				   ME.y = ME.touchArray[0].y - ME.h / 2;
+					
+				}else{
+					
+					ME.x = ME.cx;
+					ME.y = ME.cy;
+					
 				}
 				
 				console.log(ME.happy);
