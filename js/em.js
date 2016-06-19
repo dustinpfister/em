@@ -109,6 +109,17 @@ var EM = (function(){
 		
 		},
 		
+		// what to do on a canvas resize
+		resize : function(width, height){
+			
+			ME.xMax = width;
+			ME.yMax = height;
+			
+			ME.cx = ME.xMax / 2 - ME.w / 2;
+			ME.cy = ME.yMax / 2 - ME.h / 2;
+			
+		},
+		
 		// push a new touch at location x, y
 		pushTouch : function(x, y){
 			
