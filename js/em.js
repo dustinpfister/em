@@ -17,7 +17,11 @@ var EM = (function(){
 		lastTouch : new Date(0),
 		lastPurge : new Date(0),
 		touchLife : 5000,
-		happy : 0.1
+		
+		happy : 0.1,
+		deltaHappy : -0.01,
+		updateRate : 1000,
+		lastUpdate : new Date(0)
 	
 	},
 	
@@ -41,9 +45,8 @@ var EM = (function(){
 		
 		    var now = new Date();
 			
+			// if the amount of time that has passed sense the last touch is greater then touchLife
 			if(now - ME.lastTouch >= ME.touchLife){
-				
-				
 				
 				if(now - ME.lastPurge >= 1000 && ME.touchArray.length > 0){
 					
@@ -52,6 +55,31 @@ var EM = (function(){
 					ME.lastPurge = new Date();
 					
 				}
+				
+			}
+			
+			if(now - ME.lastUpdate >= 1000){
+				
+				
+				
+				// delta happy default
+				ME.deltaHappy = -0.01;
+				
+				if(ME.touchArray.length > 0){
+					
+				   ME.deltaHappy = ME.touchArray.length / ME.maxTouch * 0.05;	
+					
+				}
+				
+				console.log(ME.deltaHappy);
+				
+				ME.happy += ME.deltaHappy;
+				if(ME.happy < 0){ ME.happy = 0; }
+				if(ME.happy > 1){ ME.happy = 1; }
+				
+				
+				ME.lastUpdate = new Date();
+				
 				
 			}
 		
