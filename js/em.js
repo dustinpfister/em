@@ -71,7 +71,7 @@ var EM = (function(){
 					
 				}
 				
-				console.log(ME.deltaHappy);
+				console.log(ME.happy);
 				
 				ME.happy += ME.deltaHappy;
 				if(ME.happy < 0){ ME.happy = 0; }

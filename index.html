@@ -50,9 +50,11 @@
         ctx.fillRect(EM.ME.cx, EM.ME.cy, EM.ME.w, EM.ME.h);
 
 		drawTouchArray();
+		drawHappyBar();
 		
     },
 	
+	// draw where the current touches are
 	drawTouchArray = function(){
 	
 	    var t = 0, tLen = EM.ME.touchArray.length, touch;
@@ -69,6 +71,16 @@
 		
 		    t += 1;
 		}
+	
+	},
+	
+	// show the happy bar
+	drawHappyBar = function(){
+	
+	    ctx.fillStyle = '#a0a0a0';
+		ctx.fillRect(20,20, canvas.width-40, 20);
+		ctx.fillStyle = '#00ffff';
+		ctx.fillRect(20,20, (canvas.width - 40) * EM.ME.happy, 20);
 	
 	},
 	
