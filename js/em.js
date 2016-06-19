@@ -4,8 +4,13 @@ var EM = (function(){
 	
 	    cx : 0,
 		cy : 0,
+		
+		x : 0,
+		y : 0,
+		
 		dx : 0,
 		dy: 0,
+		
 		w : 320,
 		h : 240,
 		
@@ -63,8 +68,6 @@ var EM = (function(){
 			
 			if(now - ME.lastUpdate >= 1000){
 				
-				
-				
 				// delta happy default
 				ME.deltaHappy = -0.01;
 				
@@ -106,6 +109,9 @@ var EM = (function(){
 			
 			ME.cx = ME.xMax / 2 - ME.w / 2;
 			ME.cy = ME.yMax / 2 - ME.h / 2;
+		
+		    ME.x = ME.cx;
+			ME.y = ME.cy;
 		
 		},
 		
