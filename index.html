@@ -25,16 +25,16 @@
 	// this will be called first
     start = function () {
 
-	    scaleCanvas();
+	    
 	
         EM.setup({
 
-            width : canvas.width,
-            height : canvas.height
+            xMax : canvas.width,
+            yMax : canvas.height
 
         });
 
-		
+		scaleCanvas();
 		
         loop();
 
@@ -90,8 +90,6 @@
 	    canvas.width = window.innerWidth;
 		canvas.height = window.innerHeight;
 		
-		console.log('yes');
-	
 	},
 	
 	// the main app loop

@@ -9,6 +9,9 @@ var EM = (function(){
 		w : 320,
 		h : 240,
 		
+		xMax : 640,
+		yMax : 480,
+		
 		totalOrbits: 3,
 		orbits : [],
 		
@@ -90,11 +93,19 @@ var EM = (function(){
 		setup : function(options){
 		
 		    if(options === undefined){ options = {}; }
-			if(options.width === undefined){ options.width = 320;}
-			if(options.height === undefined){ options.height = 240;}
+			if(options.w === undefined){ options.w = 320;}
+			if(options.h === undefined){ options.h = 240;}
+		    if(options.xMax === undefined){ options.xMax = 640;}
+			if(options.yMax === undefined){ options.yMax = 480;}
 		
-		    ME.cx = options.width / 2 - ME.w / 2;
-		    ME.cy = options.height / 2 - ME.h / 2;
+		
+		    ME.xMax = options.xMax;
+			ME.yMax = options.yMax;
+			ME.w = options.w;
+			ME.h = options.h;
+			
+			ME.cx = ME.xMax / 2 - ME.w / 2;
+			ME.cy = ME.yMax / 2 - ME.h / 2;
 		
 		},
 		
