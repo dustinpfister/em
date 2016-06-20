@@ -19,6 +19,7 @@ var EM = (function(){
 		
 		totalOrbits: 3,
 		orbitHeight : 100,
+		orbitRadian : 1.57,
 		orbits : [],
 		
 		touchArray : [],
@@ -193,7 +194,7 @@ var EM = (function(){
 			
 			while(oi < ME.orbits.length){
 				
-				oa = Math.PI * 2 / ME.orbits.length * oi;
+				oa = Math.PI * 2 / ME.orbits.length * oi + ME.orbitRadian;
 				
 				ME.orbits[oi].setTarget(
 				    Math.cos(oa) * ME.orbitHeight + ME.x + ME.w / 2,
