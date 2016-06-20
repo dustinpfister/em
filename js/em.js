@@ -19,7 +19,9 @@ var EM = (function(){
 		
 		totalOrbits: 3,
 		orbitHeight : 100,
-		orbitRadian : 1.57,
+		orbitRadian : 0,
+		orbitTick : 0,
+		orbitMaxTick : 2000,
 		orbits : [],
 		
 		touchArray : [],
@@ -191,6 +193,16 @@ var EM = (function(){
 			// update orbits
 			
 			var oi = 0, oa;
+			
+			ME.orbitTick += 1;
+			
+			if(ME.orbitTick === ME.orbitMaxTick){
+				
+				ME.orbitTick = 0;
+				
+			}
+			
+			ME.orbitRadian = Math.PI * 2 / ME.orbitMaxTick * ME.orbitTick;
 			
 			while(oi < ME.orbits.length){
 				
