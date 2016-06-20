@@ -158,8 +158,9 @@ var EM = (function(){
 				if(ME.happy < 0){ ME.happy = 0; }
 				if(ME.happy > 1){ ME.happy = 1; }
 				
+				var part = ME.w / 2 / 4;
 				
-				ME.orbitHeight = ME.w * ME.happy;
+				ME.orbitHeight = part * 3 * ME.happy + part;
 				
 				ME.lastUpdate = new Date();
 				
