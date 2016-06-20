@@ -220,30 +220,18 @@ var EM = (function(){
 				if(ME.happy > 1){ ME.happy = 1; }
 				
 				var part = ME.w / 4;
-				
 				ME.orbitHeight = part * 3 * ME.happy + part;
-				
 				ME.orbitSpeed = 20 - Math.floor(19 * ME.happy);
-				
-				//ME.orbitHeight = 160;
-				
-				//ME.orbitMaxTick = 2000 - 1950 * ME.happy;
-				
 				ME.deltaTick = Math.floor(29 * ME.happy + 1);
-				
 				ME.moveRate = 100 - 95 * ME.happy;
-				
-				
 				ME.size = 0.25 + 0.75 * ME.happy;
 				ME.w = ME.maxW * ME.size;
 			    ME.h = ME.maxH * ME.size;
-				
 				ME.cx = ME.xMax / 2 - ME.w / 2;
 			    ME.cy = ME.yMax / 2 - ME.h / 2;
-				
 				ME.points += ME.pointRate;
-				
 				ME.level = Math.floor(Math.log(ME.points) / Math.log(2)) + 1;
+				ME.touchLimit = 1 + (ME.maxTouch -1) * ME.happy
 				
 				this.levelUp();
 				
@@ -336,7 +324,7 @@ var EM = (function(){
 				
 		    		i += 1;
 				
-			}
+			    }
 			
 			}
 			
@@ -402,8 +390,6 @@ var EM = (function(){
 		
 		// push a new touch at location x, y
 		pushTouch : function(x, y){
-			
-			
 			
 			if(ME.touchArray.length >= ME.touchLimit){
 				
