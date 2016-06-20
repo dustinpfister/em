@@ -17,6 +17,8 @@ var EM = (function(){
 		xMax : 640,
 		yMax : 480,
 		
+		moveRate : 100,
+		
 		totalOrbits: 3,
 		orbitHeight : 100,
 		orbitRadian : 0,
@@ -176,8 +178,8 @@ var EM = (function(){
 			// if no touching move to center 
 			if(ME.touchArray.length === 0){
 			
-		    	ME.dx = Math.cos(aToCenter) * (dToCenter / 10);
-		    	ME.dy = Math.sin(aToCenter) * (dToCenter / 10);
+		    	ME.dx = Math.cos(aToCenter) * (dToCenter / ME.moveRate);
+		    	ME.dy = Math.sin(aToCenter) * (dToCenter / ME.moveRate);
 			
 			}else{
 				
@@ -188,8 +190,8 @@ var EM = (function(){
 				a = Math.atan2(y - ME.y, x - ME.x),
 				d = distance(x, y, ME.x, ME.y);
 				
-				ME.dx = Math.cos(a) * (d / 10);
-		    	ME.dy = Math.sin(a) * (d / 10);
+				ME.dx = Math.cos(a) * (d / ME.moveRate);
+		    	ME.dy = Math.sin(a) * (d / ME.moveRate);
 			}
 			
 			// update orbits
