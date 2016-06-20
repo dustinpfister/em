@@ -33,7 +33,7 @@ var EM = (function(){
 		lastPurge : new Date(0),
 		touchLife : 5000,
 		
-		happy : 1,
+		happy : .1,
 		deltaHappy : -0.01,
 		updateRate : 1000,
 		lastUpdate : new Date(0),
@@ -99,9 +99,11 @@ var EM = (function(){
 			a = Math.atan2(this.targetY - this.y, this.targetX - this.x),
 			d = distance(this.targetX, this.targetY, this.x, this.y),
 			
-			overFrame = 10;
+			overFrame = 20;
 			
-			if(d <= 10){
+			
+			/*
+			if(d <= 11){
 			
 			    //overFrame = d;
 				
@@ -111,13 +113,24 @@ var EM = (function(){
 					
 				//}
 				 
+				console.log(overFrame);
+				 
 			}
 			
-			//this.dx = Math.cos(a) * (d / overFrame);
-			//this.dy = Math.sin(a) * (d / overFrame);
+			*/
 			
-			this.dx = Math.cos(a) * (d / 1);
-			this.dy = Math.sin(a) * (d / 1);
+			if(d <= 20){
+				
+			    overFrame = 1 + Math.floor((d / 20) * 9);
+				
+			}
+			console.log(overFrame);
+			
+			this.dx = Math.cos(a) * (d / overFrame);
+			this.dy = Math.sin(a) * (d / overFrame);
+			
+			//this.dx = Math.cos(a) * (d / 5);
+			//this.dy = Math.sin(a) * (d / 5);
 			
 		},
 		
@@ -190,8 +203,6 @@ var EM = (function(){
 				//ME.orbitMaxTick = 2000 - 1950 * ME.happy;
 				
 				ME.deltaTick = Math.floor(49 * ME.happy + 1);
-				
-				console.log(ME.orbitTick);
 				
 				ME.moveRate = 100 - 95 * ME.happy;
 				

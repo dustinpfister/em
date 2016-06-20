@@ -64,15 +64,27 @@
 	    ctx.strokeStyle = '#000000';
 		//ctx.fillStyle = 'rgba('+ Math.floor(EM.ME.happy * 255) +',0,' + Math.floor(255 - EM.ME.happy * 255) + ',1)';
 	    
-	
-	
-	
+	    oi = 0;
 	    while(oi < oLen){
 		
 		    orbit = EM.ME.orbits[oi];
 		
 		    ctx.beginPath();
-		    ctx.arc(orbit.x, orbit.y, 10, 0, Math.PI*2);
+		    ctx.arc(orbit.x, orbit.y, 15, 0, Math.PI*2);
+		    ctx.closePath();
+			ctx.stroke();
+			ctx.fill();
+		
+		    oi += 1;
+		}
+		
+		oi = 0;
+	    while(oi < oLen){
+		
+		    orbit = EM.ME.orbits[oi];
+		
+		    ctx.beginPath();
+		    ctx.arc(orbit.targetX, orbit.targetY, 5, 0, Math.PI*2);
 		    ctx.closePath();
 			ctx.stroke();
 			ctx.fill();
@@ -134,7 +146,7 @@
     // attach mouse events
     canvas.addEventListener('mousedown', EM.inMaster);
     canvas.addEventListener('mouseup', EM.inMaster);
-    canvas.addEventListener('mousemove', EM.inMaster);
+    //canvas.addEventListener('mousemove', EM.inMaster);
 
     // attach touch events
     canvas.addEventListener('touchstart', EM.inMaster);
