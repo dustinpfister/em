@@ -39,6 +39,10 @@ var EM = (function(){
 		updateRate : 1000,
 		lastUpdate : new Date(0),
 		
+		
+		points : 0,
+		pointRate : 0,
+		
 		findAVGTouch : function(){
 			
 			var t = 0, tLen = this.touchArray.length, x = 0, y = 0;
@@ -166,7 +170,14 @@ var EM = (function(){
 				if(ME.touchArray.length > 0){
 					
 				   ME.deltaHappy = ME.touchArray.length / ME.maxTouch * 0.05;	
+				
+                   ME.pointRate = Math.floor(9 * ME.happy) + 1;
+
+				
+				}else{
 					
+					ME.pointRate = Math.floor(99 * ME.happy) + 1;
+
 				}
 				
 				ME.happy += ME.deltaHappy;
@@ -188,6 +199,10 @@ var EM = (function(){
 				ME.moveRate = 100 - 95 * ME.happy;
 				
 				ME.lastUpdate = new Date();
+				
+				
+				
+				ME.points += ME.pointRate;
 				
 			}
 			

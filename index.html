@@ -58,7 +58,9 @@
 		
 		drawTouchArray();
 		drawHappyBar();
+		drawDisp();
 		drawOrbits();
+		
 		
     },
 	
@@ -128,6 +130,15 @@
 		ctx.fillRect(20,20, canvas.width-40, 20);
 		ctx.fillStyle = 'rgba('+ Math.floor(EM.ME.happy * 255) +',0,' + Math.floor(255 - EM.ME.happy * 255) + ',1)';
 		ctx.fillRect(20,20, (canvas.width - 40) * EM.ME.happy, 20);
+	
+	},
+	
+	drawDisp = function(){
+	
+	    ctx.font = '20px arial';
+		ctx.textBaseline = 'top';
+	
+	    ctx.fillText('points: ' + EM.ME.points + ', pointRate: ' + EM.ME.pointRate, 20,50);
 	
 	},
 	
