@@ -162,6 +162,7 @@ var EM = (function(){
 			return {
 			
 			    currentTouch : 0, // the index of the current touch to which the menu apply's
+				touchId : '',     // the Id of the current touch
 			    active : false,   // the menu is active
 				frame : 0,        // the current frame of the open/close animation
 			    update : function(){
@@ -171,7 +172,7 @@ var EM = (function(){
 						
 						if(this.active){
 							
-							console.log('okay we good so far. This is touch: ' + this.currentTouch);
+							console.log('okay we good so far. This is touch id is: ' + this.touchId);
 							this.active = false;
 							
 						}
@@ -436,6 +437,26 @@ var EM = (function(){
 			
 		},
 		
+		// get a touch by it's id
+		getTouchById : function(id){
+			
+			var i = 0, len = ME.touchArray.length;
+			
+			while(i < len){
+				
+				if(id === ME.touchArray[i].id){
+					
+					return ME.touchArray[i];
+					
+				}
+				
+				i += 1;
+			}
+			
+			return {};
+			
+		},
+		
 		// push a new touch at location x, y
 		pushTouch : (function(){
 			
@@ -462,7 +483,9 @@ var EM = (function(){
 							// set the menu active for it.
 							
 							this.touchMenu.active = true;
-							this.touchMenu.currentTouch = i;
+							//this.touchMenu.currentTouch = i;
+							this.touchMenu.touchId = ME.touchArray[i].id; 
+							
 							
 						}else{
 							
