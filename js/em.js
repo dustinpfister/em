@@ -397,7 +397,7 @@ var EM = (function(){
 		},
 		
 		// push a new touch at location x, y
-		pushTouch : function(x, y){
+		pushTouch : function(e, x, y){
 			
 			// any other touches to close?
 			var i = 0, len = ME.touchArray.length;
@@ -405,7 +405,7 @@ var EM = (function(){
 				
 				if(distance(ME.touchArray[i].x,ME.touchArray[i].y,x,y) < 25 ){
 					
-					ME.touchArray[i].active = !ME.touchArray[i].active
+					//ME.touchArray[i].active = !ME.touchArray[i].active
 					
 					return;
 					
@@ -449,16 +449,17 @@ var EM = (function(){
 				
 				while(t < tLen){
 					
-					EM.pushTouch(e.touches[t].clientX, e.touches[t].clientY);
+					EM.pushTouch(e, e.touches[t].clientX, e.touches[t].clientY);
 					
 					t += 1;
 				}
 	
 	        }else{
 	
-	            EM.pushTouch(e.clientX - box.left, e.clientY - box.top);
+	            EM.pushTouch(e, e.clientX - box.left, e.clientY - box.top);
 	
 	        }
+			
 			
 			// ME.lastTouch = new Date();
 			
