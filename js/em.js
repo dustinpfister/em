@@ -11,8 +11,13 @@ var EM = (function(){
 		dx : 0,
 		dy: 0,
 		
+		maxW:320,
+		maxH: 240,
+		size : 0.25,
+		
 		w : 320,
 		h : 240,
+		
 		
 		xMax : 640,
 		yMax : 480,
@@ -313,8 +318,13 @@ var EM = (function(){
 				
 		    ME.xMax = options.xMax;
 			ME.yMax = options.yMax;
-			ME.w = options.w;
-			ME.h = options.h;
+			
+			ME.maxW = options.w;
+			ME.maxH = options.h;
+			
+			ME.w = ME.maxW * ME.size;
+			ME.h = ME.maxH * ME.size;
+			
 			
 			ME.cx = ME.xMax / 2 - ME.w / 2;
 			ME.cy = ME.yMax / 2 - ME.h / 2;
