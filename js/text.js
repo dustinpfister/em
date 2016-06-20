@@ -3,7 +3,9 @@ var text = (function(){
     var state = {
 		
 		lines : ['one', 'two', 'three'],
-	    offset : 0
+	    offset : 0,
+		topLine : 0,
+		lineY : 400,
 	
 	};
 
@@ -13,12 +15,12 @@ var text = (function(){
 		
 		update : function(){
 			
-			state.offset -= 1;
 			
-			if(state.offset === -1){
+			if(state.lineY > 100){
 				
-				state.offset = 15
-				
+                state.lineY -= 1;
+						
+			
 			}
 			
 			
