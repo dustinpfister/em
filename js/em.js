@@ -407,6 +407,12 @@ var EM = (function(){
 					
 					//ME.touchArray[i].active = !ME.touchArray[i].active
 					
+					if(e.type === 'touchstart' || e.type === 'mousedown'){
+						
+						ME.touchArray[i].active = !ME.touchArray[i].active
+						
+					}
+					
 					return;
 					
 				}
