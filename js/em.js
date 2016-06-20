@@ -169,6 +169,8 @@ var EM = (function(){
 				
 				ME.orbitMaxTick = 2000 - 1950 * ME.happy;
 				
+				ME.moveRate = 100 - 95 * ME.happy;
+				
 				ME.lastUpdate = new Date();
 				
 			}
