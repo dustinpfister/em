@@ -8,6 +8,7 @@ var text = (function(){
 		lineY : 800,
 		startY : 800,
 		alpha : 0,
+		speed : 0,
 		active : false
 	
 	};
@@ -35,7 +36,7 @@ var text = (function(){
 				
 				if(state.alpha < 1){
 					
-					state.alpha += 0.05;
+					state.alpha += 0.01;
 					
 				}else{
 					
@@ -45,7 +46,7 @@ var text = (function(){
 			
 			if(state.lineY > 100){
 				
-                state.lineY -= 10;
+                state.lineY -= 1;
 						
 			
 			}else{
@@ -54,7 +55,7 @@ var text = (function(){
 				
 				if(state.offset <= -1){
 					
-					state.offset = 15;
+					state.offset = 50;
 					
 					state.topLine += 1;
 					
@@ -70,7 +71,7 @@ var text = (function(){
 			
 			}else{
 				
-				state.alpha -= 0.05;
+				state.alpha -= 0.01;
 				
 				if(state.alpha <= 0){
 				
