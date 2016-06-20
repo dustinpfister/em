@@ -23,7 +23,8 @@ var EM = (function(){
 		orbitHeight : 100,
 		orbitRadian : 0,
 		orbitTick : 0,
-		orbitMaxTick : 2000,
+		orbitMaxTick : 1000,
+		deltaTick : 1,
 		orbits : [],
 		
 		touchArray : [],
@@ -167,7 +168,7 @@ var EM = (function(){
 				
 				ME.orbitHeight = part * 3 * ME.happy + part;
 				
-				ME.orbitMaxTick = 2000 - 1950 * ME.happy;
+				//ME.orbitMaxTick = 2000 - 1950 * ME.happy;
 				
 				ME.moveRate = 100 - 95 * ME.happy;
 				
@@ -200,7 +201,7 @@ var EM = (function(){
 			
 			var oi = 0, oa;
 			
-			ME.orbitTick += 1;
+			ME.orbitTick += ME.deltaTick;
 			
 			if(ME.orbitTick >= ME.orbitMaxTick){
 				
@@ -277,7 +278,7 @@ var EM = (function(){
 			ME.cx = ME.xMax / 2 - ME.w / 2;
 			ME.cy = ME.yMax / 2 - ME.h / 2;
 			
-			ME.x = ME.cx + 100;
+			ME.x = ME.cx;
 			ME.y = ME.cy;
 			
 		},
