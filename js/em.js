@@ -165,6 +165,8 @@ var EM = (function(){
 				
 				ME.orbitHeight = part * 3 * ME.happy + part;
 				
+				ME.orbitMaxTick = 2000 - 1900 * ME.happy;
+				
 				ME.lastUpdate = new Date();
 				
 			}
@@ -196,7 +198,7 @@ var EM = (function(){
 			
 			ME.orbitTick += 1;
 			
-			if(ME.orbitTick === ME.orbitMaxTick){
+			if(ME.orbitTick >= ME.orbitMaxTick){
 				
 				ME.orbitTick = 0;
 				
@@ -216,8 +218,6 @@ var EM = (function(){
 				
 				oi += 1;
 			}
-			
-			console.log(ME.orbits[0].x);
 			
 			ME.x += ME.dx;
 			ME.y += ME.dy;
