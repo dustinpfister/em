@@ -207,6 +207,8 @@ var EM = (function(){
 				
 				ME.level = Math.floor(Math.log(ME.points) / Math.log(2)) + 1;
 				
+				this.levelUp();
+				
 			}
 			
 			// update on each frame tick:
@@ -263,6 +265,28 @@ var EM = (function(){
 			ME.x += ME.dx;
 			ME.y += ME.dy;
 		
+		},
+		
+		levelUp : function(){
+		
+            ME.totalOrbits = ME.level;		
+			
+			var i = ME.orbits.length - 1, a;
+			while(i < ME.totalOrbits){
+				
+				a = Math.PI * 2 / ME.totalOrbits * i;
+				
+				ME.orbits.push(new Orbit({
+					cx : ME.cx,
+					cy : ME.cy,
+					startD: 1000,
+					targetX : Math.cos(a) * 10 + ME.cx,
+					targetY : Math.sin(a) * 10 + ME.cy
+				}));
+				
+				i += 1;
+			}
+			
 		},
 		
 		// setup EM
