@@ -154,16 +154,24 @@ var EM = (function(){
 			
 			while(i >= 0){
 				
-				if(now - ME.touchArray[i].startTime >= ME.touchArray[i].lifeSpan ){
+				if(ME.touchArray[i].active){
 					
-				    //ME.touchArray[i].splice(i,1);	
+					ME.touchArray[i].startTime = new Date();
 					
-					ME.touchArray.splice(i,1);
+				}else{
+				
+				    if(now - ME.touchArray[i].startTime >= ME.touchArray[i].lifeSpan ){
 					
-					//console.log(ME.touchArray[i]);
+				        //ME.touchArray[i].splice(i,1);	
 					
-					//console.log(i)
+					    ME.touchArray.splice(i,1);
 					
+					    //console.log(ME.touchArray[i]);
+					
+					    //console.log(i)
+					
+			    	}
+				
 				}
 				
                 i -= 1;			
