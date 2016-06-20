@@ -97,10 +97,26 @@ var EM = (function(){
 		setDelta : function(){
 			
 			a = Math.atan2(this.targetY - this.y, this.targetX - this.x),
-			d = distance(this.targetX, this.targetY, this.x, this.y);
+			d = distance(this.targetX, this.targetY, this.x, this.y),
+			
+			overFrame = 20;
+			
+			if(d <= 20){
+			
+			    overFrame = d;
+				
+				if(overFrame < 2){
+					
+					overFrame = 1;
+					
+				}
 				 
-			this.dx = Math.cos(a) * (d / 10);
-			this.dy = Math.sin(a) * (d / 10);
+			}
+			
+			console.log(overFrame);
+				 
+			this.dx = Math.cos(a) * (d / overFrame);
+			this.dy = Math.sin(a) * (d / overFrame);
 			
 		},
 		
@@ -168,6 +184,8 @@ var EM = (function(){
 				
 				ME.orbitHeight = part * 3 * ME.happy + part;
 				
+				//ME.orbitHeight = 160;
+				
 				//ME.orbitMaxTick = 2000 - 1950 * ME.happy;
 				
 				ME.moveRate = 100 - 95 * ME.happy;
@@ -205,7 +223,7 @@ var EM = (function(){
 			
 			if(ME.orbitTick >= ME.orbitMaxTick){
 				
-				ME.orbitTick = ME.orbitTick % ME.orbitMaxTick;
+				ME.orbitTick = ME.orbitMaxTick % ME.orbitTick;
 				
 			}
 			
@@ -218,8 +236,11 @@ var EM = (function(){
 				ME.orbits[oi].setTarget(
 				    Math.cos(oa) * ME.orbitHeight + ME.x + ME.w / 2,
 					Math.sin(oa) * ME.orbitHeight + ME.y + ME.h / 2
+					//Math.cos(oa) * ME.orbitHeight + 200,
+					//Math.sin(oa) * ME.orbitHeight + 200
 				);
 				ME.orbits[oi].step();
+				
 				
 				oi += 1;
 			}
