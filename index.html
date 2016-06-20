@@ -60,16 +60,18 @@
 	
 	    var oi = 0, oLen = EM.ME.orbits.length;
 	
-	    ctx.strokeStyle = '#00ff00';
+	    ctx.strokeStyle = '#ffffff';
+		ctx.fillStyle = '#0000ff';
 	
 	    while(oi < oLen){
 		
 		    orbit = EM.ME.orbits[oi];
 		
 		    ctx.beginPath();
-		    ctx.arc(orbit.x, orbit.y, 5, 0, Math.PI*2);
+		    ctx.arc(orbit.x, orbit.y, 10, 0, Math.PI*2);
 		    ctx.closePath();
 			ctx.stroke();
+			ctx.fill();
 		
 		    oi += 1;
 		}
