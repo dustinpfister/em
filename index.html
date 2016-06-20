@@ -46,7 +46,7 @@
         ctx.fillStyle = '#000000';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        ctx.fillStyle = '#00ffff';
+        ctx.fillStyle = 'rgba('+ Math.floor(EM.ME.happy * 255) +',0,' + Math.floor(255 - EM.ME.happy * 255) + ',1)';
         ctx.fillRect(EM.ME.x, EM.ME.y, EM.ME.w, EM.ME.h);
 
 		drawTouchArray();
@@ -60,8 +60,12 @@
 	
 	    var oi = 0, oLen = EM.ME.orbits.length;
 	
-	    ctx.strokeStyle = '#ffffff';
-		ctx.fillStyle = '#0000ff';
+	    ctx.lineWidth = 5;
+	    ctx.strokeStyle = '#000000';
+		//ctx.fillStyle = 'rgba('+ Math.floor(EM.ME.happy * 255) +',0,' + Math.floor(255 - EM.ME.happy * 255) + ',1)';
+	    
+	
+	
 	
 	    while(oi < oLen){
 		
@@ -103,7 +107,7 @@
 	
 	    ctx.fillStyle = '#a0a0a0';
 		ctx.fillRect(20,20, canvas.width-40, 20);
-		ctx.fillStyle = '#00ffff';
+		ctx.fillStyle = 'rgba('+ Math.floor(EM.ME.happy * 255) +',0,' + Math.floor(255 - EM.ME.happy * 255) + ',1)';
 		ctx.fillRect(20,20, (canvas.width - 40) * EM.ME.happy, 20);
 	
 	},
