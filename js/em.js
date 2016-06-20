@@ -150,7 +150,7 @@ var EM = (function(){
 			if(now - ME.lastUpdate >= 1000){
 				
 				// delta happy default
-				ME.deltaHappy = -0.001;
+				ME.deltaHappy = -0.005;
 				
 				// if being touched
 				if(ME.touchArray.length > 0){
@@ -285,6 +285,8 @@ var EM = (function(){
 		// push a new touch at location x, y
 		pushTouch : function(x, y){
 			
+			if(new Date() - ME.lastTouch > 1000){
+			
 			if(ME.touchArray.length === ME.maxTouch){
 				
 				ME.touchArray.shift();
@@ -299,6 +301,8 @@ var EM = (function(){
 			});
 			
 			ME.lastTouch = new Date();
+			
+			}
 			
 		},
 		
