@@ -27,10 +27,10 @@ var text = (function(){
 			
 		},
 		
-		update : function(touch){
+		update : function(EM){
 			
 			
-			if(touch.length === 0){
+			if(EM.ME.touchArray.length === 0){
 				
 				state.active = true;
 				
