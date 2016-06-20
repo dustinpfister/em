@@ -34,7 +34,7 @@ var EM = (function(){
 		lastPurge : new Date(0),
 		touchLife : 5000,
 		
-		happy : .1,
+		happy : 1,
 		deltaHappy : -0.01,
 		updateRate : 1000,
 		lastUpdate : new Date(0),
@@ -176,13 +176,15 @@ var EM = (function(){
 				
 				var part = ME.w / 4;
 				
-				//ME.orbitHeight = part * 3 * ME.happy + part;
+				ME.orbitHeight = part * 3 * ME.happy + part;
 				
-				ME.orbitHeight = 160;
+				ME.orbitSpeed = 20 - Math.floor(19 * ME.happy);
+				
+				//ME.orbitHeight = 160;
 				
 				//ME.orbitMaxTick = 2000 - 1950 * ME.happy;
 				
-				ME.deltaTick = Math.floor(49 * ME.happy + 1);
+				ME.deltaTick = Math.floor(29 * ME.happy + 1);
 				
 				ME.moveRate = 100 - 95 * ME.happy;
 				
