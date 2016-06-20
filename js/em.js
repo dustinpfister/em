@@ -30,7 +30,7 @@ var EM = (function(){
 		lastPurge : new Date(0),
 		touchLife : 5000,
 		
-		happy : 0.1,
+		happy : 0,
 		deltaHappy : -0.01,
 		updateRate : 1000,
 		lastUpdate : new Date(0),
@@ -148,7 +148,7 @@ var EM = (function(){
 			if(now - ME.lastUpdate >= 1000){
 				
 				// delta happy default
-				ME.deltaHappy = -0.01;
+				ME.deltaHappy = -0.001;
 				
 				// if being touched
 				if(ME.touchArray.length > 0){
@@ -161,11 +161,11 @@ var EM = (function(){
 				if(ME.happy < 0){ ME.happy = 0; }
 				if(ME.happy > 1){ ME.happy = 1; }
 				
-				var part = ME.w / 2 / 4;
+				var part = ME.w / 4;
 				
 				ME.orbitHeight = part * 3 * ME.happy + part;
 				
-				ME.orbitMaxTick = 2000 - 1900 * ME.happy;
+				ME.orbitMaxTick = 2000 - 1950 * ME.happy;
 				
 				ME.lastUpdate = new Date();
 				
