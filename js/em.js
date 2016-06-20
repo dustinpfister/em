@@ -218,6 +218,24 @@ var EM = (function(){
 			}
 			
 		},
+		
+		purgeOldest : function(){
+			
+			var i = 0, len = ME.touchArray.length;
+			
+			while(i < len){
+				
+				// purge the first inactive from 0 upwards.
+				if(!ME.touchArray[i].active){
+					
+					ME.touchArray.splice(i,1);
+					
+				}
+				
+				i += 1;
+			}
+			
+		},
 	
 	    // update is to be called on each frame tick
 	    update : function(){
@@ -505,7 +523,9 @@ var EM = (function(){
 			
 			if(ME.touchArray.length >= ME.touchLimit){
 				
-				ME.touchArray.shift();
+				// ME.touchArray.shift();
+				
+			    this.purgeOldest();
 				
 			}
 			
