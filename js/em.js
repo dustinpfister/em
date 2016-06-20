@@ -97,8 +97,11 @@ var EM = (function(){
 		
 		step : function(){
 			
+			this.setDelta();
+			
 			this.x += this.dx;
 			this.y += this.dy;
+			
 			
 		}
 		
@@ -169,6 +172,19 @@ var EM = (function(){
 				ME.dx = Math.cos(a) * (d / 10);
 		    	ME.dy = Math.sin(a) * (d / 10);
 			}
+			
+			// update orbits
+			
+			var oi = 0;
+			
+			while(oi < ME.orbits.length){
+				
+				ME.orbits[oi].step();
+				
+				oi += 1;
+			}
+			
+			console.log(ME.orbits[0].x);
 			
 			ME.x += ME.dx;
 			ME.y += ME.dy;
