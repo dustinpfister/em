@@ -51,8 +51,30 @@
 
 		drawTouchArray();
 		drawHappyBar();
+		drawOrbits();
 		
     },
+	
+	// draw orbits
+	drawOrbits = function(){
+	
+	    var oi = 0, oLen = EM.ME.orbits.length;
+	
+	    ctx.strokeStyle = '#00ff00';
+	
+	    while(oi < oLen){
+		
+		    orbit = EM.ME.orbits[oi];
+		
+		    ctx.beginPath();
+		    ctx.arc(orbit.x, orbit.y, 5, 0, Math.PI*2);
+		    ctx.closePath();
+			ctx.stroke();
+		
+		    oi += 1;
+		}
+		
+	},
 	
 	// draw where the current touches are
 	drawTouchArray = function(){
