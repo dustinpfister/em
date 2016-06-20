@@ -15,6 +15,7 @@
 <canvas id="thecanvas" width="640" height="480"></canvas>
 
 <script src="./js/em.js"></script>
+<script src="./js/text.js"></script>
 <script>
 
 (function () {
@@ -43,9 +44,13 @@
 	// what to draw on each frame tick
     draw = function () {
 
+	    
+	
         ctx.fillStyle = '#000000';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+		drawText();
+		
         ctx.fillStyle = 'rgba('+ Math.floor(EM.ME.happy * 255) +',0,' + Math.floor(255 - EM.ME.happy * 255) + ',1)';
        
 	    //ctx.fillRect(EM.ME.x, EM.ME.y, EM.ME.w, EM.ME.h);
@@ -63,6 +68,25 @@
 		
 		
     },
+	
+	drawText = function(){
+	
+	    var tx = text.state;
+	
+	
+	    ctx.font = '15px courier';
+		ctx.fillStyle = '#ffffff';
+		
+		var i = 0, len = tx.lines.length;
+		while(i < len){
+	    
+		    ctx.fillText(i + ' : ' + tx.lines[i], 50, 100 + tx.offset);
+	
+	        i += 1;
+	
+	    }
+	
+	},
 	
 	// draw orbits
 	drawOrbits = function(){
@@ -157,6 +181,7 @@
         setTimeout(loop, 33);
 
         EM.update();
+		text.update();
         draw();
 
     };

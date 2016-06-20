@@ -282,7 +282,7 @@ var EM = (function(){
 		
 		    var i, a;
 		
-            ME.totalOrbits = Math.floor(ME.level / 2);;		
+            ME.totalOrbits = Math.floor(ME.level / 10);;		
 			//ME.totalOrbits = 16;
 			
 			if(ME.totalOrbits > 15){
