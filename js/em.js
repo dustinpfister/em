@@ -437,7 +437,11 @@ var EM = (function(){
 		},
 		
 		// push a new touch at location x, y
-		pushTouch : function(e, x, y){
+		pushTouch : (function(){
+			
+			var count = 0; // use for id's
+			
+			return function(e, x, y){
 			
 			// any other touches to close?
 			var i = 0, len = ME.touchArray.length;
@@ -484,6 +488,7 @@ var EM = (function(){
 			
 			ME.touchArray.push({
 				
+				id: new Date().getTime() + ':' + count,
 				x: x,
 				y: y,
 				active : false,
@@ -494,7 +499,17 @@ var EM = (function(){
 				
 			});
 			
-		},
+			count += 1;
+			
+			if(count >= 1000){
+				
+				count = 0;
+				
+			}
+			
+		    };
+			
+		}()),
 		
 		inMaster : function(e){
 		
