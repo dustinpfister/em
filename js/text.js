@@ -6,6 +6,7 @@ var text = (function(){
 	    offset : 0,
 		topLine : 0,
 		lineY : 150,
+		alpha : 0,
 		active : false
 	
 	};
@@ -20,6 +21,16 @@ var text = (function(){
 			if(touch.length === 0){
 				
 				state.active = true;
+				
+				if(state.alpha < 1){
+					
+					state.alpha += 0.05;
+					
+				}else{
+					
+					state.alpha = 1;
+					
+				}
 			
 			if(state.lineY > 100){
 				
@@ -48,11 +59,18 @@ var text = (function(){
 			
 			}else{
 				
-				state.offset = 0;
-				state.topLine = 0;
-				state.lineY = 150;
+				state.alpha -= 0.05;
 				
-				state.active = false;
+				if(state.alpha <= 0){
+				
+				    state.alpha = 0;
+				    state.offset = 0;
+				    state.topLine = 0;
+				    state.lineY = 150;
+				
+			    	state.active = false;
+				
+				}
 				
 			}
 			
