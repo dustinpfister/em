@@ -415,7 +415,9 @@ var EM = (function(){
 				x: x,
 				y: y,
 				startTime : new Date(),
-				lifeSpan : 5000
+				lifeSpan : 5000,
+				a : Math.atan2(cy - y, cx - x),
+				d : distance(x,y,cx,cy)
 				
 			});
 			
