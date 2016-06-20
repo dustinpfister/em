@@ -409,7 +409,18 @@ var EM = (function(){
 					
 					if(e.type === 'touchstart' || e.type === 'mousedown'){
 						
-						ME.touchArray[i].active = !ME.touchArray[i].active
+						//ME.touchArray[i].active = !ME.touchArray[i].active
+						
+						if( new Date() - ME.touchArray[i].startTime > 500 ){
+							
+							ME.touchArray[i].active = true;
+							
+						}else{
+							
+							ME.touchArray[i].active = false;
+							
+						}
+						
 						
 					}
 					
