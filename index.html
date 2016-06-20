@@ -47,8 +47,15 @@
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
         ctx.fillStyle = 'rgba('+ Math.floor(EM.ME.happy * 255) +',0,' + Math.floor(255 - EM.ME.happy * 255) + ',1)';
-        ctx.fillRect(EM.ME.x, EM.ME.y, EM.ME.w, EM.ME.h);
+       
+	    //ctx.fillRect(EM.ME.x, EM.ME.y, EM.ME.w, EM.ME.h);
 
+		ctx.beginPath();
+		ctx.arc(EM.ME.x + EM.ME.w / 2, EM.ME.y + EM.ME.h / 2, EM.ME.h / 2, 0, Math.PI*2);
+		ctx.closePath();
+		ctx.stroke();
+		ctx.fill();
+		
 		drawTouchArray();
 		drawHappyBar();
 		drawOrbits();

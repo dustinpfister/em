@@ -19,7 +19,7 @@ var EM = (function(){
 		
 		moveRate : 100,
 		
-		totalOrbits: 3,
+		totalOrbits: 1,
 		orbitHeight : 100,
 		orbitRadian : 0,
 		orbitTick : 0,
@@ -34,7 +34,7 @@ var EM = (function(){
 		lastPurge : new Date(0),
 		touchLife : 5000,
 		
-		happy : 1,
+		happy : 0,
 		deltaHappy : -0.01,
 		updateRate : 1000,
 		lastUpdate : new Date(0),
@@ -107,7 +107,6 @@ var EM = (function(){
 			    overFrame = 1 + Math.floor((d / 20) * 9);
 				
 			}
-			console.log(overFrame);
 			
 			this.dx = Math.cos(a) * (d / overFrame);
 			this.dy = Math.sin(a) * (d / overFrame);
