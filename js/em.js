@@ -34,12 +34,12 @@ var EM = (function(){
 		orbits : [],
 		
 		touchArray : [],
-		maxTouch : 10,
+		maxTouch : 50,
 		lastTouch : new Date(0),
 		lastPurge : new Date(0),
 		touchLife : 5000,
 		
-		happy : 1,
+		happy : .1,
 		deltaHappy : -0.01,
 		updateRate : 1000,
 		lastUpdate : new Date(0),
@@ -147,6 +147,30 @@ var EM = (function(){
 	    // a refrence to the ME object
 	    ME : ME,
 	
+	    purgeTouch : function(){
+			
+			var len = ME.touchArray.length, i = len - 1, now = new Date();
+			
+			while(i >= 0){
+				
+				if(now - ME.touchArray[i].startTime >= ME.touchArray[i].lifeSpan ){
+					
+				    //ME.touchArray[i].splice(i,1);	
+					
+					ME.touchArray.splice(i,1);
+					
+					//console.log(ME.touchArray[i]);
+					
+					//console.log(i)
+					
+				}
+				
+                i -= 1;			
+			
+			}
+			
+		},
+	
 	    // update is to be called on each frame tick
 	    update : function(){
 		
@@ -155,6 +179,7 @@ var EM = (function(){
 			dToCenter = distance(ME.x,ME.y,ME.cx,ME.cy), a, d,avg,x,y;
 			
 			// if the amount of time that has passed sense the last touch is greater then touchLife
+			/*
 			if(now - ME.lastTouch >= ME.touchLife){
 				
 				if(now - ME.lastPurge >= 1000 && ME.touchArray.length > 0){
@@ -166,6 +191,9 @@ var EM = (function(){
 				}
 				
 			}
+			*/
+			
+			this.purgeTouch();
 			
 			if(now - ME.lastUpdate >= 1000){
 				
@@ -374,7 +402,7 @@ var EM = (function(){
 		// push a new touch at location x, y
 		pushTouch : function(x, y){
 			
-			if(new Date() - ME.lastTouch > 1000){
+			
 			
 			if(ME.touchArray.length === ME.maxTouch){
 				
@@ -385,13 +413,11 @@ var EM = (function(){
 			ME.touchArray.push({
 				
 				x: x,
-				y: y
+				y: y,
+				startTime : new Date(),
+				lifeSpan : 5000
 				
 			});
-			
-			ME.lastTouch = new Date();
-			
-			}
 			
 		},
 		
@@ -401,6 +427,8 @@ var EM = (function(){
 			x,y,t,tLen;
 		
 		    e.preventDefault();
+	
+	       // if(new Date() - ME.lastTouch > 1000){
 	
 	        if(e.touches){
 	
@@ -418,6 +446,10 @@ var EM = (function(){
 	            EM.pushTouch(e.clientX - box.left, e.clientY - box.top);
 	
 	        }
+			
+			// ME.lastTouch = new Date();
+			
+			//}
 		
 		}
 		
