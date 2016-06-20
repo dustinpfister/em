@@ -75,9 +75,26 @@ var EM = (function(){
 	    this.x = Math.cos(a) * aurgs.startD + aurgs.cx;
 		this.y = Math.sin(a) * aurgs.startD + aurgs.cy;
 		
+		this.dx = 0;
+		this.dy = 0;
+		
 		this.targetX = 320;
 		this.targetY = 240;
 	
+	};
+	
+	Orbit.prototype = {
+		
+		setDelta : function(){
+			
+			a = Math.atan2(this.targetY - this.y, this.targetX - this.x),
+			d = distance(this.targetX, this.targetY, this.x, this.y);
+				 
+			this.dx = Math.cos(a) * (d / 10);
+			this.dy = Math.sin(a) * (d / 10);
+			
+		}
+		
 	};
 
     return {
