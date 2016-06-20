@@ -93,6 +93,13 @@ var EM = (function(){
 			this.dx = Math.cos(a) * (d / 10);
 			this.dy = Math.sin(a) * (d / 10);
 			
+		},
+		
+		step : function(){
+			
+			this.x += this.dx;
+			this.y += this.dy;
+			
 		}
 		
 	};
