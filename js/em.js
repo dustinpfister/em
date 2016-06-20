@@ -269,24 +269,35 @@ var EM = (function(){
 		
 		levelUp : function(){
 		
-            ME.totalOrbits = Math.floor(ME.level / 10);;		
+		    var i, a;
+		
+            ME.totalOrbits = Math.floor(ME.level / 2);;		
 			//ME.totalOrbits = 16;
 			
-			var i = ME.orbits.length - 1, a;
-			while(i < ME.totalOrbits){
+			if(ME.totalOrbits > 15){
 				
-				a = Math.PI * 2 / ME.totalOrbits * i;
+				ME.totalOrbits = 15;
 				
-				ME.orbits.push(new Orbit({
-					cx : ME.cx,
-					cy : ME.cy,
-					startD: 1000,
-					targetX : Math.cos(a) * 10 + ME.cx,
-					targetY : Math.sin(a) * 10 + ME.cy
-				}));
+			}else{
+			
+			    i = ME.orbits.length - 1;
 				
-				i += 1;
+			    while(i < ME.totalOrbits){
 				
+				    a = Math.PI * 2 / ME.totalOrbits * i;
+				
+				    ME.orbits.push(new Orbit({
+				    	cx : ME.cx,
+			    		cy : ME.cy,
+			    		startD: 1000,
+			    		targetX : Math.cos(a) * 10 + ME.cx,
+			    		targetY : Math.sin(a) * 10 + ME.cy
+		    		}));
+				
+		    		i += 1;
+				
+			}
+			
 			}
 			
 		},
