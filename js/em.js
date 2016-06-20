@@ -24,6 +24,7 @@ var EM = (function(){
 		orbitRadian : 0,
 		orbitTick : 0,
 		orbitMaxTick : 1000,
+		orbitSpeed: 20,       // higher numbers are slower
 		deltaTick : 1,
 		orbits : [],
 		
@@ -99,7 +100,7 @@ var EM = (function(){
 			a = Math.atan2(this.targetY - this.y, this.targetX - this.x),
 			d = distance(this.targetX, this.targetY, this.x, this.y),
 			
-			overFrame = 20;
+			overFrame = ME.orbitSpeed;
 			
 			
 			/*
@@ -119,7 +120,7 @@ var EM = (function(){
 			
 			*/
 			
-			if(d <= 20){
+			if(d <= ME.orbitSpeed){
 				
 			    overFrame = 1 + Math.floor((d / 20) * 9);
 				
