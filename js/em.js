@@ -269,7 +269,7 @@ var EM = (function(){
 		
 		levelUp : function(){
 		
-            ME.totalOrbits = ME.level;		
+            ME.totalOrbits = Math.floor(ME.level / 3);		
 			
 			var i = ME.orbits.length - 1, a;
 			while(i < ME.totalOrbits){
@@ -285,6 +285,7 @@ var EM = (function(){
 				}));
 				
 				i += 1;
+				
 			}
 			
 		},
