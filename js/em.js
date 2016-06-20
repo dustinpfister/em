@@ -203,7 +203,7 @@ var EM = (function(){
 				// if being touched
 				if(ME.touchArray.length > 0){
 					
-				   ME.deltaHappy = ME.touchArray.length / ME.maxTouch * 0.05;	
+				   ME.deltaHappy = ME.touchArray.length / ME.maxTouch * 0.25;	
 				
                    ME.pointRate = Math.floor(9 * ME.happy) + 1;
 
