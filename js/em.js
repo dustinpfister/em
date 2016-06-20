@@ -35,6 +35,7 @@ var EM = (function(){
 		
 		touchArray : [],
 		maxTouch : 50,
+		touchLimit: 10,
 		lastTouch : new Date(0),
 		lastPurge : new Date(0),
 		touchLife : 5000,
@@ -404,7 +405,7 @@ var EM = (function(){
 			
 			
 			
-			if(ME.touchArray.length === ME.maxTouch){
+			if(ME.touchArray.length >= ME.touchLimit){
 				
 				ME.touchArray.shift();
 				
