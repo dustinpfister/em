@@ -42,6 +42,7 @@ var EM = (function(){
 		
 		points : 0,
 		pointRate : 0,
+		level : 1,
 		
 		findAVGTouch : function(){
 			
