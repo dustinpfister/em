@@ -200,7 +200,7 @@ var EM = (function(){
 			
 			if(ME.orbitTick >= ME.orbitMaxTick){
 				
-				ME.orbitTick = 0;
+				ME.orbitTick = ME.orbitTick % ME.orbitMaxTick;
 				
 			}
 			
