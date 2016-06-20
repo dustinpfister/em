@@ -71,13 +71,14 @@
 	
 	drawText = function(){
 	
-	    var tx = text.state;
+	    var tx = text.state, i, len, li;
 	
+	    if(tx.active){
 	
 	    ctx.font = '15px courier';
 		ctx.fillStyle = '#ffffff';
 		
-		var i = 0, len = tx.lines.length, li = tx.topLine;
+		i = 0; len = tx.lines.length; li = tx.topLine;
 		while(i < len){
 	    
 		    ctx.fillText(li + ' : ' + tx.lines[li], 50, tx.lineY + 15 * i);
@@ -93,6 +94,8 @@
 	        i += 1;
 	
 	    }
+		
+		}
 	
 	},
 	
@@ -189,7 +192,7 @@
         setTimeout(loop, 33);
 
         EM.update();
-		text.update();
+		text.update(EM.ME.touchArray);
         draw();
 
     };

@@ -6,6 +6,7 @@ var text = (function(){
 	    offset : 0,
 		topLine : 0,
 		lineY : 150,
+		active : false
 	
 	};
 
@@ -13,8 +14,12 @@ var text = (function(){
 		
 		state : state,
 		
-		update : function(){
+		update : function(touch){
 			
+			
+			if(touch.length === 0){
+				
+				state.active = true;
 			
 			if(state.lineY > 100){
 				
@@ -38,6 +43,16 @@ var text = (function(){
 					}
 					
 				}
+				
+			}
+			
+			}else{
+				
+				state.offset = 0;
+				state.topLine = 0;
+				state.lineY = 150;
+				
+				state.active = false;
 				
 			}
 			
