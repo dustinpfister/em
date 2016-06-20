@@ -391,6 +391,19 @@ var EM = (function(){
 		// push a new touch at location x, y
 		pushTouch : function(x, y){
 			
+			// any other touches to close?
+			var i = 0, len = ME.touchArray.length;
+			while(i < len){
+				
+				if(distance(ME.touchArray[i].x,ME.touchArray[i].y,x,y) < 25 ){
+					
+					return;
+					
+				}
+				
+				i += 1;
+			}
+			
 			if(ME.touchArray.length >= ME.touchLimit){
 				
 				ME.touchArray.shift();
