@@ -18,6 +18,7 @@ var EM = (function(){
 		yMax : 480,
 		
 		totalOrbits: 3,
+		orbitHeight : 100,
 		orbits : [],
 		
 		touchArray : [],
@@ -157,6 +158,9 @@ var EM = (function(){
 				if(ME.happy < 0){ ME.happy = 0; }
 				if(ME.happy > 1){ ME.happy = 1; }
 				
+				
+				ME.orbitHeight = ME.w * ME.happy;
+				
 				ME.lastUpdate = new Date();
 				
 			}
@@ -191,8 +195,8 @@ var EM = (function(){
 				oa = Math.PI * 2 / ME.orbits.length * oi;
 				
 				ME.orbits[oi].setTarget(
-				    Math.cos(oa) * 50 + ME.x + ME.w / 2,
-					Math.sin(oa) * 50 + ME.y + ME.h / 2
+				    Math.cos(oa) * ME.orbitHeight + ME.x + ME.w / 2,
+					Math.sin(oa) * ME.orbitHeight + ME.y + ME.h / 2
 				);
 				ME.orbits[oi].step();
 				
@@ -236,7 +240,7 @@ var EM = (function(){
 				ME.orbits.push(new Orbit({
 					cx : ME.cx,
 					cy : ME.cy,
-					startD: 200,
+					startD: 1000,
 					targetX : Math.cos(a) * 10 + ME.cx,
 					targetY : Math.sin(a) * 10 + ME.cy
 				}));
