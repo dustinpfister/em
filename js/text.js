@@ -29,6 +29,7 @@ var text = (function(){
 		
 		update : function(EM){
 			
+			state.speed = EM.ME.happy;
 			
 			if(EM.ME.touchArray.length === 0){
 				
@@ -46,7 +47,7 @@ var text = (function(){
 			
 			if(state.lineY > 100){
 				
-                state.lineY -= 1;
+                state.lineY -= 1 + 14 * state.speed;
 						
 			
 			}else{
@@ -55,7 +56,7 @@ var text = (function(){
 				
 				if(state.offset <= -1){
 					
-					state.offset = 50;
+					state.offset = 50 - 49 * state.speed;
 					
 					state.topLine += 1;
 					
