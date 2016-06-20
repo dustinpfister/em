@@ -69,6 +69,8 @@ var EM = (function(){
 		if(aurgs.startD === undefined){ aurgs.startD = 200; }
 		if(aurgs.cx === undefined){ aurgs.cx = 0;}
 		if(aurgs.cy === undefined){ aurgs.cy = 0;}
+	    if(aurgs.targetX === undefined){ aurgs.targetX = 320;}
+		if(aurgs.targetY === undefined){ aurgs.targetY = 240;}
 	
 	    a = Math.PI * 2 * Math.random();
 	
@@ -78,8 +80,8 @@ var EM = (function(){
 		this.dx = 0;
 		this.dy = 0;
 		
-		this.targetX = 320;
-		this.targetY = 240;
+		this.targetX = aurgs.targetX;
+		this.targetY = aurgs.targetY;
 	
 	};
 	
@@ -220,13 +222,17 @@ var EM = (function(){
 			
 			// setup orbits
 			
-			var i = 0;
+			var i = 0, a;
 			while(i < ME.totalOrbits){
+				
+				a = Math.PI * 2 / ME.totalOrbits * i;
 				
 				ME.orbits.push(new Orbit({
 					cx : ME.cx,
 					cy : ME.cy,
-					startD: 100
+					startD: 200,
+					targetX : Math.cos(a) * 10 + ME.cx,
+					targetY : Math.sin(a) * 10 + ME.cy
 				}));
 				
 				i += 1;
