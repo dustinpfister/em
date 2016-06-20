@@ -143,10 +143,14 @@
 	
 	    var t = 0, tLen = EM.ME.touchArray.length, touch;
 	
-		ctx.strokeStyle = '#ffffff';
+		
 		while(t < tLen){
 		
 		    touch = EM.ME.touchArray[t];
+		
+		    ctx.strokeStyle = '#ffffff';
+			
+			if(touch.active){ ctx.strokeStyle = '#ff00ff';}
 		
 		    ctx.beginPath();
 		    ctx.arc(touch.x, touch.y, 10, 0, Math.PI*2);
