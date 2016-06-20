@@ -204,8 +204,10 @@ var EM = (function(){
 				
 				ME.moveRate = 100 - 95 * ME.happy;
 				
-				ME.lastUpdate = new Date();
 				
+				ME.size = 0.25 + 0.75 * ME.happy;
+				ME.w = ME.maxW * ME.size;
+			    ME.h = ME.maxH * ME.size;
 				
 				
 				ME.points += ME.pointRate;
@@ -213,6 +215,8 @@ var EM = (function(){
 				ME.level = Math.floor(Math.log(ME.points) / Math.log(2)) + 1;
 				
 				this.levelUp();
+				
+				ME.lastUpdate = new Date();
 				
 			}
 			
