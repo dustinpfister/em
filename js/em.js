@@ -95,6 +95,13 @@ var EM = (function(){
 			
 		},
 		
+		setTarget : function(x,y){
+			
+			this.targetX = x;
+			this.targetY = y;
+			
+		},
+		
 		step : function(){
 			
 			this.setDelta();
