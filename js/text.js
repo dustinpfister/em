@@ -5,7 +5,8 @@ var text = (function(){
 		lines : ['one', 'two', 'three','four', 'five', 'six'],
 	    offset : 0,
 		topLine : 0,
-		lineY : 150,
+		lineY : 800,
+		startY : 800,
 		alpha : 0,
 		active : false
 	
@@ -34,7 +35,7 @@ var text = (function(){
 			
 			if(state.lineY > 100){
 				
-                state.lineY -= 1;
+                state.lineY -= 10;
 						
 			
 			}else{
@@ -66,7 +67,7 @@ var text = (function(){
 				    state.alpha = 0;
 				    state.offset = 0;
 				    state.topLine = 0;
-				    state.lineY = 150;
+				    state.lineY = state.startY;
 				
 			    	state.active = false;
 				
