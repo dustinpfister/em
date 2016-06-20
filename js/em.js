@@ -147,6 +147,44 @@ var EM = (function(){
 	
 	    // a refrence to the ME object
 	    ME : ME,
+		
+		touchMenu : (function(){
+			
+			var options = [
+			
+			    {
+					lable : 'foo',
+					x : 0, y : 0
+				}
+			
+			];
+			
+			return {
+			
+			    currentTouch : 0, // the index of the current touch to which the menu apply's
+			    active : false,   // the menu is active
+				frame : 0,        // the current frame of the open/close animation
+			    update : function(){
+					
+					// if touches
+				    if(ME.touchArray.length > 0){
+						
+						if(this.active){
+							
+							console.log('okay we good so far. This is touch: ' + this.currentTouch);
+							this.active = false;
+							
+						}
+						
+						
+					}
+					
+				}
+			
+			
+		    };
+			
+		}()),
 	
 	    purgeTouch : function(){
 			
@@ -203,6 +241,8 @@ var EM = (function(){
 			*/
 			
 			this.purgeTouch();
+			
+			this.touchMenu.update();
 			
 			if(now - ME.lastUpdate >= 1000){
 				
@@ -414,6 +454,11 @@ var EM = (function(){
 						if( new Date() - ME.touchArray[i].startTime > 500 ){
 							
 							ME.touchArray[i].active = true;
+							
+							// set the menu active for it.
+							
+							this.touchMenu.active = true;
+							this.touchMenu.currentTouch = i;
 							
 						}else{
 							
