@@ -102,24 +102,6 @@ var EM = (function(){
 			
 			overFrame = ME.orbitSpeed;
 			
-			
-			/*
-			if(d <= 11){
-			
-			    //overFrame = d;
-				
-				//if(overFrame < 2){
-					
-					overFrame = 1;
-					
-				//}
-				 
-				console.log(overFrame);
-				 
-			}
-			
-			*/
-			
 			if(d <= ME.orbitSpeed){
 				
 			    overFrame = 1 + Math.floor((d / 20) * 9);
@@ -129,9 +111,6 @@ var EM = (function(){
 			
 			this.dx = Math.cos(a) * (d / overFrame);
 			this.dy = Math.sin(a) * (d / overFrame);
-			
-			//this.dx = Math.cos(a) * (d / 5);
-			//this.dy = Math.sin(a) * (d / 5);
 			
 		},
 		
