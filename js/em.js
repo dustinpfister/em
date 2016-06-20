@@ -397,6 +397,8 @@ var EM = (function(){
 				
 				if(distance(ME.touchArray[i].x,ME.touchArray[i].y,x,y) < 25 ){
 					
+					ME.touchArray[i].active = true;
+					
 					return;
 					
 				}
@@ -414,6 +416,7 @@ var EM = (function(){
 				
 				x: x,
 				y: y,
+				active : false,
 				startTime : new Date(),
 				lifeSpan : 5000,
 				a : Math.atan2(cy - y, cx - x),
