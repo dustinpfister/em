@@ -23,7 +23,7 @@ var EM = (function(){
 		orbitHeight : 100,
 		orbitRadian : 0,
 		orbitTick : 0,
-		orbitMaxTick : 1000,
+		orbitMaxTick : 1500,
 		orbitSpeed: 20,       // higher numbers are slower
 		deltaTick : 1,
 		orbits : [],
@@ -269,7 +269,8 @@ var EM = (function(){
 		
 		levelUp : function(){
 		
-            ME.totalOrbits = Math.floor(ME.level / 3);		
+            ME.totalOrbits = Math.floor(ME.level / 10);;		
+			//ME.totalOrbits = 16;
 			
 			var i = ME.orbits.length - 1, a;
 			while(i < ME.totalOrbits){
