@@ -205,6 +205,8 @@ var EM = (function(){
 				
 				ME.points += ME.pointRate;
 				
+				ME.level = Math.floor(Math.log(ME.points) / Math.log(2)) + 1;
+				
 			}
 			
 			// update on each frame tick:
