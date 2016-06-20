@@ -184,10 +184,16 @@ var EM = (function(){
 			
 			// update orbits
 			
-			var oi = 0;
+			var oi = 0, oa;
 			
 			while(oi < ME.orbits.length){
 				
+				oa = Math.PI * 2 / ME.orbits.length * oi;
+				
+				ME.orbits[oi].setTarget(
+				    Math.cos(oa) * 50 + ME.x + ME.w / 2,
+					Math.sin(oa) * 50 + ME.y + ME.h / 2
+				);
 				ME.orbits[oi].step();
 				
 				oi += 1;
