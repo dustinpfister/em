@@ -16,6 +16,16 @@ var text = (function(){
 		
 		state : state,
 		
+		// make a lines array from the given string
+		makeLinesFrom : function(str){
+			
+			
+			console.log(str.update.toString().split(';'));
+			
+			state.lines = str.update.toString().split(';');
+			
+		},
+		
 		update : function(touch){
 			
 			
@@ -81,3 +91,5 @@ var text = (function(){
 	};
 
 }());
+
+text.makeLinesFrom(EM);
