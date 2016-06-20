@@ -77,10 +77,18 @@
 	    ctx.font = '15px courier';
 		ctx.fillStyle = '#ffffff';
 		
-		var i = 0, len = tx.lines.length;
+		var i = 0, len = tx.lines.length, li = tx.topLine;
 		while(i < len){
 	    
-		    ctx.fillText(i + ' : ' + tx.lines[i], 50, tx.lineY);
+		    ctx.fillText(li + ' : ' + tx.lines[li], 50, tx.lineY + 15 * i);
+	
+	        li += 1;
+			
+			if(li === tx.lines.length){
+			
+			    li = 0;
+			
+			}
 	
 	        i += 1;
 	
