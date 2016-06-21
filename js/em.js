@@ -184,7 +184,10 @@ var EM = (function(){
                     this.touchId = touch.id;
                     this.currentTouch = touch;
                     this.active = true;
+                    
+                    this.animationActive = true;
                     this.outState = false;
+                    
                     this.frame = 0;
                     
                 },
@@ -198,13 +201,40 @@ var EM = (function(){
 						
 						if(this.active){
 							
-							console.log('okay we good so far. This is touch id is: ' + this.touchId);
-                            touch = EM.getTouchById(this.touchId);
+                            console.log(this.frame);
                             
-                            console.log(this.currentTouch);
+                            // this.active = false;
+							if(this.animationActive){
                             
-                            this.active = false;
-							
+                                if(!this.outState){
+                                
+                                    this.frame += 1;
+                                    
+                                    if(this.frame === 20){
+                                    
+                                        this.outState = true;
+                                        this.animationActive = false;
+                                    
+                                    }
+                                
+                                    
+                                }else{
+                                    
+                                    this.frame -= 1;
+                                    
+                                    if(this.frame <= 0){
+                                        
+                                        this.outState = false;
+                                        this.animationActive = false;
+                                        
+                                        
+                                    }
+                                    
+                                    
+                                }
+                                
+                            }
+                            
 						}
 						
 						
