@@ -167,13 +167,19 @@ var EM = (function(){
 				frame : 0,        // the current frame of the open/close animation
 			    update : function(){
 					
+                    var touch;
+                    
 					// if touches
 				    if(ME.touchArray.length > 0){
 						
 						if(this.active){
 							
 							console.log('okay we good so far. This is touch id is: ' + this.touchId);
-							this.active = false;
+                            touch = EM.getTouchById(this.touchId);
+                            
+                            console.log(touch);
+                            
+                            this.active = false;
 							
 						}
 						
