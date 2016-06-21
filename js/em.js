@@ -176,6 +176,18 @@ var EM = (function(){
 			    active : false,    // the menu is active
                 outState : false,  // the menu is in the 'out' animation state
 				frame : 0,         // the current frame of the open/close animation
+                
+                // set the menu to the given touch
+                setTo : function(touch){
+                    
+                    this.touchId = touchId;
+                    this.currentTouch = touch;
+                    this.active = true;
+                    this.outState = false;
+                    this.frame = 0;
+                    
+                },
+                
 			    update : function(){
 					
                     var touch;
