@@ -180,7 +180,8 @@ var EM = (function(){
                 // set the menu to the given touch
                 setTo : function(touch){
                     
-                    this.touchId = touchId;
+                    touch.active = true;
+                    this.touchId = touch.id;
                     this.currentTouch = touch;
                     this.active = true;
                     this.outState = false;
@@ -200,7 +201,7 @@ var EM = (function(){
 							console.log('okay we good so far. This is touch id is: ' + this.touchId);
                             touch = EM.getTouchById(this.touchId);
                             
-                            console.log(touch);
+                            console.log(this.currentTouch);
                             
                             this.active = false;
 							
@@ -525,14 +526,15 @@ var EM = (function(){
 						
 						if( new Date() - ME.touchArray[i].startTime > 500 ){
 							
-							ME.touchArray[i].active = true;
+							//ME.touchArray[i].active = true;
 							
 							// set the menu active for it.
 							
-							this.touchMenu.active = true;
+							//this.touchMenu.active = true;
 							//this.touchMenu.currentTouch = i;
-							this.touchMenu.touchId = ME.touchArray[i].id; 
+							//this.touchMenu.touchId = ME.touchArray[i].id; 
 							
+                            this.touchMenu.setTo(ME.touchArray[i]);
 							
 						}else{
 							
