@@ -157,14 +157,25 @@ var EM = (function(){
 					x : 0, y : 0
 				}
 			
-			];
+			],
+                
+            swingOut = function(){
+                
+                
+            },
+                
+            swingIn = function(){
+                
+                
+            };
 			
 			return {
 			
-			    currentTouch : 0, // the index of the current touch to which the menu apply's
-				touchId : '',     // the Id of the current touch
-			    active : false,   // the menu is active
-				frame : 0,        // the current frame of the open/close animation
+			    currentTouch : 0,  // the index of the current touch to which the menu apply's
+				touchId : '',      // the Id of the current touch
+			    active : false,    // the menu is active
+                outState : false,  // the menu is in the 'out' animation state
+				frame : 0,         // the current frame of the open/close animation
 			    update : function(){
 					
                     var touch;
