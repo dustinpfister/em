@@ -157,6 +157,7 @@ var EM = (function(){
 				while(i < len){
 					
 					this.options[i].x = this.currentTouch.x + this.frame * 10 + i * 10;
+					this.options[i].y = this.currentTouch.y;
 					
 					i += 1;
 				}
@@ -214,6 +215,8 @@ var EM = (function(){
                             // this.active = false;
 							if(this.animationActive){
                             
+							    onFrame.call(this);
+							
                                 if(!this.outState){
                                 
                                     this.frame += 1;
