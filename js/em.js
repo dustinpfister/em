@@ -234,6 +234,9 @@ var EM = (function(){
                                         
                                         this.outState = false;
                                         this.animationActive = false;
+										
+										this.active = false;
+										this.currentTouch.active = false;
                                         
                                         
                                     }
@@ -297,6 +300,7 @@ var EM = (function(){
 				if(!ME.touchArray[i].active){
 					
 					ME.touchArray.splice(i,1);
+					break;
 					
 				}
 				
