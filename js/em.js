@@ -150,26 +150,24 @@ var EM = (function(){
 		
 		touchMenu : (function(){
 			
-			var options = [
-			
-			    {
-					lable : 'foo',
-					x : 0, y : 0
+			var onFrame = function(){
+				
+				var i = 0, len = this.options.length;
+				
+				while(i < len){
+					
+					this.options[i].x = this.currentTouch.x + this.frame * 10 + i * 10;
+					
+					i += 1;
 				}
-			
-			],
-                
-            swingOut = function(){
-                
-                
-            },
-                
-            swingIn = function(){
-                
-                
-            };
+				
+			};
 			
 			return {
+			
+			    options : [
+				    {lable : 'foo', x : 0, y : 0}
+				],
 			
 			    currentTouch : 0,  // the index of the current touch to which the menu apply's
 				touchId : '',      // the Id of the current touch
@@ -189,7 +187,9 @@ var EM = (function(){
                     this.outState = false;
                     
                     this.frame = 0;
-                    
+                
+                    onFrame.call(this);
+				
                 },
                 
                 toggle : function(){
