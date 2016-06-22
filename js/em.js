@@ -196,8 +196,6 @@ var EM = (function(){
                     
                     this.animationActive = !this.animationActive;  
                     
-                    console.log(this.animationActive);
-                    
                 },
                 
 			    update : function(){
@@ -208,9 +206,7 @@ var EM = (function(){
 				    if(ME.touchArray.length > 0){
 						
 						if(this.active){
-							
-                            console.log(this.frame);
-                            
+				           
                             // this.active = false;
 							if(this.animationActive){
                             
@@ -535,7 +531,15 @@ var EM = (function(){
 						
                         if(ME.touchArray[i].active){
                             
+							if(ME.touchArray[i].id === this.touchMenu.touchId ){
+							
                             this.touchMenu.toggle(ME.touchArray[i]);
+							
+							}else{
+								
+								this.touchMenu.setTo(ME.touchArray[i]);
+								
+							}
                             
                         }else{
                             
