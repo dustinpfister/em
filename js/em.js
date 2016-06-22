@@ -192,6 +192,14 @@ var EM = (function(){
                     
                 },
                 
+                toggle : function(){
+                    
+                    this.animationActive = !this.animationActive;  
+                    
+                    console.log(this.animationActive);
+                    
+                },
+                
 			    update : function(){
 					
                     var touch;
@@ -552,8 +560,23 @@ var EM = (function(){
 					
 					if(e.type === 'touchstart' || e.type === 'mousedown'){
 						
+                        if(ME.touchArray[i].active){
+                            
+                            this.touchMenu.toggle(ME.touchArray[i]);
+                            
+                        }else{
+                            
+                            if( new Date() - ME.touchArray[i].startTime > 500 ){
+                                
+                                this.touchMenu.setTo(ME.touchArray[i]);
+                                
+                            }
+                            
+                        }
+                        
 						//ME.touchArray[i].active = !ME.touchArray[i].active
 						
+                        /*
 						if( new Date() - ME.touchArray[i].startTime > 500 ){
 							
 							//ME.touchArray[i].active = true;
@@ -564,13 +587,28 @@ var EM = (function(){
 							//this.touchMenu.currentTouch = i;
 							//this.touchMenu.touchId = ME.touchArray[i].id; 
 							
-                            this.touchMenu.setTo(ME.touchArray[i]);
+                            
+                            
+                            if(this.touchMenu.touchId === ME.touchArray[i].id){
+                                
+                                
+                            
+                                this.toggle(ME.touchArray[i]);
+                                
+                            }else{
+                            
+                                this.touchMenu.setTo(ME.touchArray[i]);
 							
-						}else{
+                            }
+                            
+                        }
+                        */
+                        
+						//}else{
 							
-							ME.touchArray[i].active = false;
+						//	ME.touchArray[i].active = false;
 							
-						}
+						//}
 						
 						
 					}
