@@ -138,7 +138,6 @@ var EM = (function(){
 			this.x += this.dx;
 			this.y += this.dy;
 			
-			
 		}
 		
 	};
@@ -227,8 +226,7 @@ var EM = (function(){
                                         this.animationActive = false;
                                     
                                     }
-                                
-                                    
+                                 
                                 }else{
                                     
                                     this.frame -= 1;
@@ -239,11 +237,9 @@ var EM = (function(){
                                         this.animationActive = false;
 										
 										this.active = false;
-										this.currentTouch.active = false;
-                                        
+										this.currentTouch.active = false;        
                                         
                                     }
-                                    
                                     
                                 }
                                 
@@ -251,11 +247,9 @@ var EM = (function(){
                             
 						}
 						
-						
 					}
 					
 				}
-			
 			
 		    };
 			
@@ -275,13 +269,7 @@ var EM = (function(){
 				
 				    if(now - ME.touchArray[i].startTime >= ME.touchArray[i].lifeSpan ){
 					
-				        //ME.touchArray[i].splice(i,1);	
-					
 					    ME.touchArray.splice(i,1);
-					
-					    //console.log(ME.touchArray[i]);
-					
-					    //console.log(i)
 					
 			    	}
 				
@@ -320,20 +308,6 @@ var EM = (function(){
 			dToCenter = distance(ME.x,ME.y,ME.cx,ME.cy), a, d,avg,x,y;
 			
 			// if the amount of time that has passed sense the last touch is greater then touchLife
-			/*
-			if(now - ME.lastTouch >= ME.touchLife){
-				
-				if(now - ME.lastPurge >= 1000 && ME.touchArray.length > 0){
-					
-					ME.touchArray.shift();
-					
-					ME.lastPurge = new Date();
-					
-				}
-				
-			}
-			*/
-			
 			this.purgeTouch();
 			
 			this.touchMenu.update();
@@ -421,10 +395,10 @@ var EM = (function(){
 				oa = Math.PI * 2 / ME.orbits.length * oi + ME.orbitRadian;
 				
 				ME.orbits[oi].setTarget(
+				
 				    Math.cos(oa) * ME.orbitHeight + ME.x + ME.w / 2,
 					Math.sin(oa) * ME.orbitHeight + ME.y + ME.h / 2
-					//Math.cos(oa) * ME.orbitHeight + 200,
-					//Math.sin(oa) * ME.orbitHeight + 200
+					
 				);
 				ME.orbits[oi].step();
 				
@@ -442,7 +416,6 @@ var EM = (function(){
 		    var i, a;
 		
             ME.totalOrbits = Math.floor(ME.level / 10);;		
-			//ME.totalOrbits = 16;
 			
 			if(ME.totalOrbits > 15){
 				
@@ -522,12 +495,6 @@ var EM = (function(){
 			ME.xMax = width;
 			ME.yMax = height;
 			
-			//ME.cx = ME.xMax / 2 - ME.w / 2;
-			//ME.cy = ME.yMax / 2 - ME.h / 2;
-			
-			//ME.x = ME.cx;
-			//ME.y = ME.cy;
-			
 		},
 		
 		// get a touch by it's id
@@ -559,11 +526,10 @@ var EM = (function(){
 			
 			// any other touches to close?
 			var i = 0, len = ME.touchArray.length;
+			
 			while(i < len){
 				
 				if(distance(ME.touchArray[i].x,ME.touchArray[i].y,x,y) < 25 ){
-					
-					//ME.touchArray[i].active = !ME.touchArray[i].active
 					
 					if(e.type === 'touchstart' || e.type === 'mousedown'){
 						
@@ -579,44 +545,7 @@ var EM = (function(){
                                 
                             }
                             
-                        }
-                        
-						//ME.touchArray[i].active = !ME.touchArray[i].active
-						
-                        /*
-						if( new Date() - ME.touchArray[i].startTime > 500 ){
-							
-							//ME.touchArray[i].active = true;
-							
-							// set the menu active for it.
-							
-							//this.touchMenu.active = true;
-							//this.touchMenu.currentTouch = i;
-							//this.touchMenu.touchId = ME.touchArray[i].id; 
-							
-                            
-                            
-                            if(this.touchMenu.touchId === ME.touchArray[i].id){
-                                
-                                
-                            
-                                this.toggle(ME.touchArray[i]);
-                                
-                            }else{
-                            
-                                this.touchMenu.setTo(ME.touchArray[i]);
-							
-                            }
-                            
-                        }
-                        */
-                        
-						//}else{
-							
-						//	ME.touchArray[i].active = false;
-							
-						//}
-						
+                        }					
 						
 					}
 					
@@ -628,8 +557,6 @@ var EM = (function(){
 			}
 			
 			if(ME.touchArray.length >= ME.touchLimit){
-				
-				// ME.touchArray.shift();
 				
 			    this.purgeOldest();
 				
@@ -667,8 +594,6 @@ var EM = (function(){
 		
 		    e.preventDefault();
 	
-	       // if(new Date() - ME.lastTouch > 1000){
-	
 	        if(e.touches){
 	
 	            t = 0, tLen = e.touches.length;
@@ -686,11 +611,6 @@ var EM = (function(){
 	
 	        }
 			
-			
-			// ME.lastTouch = new Date();
-			
-			//}
-		
 		}
 		
 	};
