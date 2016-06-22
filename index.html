@@ -65,7 +65,7 @@
 		drawHappyBar();
 		drawDisp();
 		drawOrbits();
-		
+		drawTouchMenu();
 		
     },
 	
@@ -136,6 +136,25 @@
 		    oi += 1;
 		}
 		
+	},
+	
+	drawTouchMenu = function(){
+	
+	    var i = 0, len = EM.touchMenu.options.length,option;
+		
+		if(EM.touchMenu.active){
+		
+		    while(i < len){
+			
+			    option = EM.touchMenu.options[i];
+			
+			    ctx.fillRect(option.x, option.y, 10, 10);
+			
+			   i += 1;
+			}
+		
+		}
+	
 	},
 	
 	// draw where the current touches are
