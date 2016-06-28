@@ -16,12 +16,14 @@ var playground = (function(){
 	
 	},
 	
+	// the distance formula
 	distance = function(x1,y1,x2,y2){
 		
 		return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 		
 	},
 	
+	// check if the given x, and y is to close to a previous point (use with call on pg)
 	pointGood = function(x,y){
 		
 		var i = 0, len = this.points.length;
@@ -47,10 +49,8 @@ var playground = (function(){
 	// the api to return to playground global
 	var api = {
 		
-		// add pg to the api
+		// add pg to the public api as my draw function will need it
 		pg : pg,
-		
-		
 		
 		// resize the playground, and given canvas to window
 		resize : function(canvas){
@@ -72,17 +72,21 @@ var playground = (function(){
 		// push a point based on event, and x, and y from inMaster
 		pushPoint : function(e,x,y){
 			
-			console.log(x,y);
 			
-			if(pointGood.call(pg,x,y)){
+			if(pg.points.length < pg.maxPoints){
+			
+			    // check if there is a point close by
+			    if(pointGood.call(pg,x,y)){
 				
-				pg.points.push({
+				    pg.points.push({
 					
-					x : x,
-					y : y
+					    x : x,
+					    y : y
 					
-				});
+			    	});
 				
+			    }
+			
 			}
 			
 		},
