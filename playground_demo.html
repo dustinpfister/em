@@ -52,6 +52,16 @@
 	
 	playground.resize(canvas);
 	
+	// attach mouse events
+    canvas.addEventListener('mousedown', playground.inMaster);
+    canvas.addEventListener('mouseup', playground.inMaster);
+    //canvas.addEventListener('mousemove', playground.inMaster);
+
+    // attach touch events
+    canvas.addEventListener('touchstart', playground.inMaster);
+    canvas.addEventListener('touchend', playground.inMaster);
+    canvas.addEventListener('touchmove', playground.inMaster);
+	
 	window.addEventListener('resize', function(){ playground.resize(canvas) } );
 	
     loop();	
