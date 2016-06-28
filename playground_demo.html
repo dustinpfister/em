@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>EM</title>
+<meta charset="utf-8">
+
+<link rel="stylesheet" href="./css/em.css">
+
+</head>
+
+<body>
+
+<canvas id="thecanvas" width="640" height="480"></canvas>
+
+<script src="./js/playground.js"></script>
+
+<script>
+
+(function () {
+
+    var canvas = document.getElementById('thecanvas'),
+    ctx = canvas.getContext('2d'),
+	
+	
+	// what to draw on each frame tick
+    draw = function () {
+
+	    // background
+        ctx.fillStyle = '#000000';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+		// show playground.cx/cy point
+		ctx.strokeStyle = '#ffffff';
+		ctx.beginPath();
+		ctx.arc(playground.pg.cx, playground.pg.cy, 10, 0, Math.PI*2);
+		ctx.closePath();
+		ctx.stroke();
+		
+		
+    },
+	
+	loop = function(){
+	
+	    setTimeout(loop, 33);
+	
+	    draw();
+
+	
+	};
+	
+	playground.resize(canvas);
+	
+	window.addEventListener('resize', function(){ playground.resize(canvas) } );
+	
+    loop();	
+	
+	
+
+}());
+
+</script>
+
+</body>
+
+</html>
