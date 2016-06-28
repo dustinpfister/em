@@ -14,6 +14,7 @@ var playground = (function(){
 		points : [],
 		AVGPoint : {x:0,y:0},
 		AVGAngle : 0,
+		AVGDistance: 0,
 		maxPoints : 100
 	
 	},
@@ -69,22 +70,15 @@ var playground = (function(){
 	
 	// find the AVG Angle from playground center (use with call on pg)
 	pointAVGAngle = function(){
-		/*
-		var a = 0, i = 0, len = this.points.length;
-		
-		while(i < len){
-			
-			a += Math.atan2(this.cy - this.points[i].y, this.cx - this.points[i].x ) + Math.PI;
-			
-			i += 1;
-			
-		}
-		
-		return a / len;
-		
-		*/
 		
 		return Math.atan2(this.cy - this.AVGPoint.y, this.cx - this.AVGPoint.x ) + Math.PI;
+		
+	},
+	
+	// find AVG distance
+	pointAVGDistance = function(){
+		
+		this.AVGDistance = distance(this.cx,this.cy,this.AVGPoint.x,this.AVGPoint.y);
 		
 	},
 	
@@ -96,8 +90,6 @@ var playground = (function(){
 		while(i < len){
 			
 		    if(distance(x,y,this.points[i].x, this.points[i].y) <= 20){
-				
-				console.log('okay good');
 				
 			   return false;	
 				
@@ -125,7 +117,7 @@ var playground = (function(){
 			
 				pg.AVGAngle = pointAVGAngle.call(pg);
 				
-				console.log(pg.AVGAngle);
+				pointAVGDistance.call(pg);
 			
 			    // find the avg point
 		    	pg.AVGPoint = pointAVG.call(pg);

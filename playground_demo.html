@@ -63,16 +63,20 @@
 	
 	drawAVGAngle = function(){
 	
-	    ctx.strokeStyle = '#ff0000';
+	    if(playground.pg.points.length > 0){
 	
-	    ctx.beginPath();
-		ctx.moveTo(playground.pg.cx, playground.pg.cy);
-		ctx.lineTo(
-		    Math.cos(playground.pg.AVGAngle) * 100 + playground.pg.cx, 
-			Math.sin(playground.pg.AVGAngle) * 100 + playground.pg.cy
-		);
-	    ctx.closePath();
-	    ctx.stroke();
+	        ctx.strokeStyle = '#ff0000';
+	
+	        ctx.beginPath();
+		    ctx.moveTo(playground.pg.cx, playground.pg.cy);
+		    ctx.lineTo(
+		        Math.cos(playground.pg.AVGAngle) * playground.pg.AVGDistance + playground.pg.cx, 
+		    	Math.sin(playground.pg.AVGAngle) * playground.pg.AVGDistance + playground.pg.cy
+		    );
+	        ctx.closePath();
+	        ctx.stroke();
+		
+		}
 	
 	},
 	
