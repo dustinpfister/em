@@ -12,6 +12,7 @@ var playground = (function(){
 		
 		// an array of points
 		points : [],
+		AVGPoint : {x:0,y:0},
 		maxPoints : 100
 	
 	},
@@ -44,14 +45,14 @@ var playground = (function(){
 	},
 	
 	// find and return the AVG point (use with call on pg)
-	pointAVG : function(){
+	pointAVG = function(){
 			
-		var i = 0, len = this.point.length, x = 0, y = 0;
+		var i = 0, len = this.points.length, x = 0, y = 0;
 			
 		while(i < len){
 				
-			x += this.point[i].x;
-			y += this.point[i].y;
+			x += this.points[i].x;
+			y += this.points[i].y;
 			
 			i += 1;
 		}
@@ -97,7 +98,16 @@ var playground = (function(){
 		// what to do on each call of update ( this should be called in your game loop )
 		update : function(){
 			
-			pointKillOld.call(pg);
+			// if we have points
+			if(pg.points.length > 0){
+			
+			    // kill any old points
+			    pointKillOld.call(pg);
+			
+			    // find the avg point
+		    	pg.AVGPoint = pointAVG.call(pg);
+			
+			}
 			
 		},
 		

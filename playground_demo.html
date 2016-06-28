@@ -39,6 +39,7 @@
 		ctx.stroke();
 		
 		drawPoints();
+		drawAVGPoint();
 		
     },
 	
@@ -56,6 +57,18 @@
 		
 		    i += 1;
 		}
+	
+	},
+	
+	drawAVGPoint = function(){
+	
+	    var AVG = playground.pg.AVGPoint;
+	
+	    ctx.strokeStyle = '#0000ff';
+	    ctx.beginPath();
+	    ctx.arc(AVG.x, AVG.y, 10, 0, Math.PI*2);
+	    ctx.closePath();
+	    ctx.stroke();
 	
 	},
 	
