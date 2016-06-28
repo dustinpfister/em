@@ -40,6 +40,7 @@
 		
 		drawPoints();
 		drawAVGPoint();
+		drawAVGAngle();
 		
     },
 	
@@ -57,6 +58,21 @@
 		
 		    i += 1;
 		}
+	
+	},
+	
+	drawAVGAngle = function(){
+	
+	    ctx.strokeStyle = '#ff0000';
+	
+	    ctx.beginPath();
+		ctx.moveTo(playground.pg.cx, playground.pg.cy);
+		ctx.lineTo(
+		    Math.cos(playground.pg.AVGAngle) * 100 + playground.pg.cx, 
+			Math.sin(playground.pg.AVGAngle) * 100 + playground.pg.cy
+		);
+	    ctx.closePath();
+	    ctx.stroke();
 	
 	},
 	

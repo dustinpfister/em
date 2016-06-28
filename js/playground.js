@@ -13,6 +13,7 @@ var playground = (function(){
 		// an array of points
 		points : [],
 		AVGPoint : {x:0,y:0},
+		AVGAngle : 0,
 		maxPoints : 100
 	
 	},
@@ -66,6 +67,23 @@ var playground = (function(){
 			
 	},
 	
+	// find the AVG Angle from playground center (use with call on pg)
+	pointAVGAngle = function(){
+		
+		var a = 0, i = 0, len = this.points.length;
+		
+		while(i < len){
+			
+			a += Math.atan2(this.cy - this.points[i].y, this.cx - this.points[i].x ) + Math.PI;
+			
+			i += 1;
+			
+		}
+		
+		return a / len;
+		
+	},
+	
 	// check if the given x, and y is to close to a previous point (use with call on pg)
 	pointGood = function(x,y){
 		
@@ -101,11 +119,17 @@ var playground = (function(){
 			// if we have points
 			if(pg.points.length > 0){
 			
-			    // kill any old points
-			    pointKillOld.call(pg);
+				pg.AVGAngle = pointAVGAngle.call(pg);
 			
 			    // find the avg point
 		    	pg.AVGPoint = pointAVG.call(pg);
+			
+			    // kill any old points
+			    pointKillOld.call(pg);
+			
+			    
+				
+				
 			
 			}
 			
