@@ -12,7 +12,7 @@ var playground = (function(){
 		
 		// an array of points
 		points : [],
-		maxPoints : 4
+		maxPoints : 100
 	
 	},
 	
@@ -21,6 +21,48 @@ var playground = (function(){
 		
 		return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 		
+	},
+	
+	// kill old points from pg (use with call on pg)
+	pointKillOld = function(){
+		
+		var i = this.points.length, now = new Date();
+		
+		while(i--){
+		
+            if(now - this.points[i].startTime >= this.points[i].lifespan){
+				
+				
+				console.log('killing old point.');
+				
+				this.points.splice(i,1);
+				
+			}
+			
+		}
+		
+	},
+	
+	// find and return the AVG point (use with call on pg)
+	pointAVG : function(){
+			
+		var i = 0, len = this.point.length, x = 0, y = 0;
+			
+		while(i < len){
+				
+			x += this.point[i].x;
+			y += this.point[i].y;
+			
+			i += 1;
+		}
+			
+		return {
+				
+			x: x / len,
+			y: y / len
+				
+		};
+			
 	},
 	
 	// check if the given x, and y is to close to a previous point (use with call on pg)
@@ -52,10 +94,15 @@ var playground = (function(){
 		// add pg to the public api as my draw function will need it
 		pg : pg,
 		
+		// what to do on each call of update ( this should be called in your game loop )
+		update : function(){
+			
+			pointKillOld.call(pg);
+			
+		},
+		
 		// resize the playground, and given canvas to window
 		resize : function(canvas){
-			
-			console.log('okay');
 			
 			pg.xMax = window.innerWidth;
 			pg.yMax = window.innerHeight;
@@ -66,12 +113,10 @@ var playground = (function(){
 			pg.cx = pg.xMax / 2;
 			pg.cy = pg.yMax / 2;
 			
-			
 		},
 		
 		// push a point based on event, and x, and y from inMaster
 		pushPoint : function(e,x,y){
-			
 			
 			if(pg.points.length < pg.maxPoints){
 			
@@ -81,7 +126,9 @@ var playground = (function(){
 				    pg.points.push({
 					
 					    x : x,
-					    y : y
+					    y : y,
+						startTime : new Date(),
+						lifespan : 3000
 					
 			    	});
 				
