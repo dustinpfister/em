@@ -49,7 +49,7 @@
         ctx.fillStyle = '#000000';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-		drawText();
+		// drawText();
 		
         ctx.fillStyle = 'rgba('+ Math.floor(EM.ME.happy * 255) +',0,' + Math.floor(255 - EM.ME.happy * 255) + ',1)';
        
@@ -215,7 +215,7 @@
         setTimeout(loop, 33);
 
         EM.update();
-		text.update(EM);
+		//text.update(EM);
         draw();
 
     };

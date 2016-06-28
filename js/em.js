@@ -1,6 +1,13 @@
 var EM = (function(){
 
-    var ME = {
+    var playground = {
+
+        cx : 0,
+        cy : 0		
+		
+	},
+
+    ME = {
 	
 	    cx : 0,
 		cy : 0,
@@ -40,7 +47,7 @@ var EM = (function(){
 		lastPurge : new Date(0),
 		touchLife : 5000,
 		
-		happy : .1,
+		happy : 1,
 		deltaHappy : -0.01,
 		updateRate : 1000,
 		lastUpdate : new Date(0),
@@ -339,8 +346,12 @@ var EM = (function(){
 				ME.size = 0.25 + 0.75 * ME.happy;
 				ME.w = ME.maxW * ME.size;
 			    ME.h = ME.maxH * ME.size;
-				ME.cx = ME.xMax / 2 - ME.w / 2;
-			    ME.cy = ME.yMax / 2 - ME.h / 2;
+				//ME.cx = ME.xMax / 2 - ME.w / 2;
+			    //ME.cy = ME.yMax / 2 - ME.h / 2;
+				
+				ME.cx = playground.cx - ME.w / 2;
+			    ME.cy = playground.cy - ME.h / 2;
+				
 				ME.points += ME.pointRate;
 				ME.level = Math.floor(Math.log(ME.points) / Math.log(2)) + 1;
 				ME.touchLimit = 1 + (ME.maxTouch -1) * ME.happy
@@ -459,8 +470,11 @@ var EM = (function(){
 			ME.w = ME.maxW * ME.size;
 			ME.h = ME.maxH * ME.size;
 			
-			ME.cx = ME.xMax / 2 - ME.w / 2;
-			ME.cy = ME.yMax / 2 - ME.h / 2;
+			playground.cx = ME.xMax / 2;
+			playground.cy = ME.yMax / 2;
+			
+			//ME.cx = ME.xMax / 2 - ME.w / 2;
+			//ME.cy = ME.yMax / 2 - ME.h / 2;
 		
 		    ME.x = ME.cx;
 			ME.y = ME.cy;
@@ -490,6 +504,9 @@ var EM = (function(){
 			
 			ME.xMax = width;
 			ME.yMax = height;
+			
+			playground.cx = ME.xMax / 2 - ME.w / 2;
+			playground.cy = ME.yMax / 2 - ME.h / 2;
 			
 		},
 		
