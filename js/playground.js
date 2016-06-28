@@ -69,7 +69,7 @@ var playground = (function(){
 	
 	// find the AVG Angle from playground center (use with call on pg)
 	pointAVGAngle = function(){
-		
+		/*
 		var a = 0, i = 0, len = this.points.length;
 		
 		while(i < len){
@@ -81,6 +81,10 @@ var playground = (function(){
 		}
 		
 		return a / len;
+		
+		*/
+		
+		return Math.atan2(this.cy - this.AVGPoint.y, this.cx - this.AVGPoint.x ) + Math.PI;
 		
 	},
 	
@@ -120,6 +124,8 @@ var playground = (function(){
 			if(pg.points.length > 0){
 			
 				pg.AVGAngle = pointAVGAngle.call(pg);
+				
+				console.log(pg.AVGAngle);
 			
 			    // find the avg point
 		    	pg.AVGPoint = pointAVG.call(pg);
