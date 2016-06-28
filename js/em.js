@@ -307,8 +307,7 @@ var EM = (function(){
 	    update : function(){
 		
 		    var now = new Date(), 
-			aToCenter = Math.atan2(ME.cy - ME.y, ME.cx - ME.x),
-			dToCenter = distance(ME.x,ME.y,ME.cx,ME.cy), a, d,avg,x,y;
+			a,d,avg,x,y;
 			
 			// if the amount of time that has passed sense the last touch is greater then touchLife
 			this.purgeTouch();
@@ -349,8 +348,8 @@ var EM = (function(){
 				//ME.cx = ME.xMax / 2 - ME.w / 2;
 			    //ME.cy = ME.yMax / 2 - ME.h / 2;
 				
-				ME.cx = playground.cx - ME.w / 2;
-			    ME.cy = playground.cy - ME.h / 2;
+				//ME.cx = playground.cx - ME.w / 2;
+			    //ME.cy = playground.cy - ME.h / 2;
 				
 				ME.points += ME.pointRate;
 				ME.level = Math.floor(Math.log(ME.points) / Math.log(2)) + 1;
@@ -367,8 +366,20 @@ var EM = (function(){
 			// if no touching move to center 
 			if(ME.touchArray.length === 0){
 			
-		    	ME.dx = Math.cos(aToCenter) * (dToCenter / ME.moveRate);
-		    	ME.dy = Math.sin(aToCenter) * (dToCenter / ME.moveRate);
+			    //a = Math.atan2(ME.cy - ME.y - ME.h / 2, ME.cx - ME.x - ME.w/2);
+			    //d = distance(ME.x - ME.w / 2, ME.y - ME.h / 2, ME.cx - ME.w/2, ME.cy - ME.h / 2);
+			
+			    
+			
+			    a = Math.atan2(ME.cy - ME.h /2 - ME.y, ME.cx - ME.w / 2 - ME.x),
+				d = distance(ME.x, ME.y, ME.cx - ME.w / 2, ME.cy - ME.h / 2);
+				
+			    
+			
+			  //  d = 0;
+			
+		    	ME.dx = Math.cos(a) * (d / ME.moveRate);
+		    	ME.dy = Math.sin(a) * (d / ME.moveRate);
 			
 			}else{
 				
@@ -475,6 +486,10 @@ var EM = (function(){
 			
 			//ME.cx = ME.xMax / 2 - ME.w / 2;
 			//ME.cy = ME.yMax / 2 - ME.h / 2;
+			
+			ME.cx = playground.cx;
+			ME.cy = playground.cy;
+				
 		
 		    ME.x = ME.cx;
 			ME.y = ME.cy;
@@ -505,8 +520,11 @@ var EM = (function(){
 			ME.xMax = width;
 			ME.yMax = height;
 			
-			playground.cx = ME.xMax / 2 - ME.w / 2;
-			playground.cy = ME.yMax / 2 - ME.h / 2;
+			playground.cx = ME.xMax / 2;
+			playground.cy = ME.yMax / 2;
+			
+			ME.cx = playground.cx;
+			ME.cy = playground.cy;
 			
 		},
 		
