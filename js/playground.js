@@ -78,7 +78,19 @@ var playground = (function(){
 	// find AVG distance
 	pointAVGDistance = function(){
 		
-		this.AVGDistance = distance(this.cx,this.cy,this.AVGPoint.x,this.AVGPoint.y);
+		//this.AVGDistance = distance(this.cx,this.cy,this.AVGPoint.x,this.AVGPoint.y);
+		
+		var d = 0, i = 0, len = this.points.length;
+		
+		while(i < len){
+			
+			d += distance(this.cx,this.cy,this.points[i].x,this.points[i].y);
+			
+			i += 1;
+			
+		}
+		
+		this.AVGDistance = d / len;
 		
 	},
 	
