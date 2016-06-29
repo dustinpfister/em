@@ -120,6 +120,7 @@
 	};
 	
 	playground.resize(canvas);
+	guy.resize();
 	
 	// attach mouse events
     canvas.addEventListener('mousedown', playground.inMaster);
@@ -132,6 +133,8 @@
     canvas.addEventListener('touchmove', playground.inMaster);
 	
 	window.addEventListener('resize', function(){ playground.resize(canvas) } );
+	window.addEventListener('resize', guy.resize );
+	
 	
     loop();	
 	
