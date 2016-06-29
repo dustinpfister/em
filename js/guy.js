@@ -14,7 +14,10 @@ var guy = (function () {
         moveRate : 20,
 
         // points that the guy likes
-        likePoints : []
+        likePoints : [],
+		likeChance : 0.2,
+		lastChoice : new Date(),
+		choiceRate : 5000
 
     },
 
@@ -28,21 +31,46 @@ var guy = (function () {
     api = {
 
         state : state,
+		
+		findTarget : function(){
+			
+			// default to home
+			//state.targetX = state.homeX;
+            //state.targetY = state.homeY;
+
+			// if points follow them
+            if (playground.pg.points.length > 0) {
+
+                state.targetX = playground.pg.AVGPoint.x;
+                state.targetY = playground.pg.AVGPoint.y;
+				
+				state.lastChoice = new Date();
+
+			// else autonomy
+            }else{
+				
+				if(new Date() - state.lastChoice >= state.choiceRate){
+			
+                    // default to home
+			        state.targetX = state.homeX;
+                    state.targetY = state.homeY;
+			
+                    state.lastChoice = new Date();				
+					
+					
+					
+				}
+				
+			}
+			
+		},
 
         update : function () {
 
             var a,
             d;
 
-            state.targetX = state.homeX;
-            state.targetY = state.homeY;
-
-            if (playground.pg.points.length > 0) {
-
-                state.targetX = playground.pg.AVGPoint.x;
-                state.targetY = playground.pg.AVGPoint.y;
-
-            }
+            this.findTarget();
 
             a = Math.atan2(state.targetY - state.y, state.targetX - state.x),
             d = distance(state.x, state.y, state.targetX, state.targetY);
