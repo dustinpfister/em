@@ -50,9 +50,6 @@
 	
 	    var g = guy.state;
 		
-		console.log(g);
-		
-		
 		ctx.strokeStyle = '#ffff00';
 		ctx.beginPath();
 		ctx.arc(g.x, g.y, 20, 0, Math.PI*2);
@@ -116,6 +113,7 @@
 	    setTimeout(loop, 33);
 	
 	    playground.update();
+		guy.update()
 	    draw();
 
 	
