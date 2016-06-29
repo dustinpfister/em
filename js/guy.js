@@ -80,13 +80,13 @@ var guy = (function () {
 
     // set up some starting like points
     var i = 0;
-    while (i < 1) {
+    while (i < 4) {
 
         state.likePoints.push({
 
             // angle and distance stored in values of 0 to 1 so that the x and y values change based on playground size
-            a : 0.25,
-            d : 1,
+            a : Math.random(),
+            d : 1/4 * (i+1),
 			x:0,y:0
 
         });
