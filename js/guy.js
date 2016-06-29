@@ -17,7 +17,8 @@ var guy = (function () {
         likePoints : [],
 		likeChance : .3,
 		lastChoice : new Date(),
-		choiceRate : 5000
+		choiceRate : 5000,
+		newLikePoint : 'none'
 
     },
 
@@ -69,12 +70,34 @@ var guy = (function () {
 			}
 			
 		},
+		
+		updateLikes : function(){
+			
+			if (playground.pg.points.length === 0 && state.newLikePoint != 'none') {
+			
+                state.likePoints.shift();
+				
+				state.likePoints.push(state.newLikePoint);
+				
+				state.newLikePoint = 'none';
+			
+			}
+			
+			if(playground.pg.points.length > 0){
+				
+				state.newLikePoint = playground.pg.AVGPoint;
+				
+			}
+			
+			
+		},
 
         update : function () {
 
             var a,
             d;
 
+			this.updateLikes();
             this.findTarget();
 
             a = Math.atan2(state.targetY - state.y, state.targetX - state.x),
