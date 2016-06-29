@@ -35,9 +35,7 @@ var playground = (function(){
 		
             if(now - this.points[i].startTime >= this.points[i].lifespan){
 				
-				
-				console.log('killing old point.');
-				
+				// kill old point
 				this.points.splice(i,1);
 				
 			}
