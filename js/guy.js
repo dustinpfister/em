@@ -11,7 +11,7 @@ var guy = (function(){
 		y: 100,
 		dx: 0,
 		dy: 0,
-		moveRate: 5
+		moveRate: 20
 		
 	},
 	
@@ -28,7 +28,19 @@ var guy = (function(){
 		
 		update : function(){
 			
-			var a = Math.atan2(state.targetY - state.y, state.targetX - state.x),
+			var a,d;
+			
+			state.targetX = state.homeX;
+            state.targetY = state.homeY;				
+				
+			if(playground.pg.points.length > 0){
+				
+				state.targetX = playground.pg.AVGPoint.x;
+				state.targetY = playground.pg.AVGPoint.y;
+				
+			}
+			
+			a = Math.atan2(state.targetY - state.y, state.targetX - state.x),
 			d = distance(state.x,state.y,state.targetX,state.targetY);
 			
 			//state.dx = Math.cos(angle) * 5;
