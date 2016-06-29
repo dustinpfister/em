@@ -85,7 +85,7 @@ var guy = (function () {
         state.likePoints.push({
 
             // angle and distance stored in values of 0 to 1 so that the x and y values change based on playground size
-            a : .5,
+            a : 0.25,
             d : 1,
 			x:0,y:0
 

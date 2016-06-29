@@ -158,6 +158,8 @@ var playground = (function(){
 			pg.cx = pg.xMax / 2;
 			pg.cy = pg.yMax / 2;
 			
+			pg.maxDistance = pg.xMax < pg.yMax ? pg.xMax / 2 * 0.9 : pg.yMax / 2 * 0.9;
+			
 		},
 		
 		// push a point based on event, and x, and y from inMaster
