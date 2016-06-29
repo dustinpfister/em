@@ -10,6 +10,9 @@ var playground = (function(){
 		cx : 320,
 		cy: 240,
 		
+		// max distance from center
+		maxDistance : 200,
+		
 		// an array of points
 		points : [],
 		AVGPoint : {x:0,y:0},

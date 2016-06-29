@@ -56,6 +56,26 @@
 		ctx.closePath();
 		ctx.stroke();
 	
+	    drawLikePoints();
+	
+	},
+	
+	drawLikePoints = function(){
+	
+	    var lp = guy.state.likePoints, i=0, len = lp.length;
+		
+		while(i < len){
+		
+		    ctx.strokeStyle = '#ff00ff';
+		    ctx.beginPath();
+		    ctx.arc(lp[i].x, lp[i].y, 10, 0, Math.PI*2);
+		    ctx.closePath();
+		    ctx.stroke();
+		
+		    i += 1;
+		
+		}
+	
 	},
 	
 	drawPoints = function(){
