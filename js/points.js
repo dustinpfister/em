@@ -21,7 +21,7 @@ var points = (function () {
             this.a = a;
             this.d = d;
             this.startTime = new Date();
-            this.lifespan = l;
+            this.lifespan = l === undefined ? 1000 : l;
 
         },
 
@@ -190,8 +190,12 @@ var points = (function () {
 
                 if (now - this.points[i].startTime >= this.points[i].lifespan) {
 
+				    console.log('old point kiled');
+				
                     // kill old point
                     this.points.splice(i, 1);
+					
+					
 
                 }
 

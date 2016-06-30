@@ -28,6 +28,10 @@
 	
 	update : function(){
 		
+		console.log('gamestate.js: update');
+		
+		// kill any old points
+		this.points.killOld();
 		
 	}
 	 
