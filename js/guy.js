@@ -19,8 +19,10 @@ var guy = (function () {
 		lastChoice : new Date(),
 		choiceRate : 5000,
 		
-		newSugPoint : 'none',
-		sugPoints : []
+		sugPoints : [],
+		maxSugPoints : 5,
+		newSugPoint : 'none'
+		
 
     },
 
@@ -188,14 +190,20 @@ var guy = (function () {
             // update like points
             var i = 0, len = state.likePoints.length;
             while (i < len) {
-
-                //state.likePoints[i].x = Math.cos(Math.PI * 2 * state.likePoints[i].a) * (state.likePoints[i].d * playground.pg.maxDistance) + playground.pg.cx;
-                //state.likePoints[i].y = Math.sin(Math.PI * 2 * state.likePoints[i].a) * (state.likePoints[i].d * playground.pg.maxDistance) + playground.pg.cy;
 				
 				pointCorrection.call(state.likePoints[i]);
 				
                 i += 1;
             }
+			
+			i = 0, len = state.sugPoints.length;
+            while (i < len) {
+				
+				pointCorrection.call(state.sugPoints[i]);
+				
+                i += 1;
+            }
+			
         }
 
     };
