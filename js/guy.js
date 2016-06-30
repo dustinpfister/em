@@ -83,7 +83,7 @@ var guy = (function () {
 			
 			}
 			
-			if(playground.pg.points.length > 0 && state.newLikePoint === 'none'){
+			if(playground.pg.points.length > 0){
 				
 				state.newLikePoint = playground.pg.AVGPoint;
 				state.newLikePoint.a = Math.atan2(
@@ -92,19 +92,19 @@ var guy = (function () {
 				);
 				
 				state.newLikePoint.a =  (state.newLikePoint.a + Math.PI) / (Math.PI * 2);
-				
-				
 				state.newLikePoint.d = distance(playground.pg.AVGPoint.x, playground.pg.AVGPoint.y, playground.pg.cx, playground.pg.cy);
 				
 				if(state.newLikePoint.d > playground.pg.maxDistance){
 					
 					state.newLikePoint.d = playground.pg.maxDistance;
 					
+					state.newLikePoint.x = Math.cos(state.newLikePoint.a * (Math.PI * 2)) * playground.pg.maxDistance + playground.pg.cx;
+					state.newLikePoint.y = Math.sin(state.newLikePoint.a * (Math.PI * 2)) * playground.pg.maxDistance + playground.pg.cy;
+					
 				}
-				
 				state.newLikePoint.d = state.newLikePoint.d / playground.pg.maxDistance;
 				
-				console.log(state.newLikePoint);
+				console.log(state.newLikePoint.d);
 				
 			}
 			
