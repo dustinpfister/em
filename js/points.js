@@ -88,20 +88,38 @@ var points = (function () {
 
         pro = PointCollection.prototype;
 
-		// push a new point to the collection
+        // push a new point to the collection
         pro.newPoint = function (x, y, a, d, l) {
-			
-			if(this.points.length < this.maxPoints){
-				
-			    if(this.pointGood(x,y)){
-				
-                    this.points.push( new Point(x, y, a, d, l))				
-					
-				}	
-				
-			}
-			
-		};
+
+            if (this.points.length < this.maxPoints) {
+
+                if (this.pointGood(x, y)) {
+
+                    this.points.push(new Point(x, y, a, d, l))
+
+                }
+
+            }
+
+        };
+
+        // find AVG distance of a collection from the given point
+        AVGDistance = function (x,y) {
+
+            var d = 0,
+            i = 0,
+            len = this.points.length;
+            while (i < len) {
+
+                d += fw.distance(x, y, this.points[i].x, this.points[i].y);
+
+                i += 1;
+
+            }
+
+            this.AVGDistance = d / len;
+
+        },
 
         // check if the given x, and y is to close to a previous point (use with call on pg)
         pointGood = function (x, y) {
@@ -110,7 +128,7 @@ var points = (function () {
             len = this.points.length;
             while (i < len) {
 
-			    // ALERT! just a fixed distance of 20?
+                // ALERT! just a fixed distance of 20?
                 if (fw.distance(x, y, this.points[i].x, this.points[i].y) <= 20) {
 
                     return false;
