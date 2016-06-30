@@ -16,13 +16,17 @@ var guy = (function () {
         // points that the guy likes
         likePoints : [],
 		likeChance : .3,
-		lastChoice : new Date(),
-		choiceRate : 5000,
 		
+        // suggestion points
 		sugPoints : [],
+		sugChance : .5,
 		sugPointLifespan : 60000,
 		maxSugPoints : 5,
-		newSugPoint : 'none'
+		newSugPoint : 'none',
+		
+		// making choices
+		lastChoice : new Date(),
+		choiceRate : 5000,
 		
 
     },
@@ -51,7 +55,7 @@ var guy = (function () {
 		
 		findTarget : function(){
 			
-			var roll = Math.random(), likeIndex;
+			var roll, index;
 
 			// if points follow them
             if (playground.pg.points.length > 0) {
@@ -70,12 +74,29 @@ var guy = (function () {
 			        state.targetX = state.homeX;
                     state.targetY = state.homeY;
 			
+			        roll = Math.random();
+			
+			        // might leave home to do a like
 			        if(roll <= state.likeChance){
 						
-						likeIndex = Math.floor(Math.random() * state.likePoints.length);
+						index = Math.floor(Math.random() * state.likePoints.length);
 						
-						state.targetX = state.likePoints[likeIndex].x;
-						state.targetY = state.likePoints[likeIndex].y;
+						state.targetX = state.likePoints[index].x;
+						state.targetY = state.likePoints[index].y;
+						
+					// else might leave home to do a suggestion
+					}else{
+						
+						roll = Math.random();
+						
+						if(roll <= state.sugChance){
+						
+                            index = Math.floor(Math.random() * state.sugPoints.length);
+								
+                            state.targetX = state.sugPoints[index].x;
+						    state.targetY = state.sugPoints[index].y;
+								
+						}
 						
 					}
 			
