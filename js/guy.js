@@ -19,7 +19,8 @@ var guy = (function () {
 		lastChoice : new Date(),
 		choiceRate : 5000,
 		
-		newSugPoint : 'none'
+		newSugPoint : 'none',
+		sugPoints : []
 
     },
 
@@ -90,7 +91,7 @@ var guy = (function () {
 			// if no points but we have a new like point
 			if (playground.pg.points.length === 0 && state.newSugPoint != 'none') {
 			
-                state.likePoints.shift();
+                // state.likePoints.shift();
 				
 				//state.likePoints.push(state.newSugPoint);
 				
@@ -126,7 +127,9 @@ var guy = (function () {
 				
 				pointCorrection.call(sugPoint);
 				
-				state.likePoints.push(sugPoint);
+				//state.likePoints.push(sugPoint);
+				
+				state.sugPoints.push(sugPoint);
 				
 				state.newSugPoint = 'none';
 			

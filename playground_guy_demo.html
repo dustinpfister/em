@@ -57,6 +57,7 @@
 		ctx.stroke();
 	
 	    drawLikePoints();
+		drawSugPoints();
 	
 	},
 	
@@ -69,6 +70,24 @@
 		    ctx.strokeStyle = '#ff00ff';
 		    ctx.beginPath();
 		    ctx.arc(lp[i].x, lp[i].y, 10, 0, Math.PI*2);
+		    ctx.closePath();
+		    ctx.stroke();
+		
+		    i += 1;
+		
+		}
+	
+	},
+	
+	drawSugPoints = function(){
+	
+	    var sp = guy.state.sugPoints, i=0, len = sp.length;
+		
+		while(i < len){
+		
+		    ctx.strokeStyle = '#ff0000';
+		    ctx.beginPath();
+		    ctx.arc(sp[i].x, sp[i].y, 10, 0, Math.PI*2);
 		    ctx.closePath();
 		    ctx.stroke();
 		
