@@ -83,7 +83,7 @@ var guy = (function () {
 			
 		},
 		
-		updateLikes : function(){
+		updateSugs : function(){
 			
 			var likePoint;
 			
@@ -164,7 +164,7 @@ var guy = (function () {
             var a,
             d;
 
-			this.updateLikes();
+			this.updateSugs();
             this.findTarget();
 
             a = Math.atan2(state.targetY - state.y, state.targetX - state.x),
