@@ -95,11 +95,14 @@ var points = (function () {
     }
         ()),
 
-    api = {};
+	// the public API
+    api = {
+		
+		Point : Point,
+		PointCollection : PointCollection
+		
+	};
 
-    var p = new Point();
-
-    console.log(p.constructor.name);
 
     return api;
 

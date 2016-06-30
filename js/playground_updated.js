@@ -1,3 +1,40 @@
+/*
+ *    points.js
+ *    Copyright 2016 by Dustin Pfister (GPL v3)
+ *
+ *    A module for working with a Point, and Point Collections
+ *
+ *    needs: framework.js, playground.js
+ *
+ */
+
+var playground = {
+	
+	width: 640,
+	height: 480,
+	cx: 320,
+	cy: 240,
+	maxDistance : 240,
+	
+	resize : function(canvas){
+			
+		this.width = window.innerWidth;
+		this.height = window.innerHeight;
+			
+		canvas.width = this.width;
+		canvas.height = this.height;
+			
+		this.cx = this.xMax / 2;
+		this.cy = this.yMax / 2;
+			
+		this.maxDistance = this.width < this.height ? this.width / 2 * 0.9 : this.height / 2 * 0.9;
+			
+	}
+	
+};
+
+
+/*
 var playground = (function(){
 	
 	var pg = {
@@ -211,3 +248,4 @@ var playground = (function(){
 	return api;
 	
 }());
+*/

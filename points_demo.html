@@ -37,13 +37,13 @@
 		// show playground.cx/cy point
 		ctx.strokeStyle = '#00ff00';
 		ctx.beginPath();
-		ctx.arc(playground.pg.cx, playground.pg.cy, 15, 0, Math.PI*2);
+		ctx.arc(playground.cx, playground.cy, 15, 0, Math.PI*2);
 		ctx.closePath();
 		ctx.stroke();
 		
-		drawPoints();
-		drawAVGAngle();
-		drawAVGPoint();
+		//drawPoints();
+		//drawAVGAngle();
+		//drawAVGPoint();
     },
 	
 	drawPoints = function(){
@@ -100,25 +100,25 @@
 	
 	    setTimeout(loop, 33);
 	
-	    playground.update();
 	    draw();
 
 	
 	};
 	
 	playground.resize(canvas);
+	window.addEventListener('resize', function(){ playground.resize(canvas) } );
 	
 	// attach mouse events
-    canvas.addEventListener('mousedown', playground.inMaster);
-    canvas.addEventListener('mouseup', playground.inMaster);
+    //canvas.addEventListener('mousedown', playground.inMaster);
+    //canvas.addEventListener('mouseup', playground.inMaster);
     //canvas.addEventListener('mousemove', playground.inMaster);
 
     // attach touch events
-    canvas.addEventListener('touchstart', playground.inMaster);
-    canvas.addEventListener('touchend', playground.inMaster);
-    canvas.addEventListener('touchmove', playground.inMaster);
+    //canvas.addEventListener('touchstart', playground.inMaster);
+    //canvas.addEventListener('touchend', playground.inMaster);
+    //canvas.addEventListener('touchmove', playground.inMaster);
 	
-	window.addEventListener('resize', function(){ playground.resize(canvas) } );	
+		
 	
     loop();	
 
