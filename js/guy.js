@@ -56,6 +56,36 @@ var guy = (function () {
 		this.y = Math.sin(Math.PI * 2 * this.a) * (this.d * pg.maxDistance) + pg.cy;
 		
 	},
+	
+	// correct an angle and distance assuming valid x, and y ( use with call on like and sug points)
+	angleDistCorrection = function(){
+		
+		var pg = playground.pg;
+		
+		// set the angle
+		this.a = Math.atan2(
+		    pg.cy - this.y,
+			pg.cx - this.x
+		);
+				
+		// angle should be between 0 and 1
+		this.a =  (this.a + Math.PI) / (Math.PI * 2);
+				
+		// set distance
+		this.d = distance(this.x, this.y, pg.cx, pg.cy);
+				
+		// if sug point distance is greater then max distance
+		if(this.d > pg.maxDistance){
+					
+			// set distance to max, and adjust position
+			this.d = pg.maxDistance;
+					
+		}
+				
+		// sug point distance should be between 0 and 1
+		this.d = this.d / pg.maxDistance;
+		
+	},
 
     api = {
 
@@ -156,30 +186,9 @@ var guy = (function () {
 				
 				};
 				
-				// set the angle
-				sugPoint.a = Math.atan2(
-				    playground.pg.cy - sugPoint.y,
-					playground.pg.cx - sugPoint.x
-				);
+				angleDistCorrection.call(sugPoint);
 				
-				// angle should be between 0 and 1
-				sugPoint.a =  (sugPoint.a + Math.PI) / (Math.PI * 2);
-				
-				// set distance
-				sugPoint.d = distance(sugPoint.x, sugPoint.y, playground.pg.cx, playground.pg.cy);
-				
-				// if sug point distance is greater then max distance
-				if(sugPoint.d > playground.pg.maxDistance){
-					
-					// set distance to max, and adjust position
-					sugPoint.d = playground.pg.maxDistance;
-					
-				}
-				
-				// sug point distance should be between 0 and 1
-				sugPoint.d = sugPoint.d / playground.pg.maxDistance;
-				
-				pointCorrection.call(sugPoint);
+				//pointCorrection.call(sugPoint);
 				
 				// shift out old sugPoints if max is reached
 				if(state.sugPoints.length === state.maxSugPoints){
