@@ -27,7 +27,9 @@
 	update : function(){
 		
 		// kill any old points
-		this.points.killOld();
+		//this.points.killOld();
+		this.points.update();
+		
 		
 	}
 	 

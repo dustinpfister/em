@@ -81,6 +81,13 @@ var points = (function () {
         },
 
         pro = PointCollection.prototype;
+		
+		// what to do on a per frame tick basis.
+		pro.update = function(){
+			
+			this.killOld();
+			
+		};
 
         // push a new point to the collection
         pro.pushPoint = function (x, y, a, d, l) {
