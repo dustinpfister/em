@@ -125,6 +125,13 @@ var guy = (function () {
 				
 				pointCorrection.call(sugPoint);
 				
+				// shift out old sugPoints if max is reached
+				if(state.sugPoints.length === state.maxSugPoints){
+					
+					state.sugPoints.shift();
+					
+				}
+				
 				state.sugPoints.push(sugPoint);
 				
 				state.newSugPoint = 'none';
