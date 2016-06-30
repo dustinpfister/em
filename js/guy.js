@@ -90,8 +90,22 @@ var guy = (function () {
 		
 		updateSugs : function(){
 			
-			
+			// check new sugs
 			this.newSugCheck();
+			
+			// kill old ones
+			var i = state.sugPoints.length, now = new Date();
+			
+			while(i--){
+				
+				if(now - state.sugPoints[i].startTime >= state.sugPointLifespan){
+					
+					state.sugPoints.splice(i, 1);
+					
+				}
+				
+				
+			}
 			
 		},
 		
