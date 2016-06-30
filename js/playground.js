@@ -22,13 +22,6 @@ var playground = (function(){
 	
 	},
 	
-	// the distance formula
-	distance = function(x1,y1,x2,y2){
-		
-		return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
-		
-	},
-	
 	// kill old points from pg (use with call on pg)
 	pointKillOld = function(){
 		
@@ -79,13 +72,11 @@ var playground = (function(){
 	// find AVG distance
 	pointAVGDistance = function(){
 		
-		//this.AVGDistance = distance(this.cx,this.cy,this.AVGPoint.x,this.AVGPoint.y);
-		
 		var d = 0, i = 0, len = this.points.length;
 		
 		while(i < len){
 			
-			d += distance(this.cx,this.cy,this.points[i].x,this.points[i].y);
+			d += fw.distance(this.cx,this.cy,this.points[i].x,this.points[i].y);
 			
 			i += 1;
 			
@@ -102,7 +93,7 @@ var playground = (function(){
 		
 		while(i < len){
 			
-		    if(distance(x,y,this.points[i].x, this.points[i].y) <= 20){
+		    if(fw.distance(x,y,this.points[i].x, this.points[i].y) <= 20){
 				
 			   return false;	
 				

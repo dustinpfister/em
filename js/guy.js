@@ -38,13 +38,6 @@ var guy = (function () {
 
     },
 
-    // ALERT! this is also in playground.js ( we might want some kind of framework)
-    distance = function (x1, y1, x2, y2) {
-
-        return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
-
-    },
-
     // correct x, and y assuming valid a, and d ( use with call on points)
     pointCorrection = function () {
 
@@ -72,7 +65,7 @@ var guy = (function () {
         this.a = (this.a + Math.PI) / (Math.PI * 2);
 
         // set distance
-        this.d = distance(this.x, this.y, pg.cx, pg.cy);
+        this.d = fw.distance(this.x, this.y, pg.cx, pg.cy);
 
         // if point distance is greater then max distance
         if (this.d > pg.maxDistance) {
@@ -238,7 +231,7 @@ var guy = (function () {
 
             if (now - state.lastHappyUpdate >= state.happyRate) {
 
-                d = Math.floor(distance(state.x, state.y, state.homeX, state.homeY));
+                d = Math.floor(fw.distance(state.x, state.y, state.homeX, state.homeY));
 
                 if (d > playground.maxDistance) {
                     d = playground.maxDistance;
@@ -306,7 +299,7 @@ var guy = (function () {
             this.findTarget();
 
             a = Math.atan2(state.targetY - state.y, state.targetX - state.x),
-            d = distance(state.x, state.y, state.targetX, state.targetY);
+            d = fw.distance(state.x, state.y, state.targetX, state.targetY);
 
             state.dx = Math.cos(a) * (d / state.moveRate);
             state.dy = Math.sin(a) * (d / state.moveRate);
