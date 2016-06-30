@@ -38,10 +38,6 @@ var guy = (function () {
 		this.x = Math.cos(Math.PI * 2 * this.a) * (this.d * pg.maxDistance) + pg.cx;
 		this.y = Math.sin(Math.PI * 2 * this.a) * (this.d * pg.maxDistance) + pg.cy;
 		
-		//state.likePoints[i].x = Math.cos(Math.PI * 2 * state.likePoints[i].a) * (state.likePoints[i].d * playground.pg.maxDistance) + playground.pg.cx;
-        //state.likePoints[i].y = Math.sin(Math.PI * 2 * state.likePoints[i].a) * (state.likePoints[i].d * playground.pg.maxDistance) + playground.pg.cy;
-				
-		
 	},
 
     api = {
@@ -121,14 +117,18 @@ var guy = (function () {
 					
 					// set distance to max, and adjust position
 					likePoint.d = playground.pg.maxDistance;
-					likePoint.x = Math.cos(likePoint.a * (Math.PI * 2)) * playground.pg.maxDistance + playground.pg.cx;
-					likePoint.y = Math.sin(likePoint.a * (Math.PI * 2)) * playground.pg.maxDistance + playground.pg.cy;
+					//likePoint.x = Math.cos(likePoint.a * (Math.PI * 2)) * playground.pg.maxDistance + playground.pg.cx;
+					//likePoint.y = Math.sin(likePoint.a * (Math.PI * 2)) * playground.pg.maxDistance + playground.pg.cy;
+					
+					//pointCorrection.call(likePoint);
+					
 					
 				}
 				
 				// like point distance should be between 0 and 1
 				likePoint.d = likePoint.d / playground.pg.maxDistance;
 				
+				pointCorrection.call(likePoint);
 				
 				state.likePoints.push(likePoint);
 				
