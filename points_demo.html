@@ -3,7 +3,7 @@
 
 <head>
 
-<title>EM</title>
+<title>Points Demo</title>
 <meta charset="utf-8">
 
 <link rel="stylesheet" href="./css/em.css">
@@ -15,10 +15,9 @@
 <canvas id="thecanvas" width="640" height="480"></canvas>
 
 <script src="./js/framework.js"></script>
-<script src="./js/point.js"></script>
-<!--<script src="./js/points.js"></script>-->
-<script src="./js/playground.js"></script>
-<script src="./js/guy.js"></script>
+<script src="./js/playground_updated.js"></script>
+<script src="./js/points.js"></script>
+
 
 <script>
 
@@ -36,7 +35,6 @@
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
 		// show playground.cx/cy point
-		ctx.lineWidth = 3;
 		ctx.strokeStyle = '#00ff00';
 		ctx.beginPath();
 		ctx.arc(playground.pg.cx, playground.pg.cy, 15, 0, Math.PI*2);
@@ -44,72 +42,9 @@
 		ctx.stroke();
 		
 		drawPoints();
+		drawAVGAngle();
 		drawAVGPoint();
-		drawGuy();
-		
     },
-	
-	drawGuy = function(){
-	
-	    var g = guy.state;
-		
-		ctx.strokeStyle = '#ffff00';
-		ctx.beginPath();
-		ctx.arc(g.x, g.y, 20, 0, Math.PI*2);
-		ctx.closePath();
-		ctx.stroke();
-	
-	    drawLikePoints();
-		drawSugPoints();
-	    drawHappy();
-	
-	},
-	
-	drawHappy = function(){
-	
-	    ctx.fillStyle = '#808080';
-	    ctx.fillRect(20, 20, playground.pg.xMax - 40, 20);
-	
-	    ctx.fillStyle = '#ff0000';
-	    ctx.fillRect(20, 20, (playground.pg.xMax - 40) * guy.state.happy, 20);
-	
-	},
-	
-	drawLikePoints = function(){
-	
-	    var lp = guy.state.likePoints, i=0, len = lp.length;
-		
-		while(i < len){
-		
-		    ctx.strokeStyle = '#ff00ff';
-		    ctx.beginPath();
-		    ctx.arc(lp[i].x, lp[i].y, 10, 0, Math.PI*2);
-		    ctx.closePath();
-		    ctx.stroke();
-		
-		    i += 1;
-		
-		}
-	
-	},
-	
-	drawSugPoints = function(){
-	
-	    var sp = guy.state.sugPoints, i=0, len = sp.length;
-		
-		while(i < len){
-		
-		    ctx.strokeStyle = '#ff0000';
-		    ctx.beginPath();
-		    ctx.arc(sp[i].x, sp[i].y, 10, 0, Math.PI*2);
-		    ctx.closePath();
-		    ctx.stroke();
-		
-		    i += 1;
-		
-		}
-	
-	},
 	
 	drawPoints = function(){
 	
@@ -166,14 +101,12 @@
 	    setTimeout(loop, 33);
 	
 	    playground.update();
-		guy.update()
 	    draw();
 
 	
 	};
 	
 	playground.resize(canvas);
-	guy.resize();
 	
 	// attach mouse events
     canvas.addEventListener('mousedown', playground.inMaster);
@@ -185,13 +118,9 @@
     canvas.addEventListener('touchend', playground.inMaster);
     canvas.addEventListener('touchmove', playground.inMaster);
 	
-	window.addEventListener('resize', function(){ playground.resize(canvas) } );
-	window.addEventListener('resize', guy.resize );
-	
+	window.addEventListener('resize', function(){ playground.resize(canvas) } );	
 	
     loop();	
-	
-	
 
 }());
 
