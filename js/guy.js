@@ -28,7 +28,7 @@ var guy = (function () {
         // suggestion points
         sugPoints : [],
         sugChance : .5,
-        sugPointLifespan : 60000,
+        sugPointLifespan : 5000,
         maxSugPoints : 5,
         newSugPoint : 'none',
 
@@ -154,7 +154,7 @@ var guy = (function () {
             now = new Date();
             while (i--) {
 
-                if (now - state.sugPoints[i].startTime >= state.sugPointLifespan) {
+                if (now - state.sugPoints[i].startTime >= state.sugPoints[i].lifespan) {
 
                     state.sugPoints.splice(i, 1);
 
@@ -188,9 +188,10 @@ var guy = (function () {
 
                 }
 
-                // add a start time
+                // add a start time, and lifespan
                 sugPoint.startTime = new Date();
-
+                sugPoint.lifespan = state.sugPointLifespan;
+				
                 state.sugPoints.push(sugPoint);
 
                 state.newSugPoint = 'none';
