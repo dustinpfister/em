@@ -25,8 +25,8 @@ var playground = {
 		canvas.width = this.width;
 		canvas.height = this.height;
 			
-		this.cx = this.xMax / 2;
-		this.cy = this.yMax / 2;
+		this.cx = this.width / 2;
+		this.cy = this.height / 2;
 			
 		this.maxDistance = this.width < this.height ? this.width / 2 * 0.9 : this.height / 2 * 0.9;
 			
