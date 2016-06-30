@@ -239,6 +239,24 @@ var guy = (function () {
 
             state.x += state.dx;
             state.y += state.dy;
+			
+			
+			d = Math.floor(distance(state.x, state.y, state.homeX, state.homeY));
+			
+			if(d > playground.maxDistance){ d = playground.maxDistance; }
+			
+			state.happy +=  - 0.001 + 0.004 * d / playground.pg.maxDistance;
+			
+			if(state.happy > 1){
+				
+				state.happy = 1;
+				
+			}
+			
+			if(state.happy < 0){
+				
+				state.happy = 0;
+			}
 
         },
 
