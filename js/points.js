@@ -14,16 +14,16 @@ var points = (function () {
     // and keep the prototype directly bellow the constrictor
     var Point = (function () {
 
-        var Point = function (x,y,a,d,l) {
-			
-			this.x = x;
-			this.y = y;
-			this.a = a;
-			this.d = d;
-			this.startTime = new Date();
-			this.lifespan = l;
-			
-		},
+        var Point = function (x, y, a, d, l) {
+
+            this.x = x;
+            this.y = y;
+            this.a = a;
+            this.d = d;
+            this.startTime = new Date();
+            this.lifespan = l;
+
+        },
 
         pro = Point.prototype;
 
@@ -79,15 +79,69 @@ var points = (function () {
     PointCollection = (function () {
 
         var PointCollection = function () {
-			
-			// the point collection array
-			this.points = [];
-			
-			
-		},
+
+            // the point collection array
+            this.points = [];
+            this.maxPoints = 10;
+
+        },
 
         pro = PointCollection.prototype;
 
+		// push a new point to the collection
+        pro.newPoint = function (x, y, a, d, l) {
+			
+			if(this.points.length < this.maxPoints){
+				
+			    if(this.pointGood(x,y)){
+				
+                    this.points.push( new Point(x, y, a, d, l))				
+					
+				}	
+				
+			}
+			
+		};
+
+        // check if the given x, and y is to close to a previous point (use with call on pg)
+        pointGood = function (x, y) {
+
+            var i = 0,
+            len = this.points.length;
+            while (i < len) {
+
+			    // ALERT! just a fixed distance of 20?
+                if (fw.distance(x, y, this.points[i].x, this.points[i].y) <= 20) {
+
+                    return false;
+
+                }
+
+                i += 1;
+
+            }
+
+            return true;
+
+        };
+
+        // purge any old points from the collection
+        pro.killOld = function () {
+
+            var i = this.points.length,
+            now = new Date();
+            while (i--) {
+
+                if (now - this.points[i].startTime >= this.points[i].lifespan) {
+
+                    // kill old point
+                    this.points.splice(i, 1);
+
+                }
+
+            }
+
+        };
 
         // return the constructor and prototype to Point local variable
         return PointCollection;
@@ -95,14 +149,13 @@ var points = (function () {
     }
         ()),
 
-	// the public API
+    // the public API
     api = {
-		
-		Point : Point,
-		PointCollection : PointCollection
-		
-	};
 
+        Point : Point,
+        PointCollection : PointCollection
+
+    };
 
     return api;
 
