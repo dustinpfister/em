@@ -119,7 +119,15 @@ var points = (function () {
 
             this.AVGDistance = d / len;
 
-        },
+        };
+		
+		AVGAngle = function(x,y){
+		
+		    var AVGPoint = this.AVGPoint();
+		
+		    return Math.atan2(y - AVGPoint.y, x - AVGPoint.x ) + Math.PI;
+		
+	    };
 
         // check if the given x, and y is to close to a previous point (use with call on pg)
         pointGood = function (x, y) {
