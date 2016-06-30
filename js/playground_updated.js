@@ -1,10 +1,11 @@
 /*
- *    points.js
+ *    playground.js
  *    Copyright 2016 by Dustin Pfister (GPL v3)
  *
- *    A module for working with a Point, and Point Collections
+ *    A module for working with "a playground" that has a certain width, and height.
+ *    The playground also has a certain center point, and a max distance from that point
  *
- *    needs: framework.js, playground.js
+ *    needs: nothing
  *
  */
 

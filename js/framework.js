@@ -1,4 +1,13 @@
-
+/*
+ *    framework.js
+ *    Copyright 2016 by Dustin Pfister (GPL v3)
+ *
+ *    This is a simple custom framework for the game "EM"
+ *
+ *    needs: nothing
+ *
+ */
+ 
 var fw = {
 	
 	// the distance formula
