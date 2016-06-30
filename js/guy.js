@@ -85,7 +85,7 @@ var guy = (function () {
 		
 		updateSugs : function(){
 			
-			var likePoint;
+			var sugPoint;
 			
 			// if no points but we have a new like point
 			if (playground.pg.points.length === 0 && state.newSugPoint != 'none') {
@@ -94,7 +94,7 @@ var guy = (function () {
 				
 				//state.likePoints.push(state.newSugPoint);
 				
-				likePoint = {
+				sugPoint = {
 				
 				    x : Math.floor(state.newSugPoint.x / state.newSugPoint.count),
 					y : Math.floor(state.newSugPoint.y / state.newSugPoint.count)
@@ -102,31 +102,31 @@ var guy = (function () {
 				};
 				
 				// set the angle
-				likePoint.a = Math.atan2(
-				    playground.pg.cy - likePoint.y,
-					playground.pg.cx - likePoint.x
+				sugPoint.a = Math.atan2(
+				    playground.pg.cy - sugPoint.y,
+					playground.pg.cx - sugPoint.x
 				);
 				
 				// angle should be between 0 and 1
-				likePoint.a =  (likePoint.a + Math.PI) / (Math.PI * 2);
+				sugPoint.a =  (sugPoint.a + Math.PI) / (Math.PI * 2);
 				
 				// set distance
-				likePoint.d = distance(likePoint.x, likePoint.y, playground.pg.cx, playground.pg.cy);
+				sugPoint.d = distance(sugPoint.x, sugPoint.y, playground.pg.cx, playground.pg.cy);
 				
 				// if like point distance is greater then max distance
-				if(likePoint.d > playground.pg.maxDistance){
+				if(sugPoint.d > playground.pg.maxDistance){
 					
 					// set distance to max, and adjust position
-					likePoint.d = playground.pg.maxDistance;
+					sugPoint.d = playground.pg.maxDistance;
 					
 				}
 				
 				// like point distance should be between 0 and 1
-				likePoint.d = likePoint.d / playground.pg.maxDistance;
+				sugPoint.d = sugPoint.d / playground.pg.maxDistance;
 				
-				pointCorrection.call(likePoint);
+				pointCorrection.call(sugPoint);
 				
-				state.likePoints.push(likePoint);
+				state.likePoints.push(sugPoint);
 				
 				state.newSugPoint = 'none';
 			
