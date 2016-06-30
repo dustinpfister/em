@@ -22,6 +22,8 @@ var guy = (function () {
         // points that the guy likes
         likePoints : [],
 		likeChance : .3,
+		lastLikeUpdate : new Date(),
+		likeRate: 1000,
 		
         // suggestion points
 		sugPoints : [],
@@ -250,6 +252,38 @@ var guy = (function () {
 			}
 			
 		},
+		
+		updateLikePoints : function(){
+			
+			//lastLikeUpdate : new Date(),
+		    //likeRate: 1000,
+			
+			var now = new Date(),index,sp, lp, a;
+			
+			if(now - state.lastLikeUpdate >= state.likeRate){
+				
+				// are there sugPoints
+				if(state.sugPoints.length > 0){
+					
+					index = Math.floor(Math.random() * state.sugPoints.length);
+					
+					sp = state.sugPoints[index];
+					
+					lp = state.likePoints[Math.floor(Math.random() * state.likePoints.length)];
+					
+					a = Math.atan2(lp.y - sp.y, lp.x - sp.x) + Math.PI;
+					
+					lp.x += Math.cos(a) * 5;
+					lp.y += Math.sin(a) * 5;
+					
+				}
+				
+				
+				state.lastLikeUpdate = new Date();
+				
+			}
+			
+		},
 
         update : function () {
 
@@ -273,6 +307,7 @@ var guy = (function () {
 			
 			
 			this.updateHappy();
+			this.updateLikePoints();
 
         },
 
