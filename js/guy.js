@@ -39,6 +39,7 @@ var guy = (function () {
     },
 
     // correct x, and y assuming valid a, and d ( use with call on points)
+	/*
     pointCorrection = function () {
 
 	    // ref to playground
@@ -49,8 +50,10 @@ var guy = (function () {
         this.y = Math.sin(Math.PI * 2 * this.a) * (this.d * pg.maxDistance) + pg.cy;
 
     },
+	*/
 
     // correct a and d assuming valid x, and y ( use with call on points)
+	/*
     angleDistCorrection = function () {
 
 	    // ref to playground
@@ -80,6 +83,8 @@ var guy = (function () {
 
     },
 
+	*/
+	
     api = {
 
         state : state,
@@ -178,9 +183,13 @@ var guy = (function () {
 
                 };
 
-                angleDistCorrection.call(sugPoint);
-				pointCorrection.call(sugPoint);
+                //angleDistCorrection.call(sugPoint);
+				point.correctAD.call(sugPoint);
+			  //pointCorrection.call(sugPoint);
+                point.correctXY.call(sugPoint);
 
+				
+				
                 // shift out old sugPoints if max is reached
                 if (state.sugPoints.length === state.maxSugPoints) {
 
@@ -281,8 +290,9 @@ var guy = (function () {
                     lp.x += Math.cos(a) * 5;
                     lp.y += Math.sin(a) * 5;
 
-                    angleDistCorrection.call(lp);
+                    //angleDistCorrection.call(lp);
 
+					point.correctAD.call(lp);
                 }
 
                 state.lastLikeUpdate = new Date();
@@ -325,7 +335,7 @@ var guy = (function () {
             len = state.likePoints.length;
             while (i < len) {
 
-                pointCorrection.call(state.likePoints[i]);
+                point.correctXY.call(state.likePoints[i]);
 
                 i += 1;
             }
@@ -334,7 +344,7 @@ var guy = (function () {
             len = state.sugPoints.length;
             while (i < len) {
 
-                pointCorrection.call(state.sugPoints[i]);
+                point.correctXY.call(state.sugPoints[i]);
 
                 i += 1;
             }
