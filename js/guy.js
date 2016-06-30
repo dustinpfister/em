@@ -142,47 +142,7 @@ var guy = (function () {
 					
 				}
 				
-				/*
-				if(state.newLikePoint === 'none'){
-				
-					state.newLikePoint = {
-						
-						x : playground.pg.AVGPoint.x + 0, // adding zero creates new number not a reference
-						y : playground.pg.AVGPoint.y + 0
-						
-					};
-							
-				}
-				
-				
-				// set the angle
-				state.newLikePoint.a = Math.atan2(
-				    playground.pg.cy - playground.pg.AVGPoint.y,
-					playground.pg.cx - playground.pg.AVGPoint.x
-				);
-				
-				// angle should be between 0 and 1
-				state.newLikePoint.a =  (state.newLikePoint.a + Math.PI) / (Math.PI * 2);
-				
-				// set distance
-				state.newLikePoint.d = distance(playground.pg.AVGPoint.x, playground.pg.AVGPoint.y, playground.pg.cx, playground.pg.cy);
-				
-				// if like point distance is greater then max distance
-				if(state.newLikePoint.d > playground.pg.maxDistance){
-					
-					// set distance to max, and adjust position
-					state.newLikePoint.d = playground.pg.maxDistance;
-					state.newLikePoint.x = Math.cos(state.newLikePoint.a * (Math.PI * 2)) * playground.pg.maxDistance + playground.pg.cx;
-					state.newLikePoint.y = Math.sin(state.newLikePoint.a * (Math.PI * 2)) * playground.pg.maxDistance + playground.pg.cy;
-					
-				}
-				
-				// like point distance should be between 0 and 1
-				state.newLikePoint.d = state.newLikePoint.d / playground.pg.maxDistance;
-				
-				*/
 			}
-			
 			
 		},
 
