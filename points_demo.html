@@ -17,6 +17,7 @@
 <script src="./js/framework.js"></script>
 <script src="./js/playground_updated.js"></script>
 <script src="./js/points.js"></script>
+<script src="./js/control.js"></script>
 
 
 <script>
@@ -106,17 +107,18 @@
 	};
 	
 	playground.resize(canvas);
+	
 	window.addEventListener('resize', function(){ playground.resize(canvas) } );
 	
 	// attach mouse events
-    //canvas.addEventListener('mousedown', playground.inMaster);
-    //canvas.addEventListener('mouseup', playground.inMaster);
-    //canvas.addEventListener('mousemove', playground.inMaster);
+    canvas.addEventListener('mousedown', control.inMaster);
+    canvas.addEventListener('mouseup', control.inMaster);
+    //canvas.addEventListener('mousemove', control.inMaster);
 
     // attach touch events
-    //canvas.addEventListener('touchstart', playground.inMaster);
-    //canvas.addEventListener('touchend', playground.inMaster);
-    //canvas.addEventListener('touchmove', playground.inMaster);
+    canvas.addEventListener('touchstart', control.inMaster);
+    canvas.addEventListener('touchend', control.inMaster);
+    canvas.addEventListener('touchmove', control.inMaster);
 	
 		
 	
