@@ -240,8 +240,6 @@ var guy = (function () {
                     lp.x += Math.cos(a) * 5;
                     lp.y += Math.sin(a) * 5;
 
-                    //angleDistCorrection.call(lp);
-
 					point.correctAD.call(lp);
                 }
 
