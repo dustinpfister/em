@@ -28,6 +28,21 @@ var guy = (function () {
         return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 
     },
+	
+	// point correction based on is a and d values ( angle and distance expressed as values between 0 and 1 )
+	// the method is to be used on like and suggestion points with call
+	pointCorrection = function(){
+		
+		var pg = playground.pg;
+		
+		this.x = Math.cos(Math.PI * 2 * this.a) * (this.d * pg.maxDistance) + pg.cx;
+		this.y = Math.sin(Math.PI * 2 * this.a) * (this.d * pg.maxDistance) + pg.cy;
+		
+		//state.likePoints[i].x = Math.cos(Math.PI * 2 * state.likePoints[i].a) * (state.likePoints[i].d * playground.pg.maxDistance) + playground.pg.cx;
+        //state.likePoints[i].y = Math.sin(Math.PI * 2 * state.likePoints[i].a) * (state.likePoints[i].d * playground.pg.maxDistance) + playground.pg.cy;
+				
+		
+	},
 
     api = {
 
@@ -179,8 +194,10 @@ var guy = (function () {
             var i = 0, len = state.likePoints.length;
             while (i < len) {
 
-                state.likePoints[i].x = Math.cos(Math.PI * 2 * state.likePoints[i].a) * (state.likePoints[i].d * playground.pg.maxDistance) + playground.pg.cx;
-                state.likePoints[i].y = Math.sin(Math.PI * 2 * state.likePoints[i].a) * (state.likePoints[i].d * playground.pg.maxDistance) + playground.pg.cy;
+                //state.likePoints[i].x = Math.cos(Math.PI * 2 * state.likePoints[i].a) * (state.likePoints[i].d * playground.pg.maxDistance) + playground.pg.cx;
+                //state.likePoints[i].y = Math.sin(Math.PI * 2 * state.likePoints[i].a) * (state.likePoints[i].d * playground.pg.maxDistance) + playground.pg.cy;
+				
+				pointCorrection.call(state.likePoints[i]);
 				
                 i += 1;
             }
@@ -195,8 +212,11 @@ var guy = (function () {
         state.likePoints.push({
 
             // angle and distance stored in values of 0 to 1 so that the x and y values change based on playground size
-            a : Math.random(),
-            d : 1/4 * (i+1),
+            // a : Math.random(),
+            // d : 1/4 * (i+1),
+			a : 1 / 4 * i,
+			d : 0.5,
+			
 			x:0,y:0
 
         });
