@@ -16,8 +16,7 @@
 		
 		pushPoint : function(e,x,y){
 			
-			console.log('push point:');
-			console.log(x + ',' + y);
+			gameState.pushPoint(x,y)
 			
 		},
 		

@@ -89,12 +89,18 @@ var points = (function () {
         pro = PointCollection.prototype;
 
         // push a new point to the collection
-        pro.newPoint = function (x, y, a, d, l) {
+        pro.pushPoint = function (x, y, a, d, l) {
 
+		    
+		
             if (this.points.length < this.maxPoints) {
 
+			    
+			
                 if (this.pointGood(x, y)) {
 
+				    console.log('point pushed');
+				
                     this.points.push(new Point(x, y, a, d, l))
 
                 }
@@ -104,6 +110,7 @@ var points = (function () {
         };
 
         // find and return the AVG point (use with call on pg)
+        pro.AVGPoint = function () {
 
             var i = 0,
             len = this.points.length,

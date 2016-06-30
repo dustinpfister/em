@@ -10,13 +10,19 @@
  
  var gameState = {
 	 
-	touchPoints : {},
+	points : {},
 	
 	newGame : function(){
 		
 		console.log( 'gamestate.js:  new game started. ' );
 		
-		this.touchPoints = new points.PointCollection();
+		this.points = new points.PointCollection();
+		
+	},
+	
+	pushPoint : function(x,y){
+	
+         this.points.pushPoint(x,y);	
 		
 	},
 	
