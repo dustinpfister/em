@@ -136,7 +136,8 @@
 	};
 	
 	
-	window.addEventListener('resize', function(){ playground.resize(canvas) } );
+	//window.addEventListener('resize', function(){ playground.resize(canvas) } );
+	window.addEventListener('resize', function(){control.resize(canvas);} );
 	
 	// attach mouse events
     canvas.addEventListener('mousedown', control.inMaster);

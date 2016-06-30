@@ -46,6 +46,12 @@
 	
 	        }
 			
+		},
+		
+		resize : function(canvas){
+			
+			playground.resize(canvas);
+			
 		}
 		
 	};
