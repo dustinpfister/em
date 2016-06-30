@@ -17,13 +17,13 @@ var guy = (function () {
 		// happy
 		happy: 0.1,
 		lastHappyUpdate: new Date(),
-		happyRate: 500,
+		happyRate: 33,
 		
         // points that the guy likes
         likePoints : [],
 		likeChance : .3,
 		lastLikeUpdate : new Date(),
-		likeRate: 1000,
+		likeRate: 100,
 		
         // suggestion points
 		sugPoints : [],
