@@ -18,7 +18,8 @@ var guy = (function () {
 		likeChance : .3,
 		lastChoice : new Date(),
 		choiceRate : 5000,
-		newLikePoint : 'none'
+		
+		newSugPoint : 'none'
 
     },
 
@@ -87,16 +88,16 @@ var guy = (function () {
 			var likePoint;
 			
 			// if no points but we have a new like point
-			if (playground.pg.points.length === 0 && state.newLikePoint != 'none') {
+			if (playground.pg.points.length === 0 && state.newSugPoint != 'none') {
 			
                 state.likePoints.shift();
 				
-				//state.likePoints.push(state.newLikePoint);
+				//state.likePoints.push(state.newSugPoint);
 				
 				likePoint = {
 				
-				    x : Math.floor(state.newLikePoint.x / state.newLikePoint.count),
-					y : Math.floor(state.newLikePoint.y / state.newLikePoint.count)
+				    x : Math.floor(state.newSugPoint.x / state.newSugPoint.count),
+					y : Math.floor(state.newSugPoint.y / state.newSugPoint.count)
 				
 				};
 				
@@ -117,11 +118,6 @@ var guy = (function () {
 					
 					// set distance to max, and adjust position
 					likePoint.d = playground.pg.maxDistance;
-					//likePoint.x = Math.cos(likePoint.a * (Math.PI * 2)) * playground.pg.maxDistance + playground.pg.cx;
-					//likePoint.y = Math.sin(likePoint.a * (Math.PI * 2)) * playground.pg.maxDistance + playground.pg.cy;
-					
-					//pointCorrection.call(likePoint);
-					
 					
 				}
 				
@@ -132,16 +128,17 @@ var guy = (function () {
 				
 				state.likePoints.push(likePoint);
 				
-				state.newLikePoint = 'none';
+				state.newSugPoint = 'none';
 			
 			}
 			
 			// if we have points
 			if(playground.pg.points.length > 0){
 				
-				if(state.newLikePoint === 'none'){
+				// if no new like point start one
+				if(state.newSugPoint === 'none'){
 				
-					state.newLikePoint = {
+					state.newSugPoint = {
 						
 						x : playground.pg.AVGPoint.x + 0, // adding zero creates new number not a reference
 						y : playground.pg.AVGPoint.y + 0,
@@ -149,11 +146,12 @@ var guy = (function () {
 						
 					};
 							
+			    // else add to it
 				}else{
 					
-					state.newLikePoint.x += playground.pg.AVGPoint.x;
-					state.newLikePoint.y += playground.pg.AVGPoint.y;
-					state.newLikePoint.count += 1;
+					state.newSugPoint.x += playground.pg.AVGPoint.x;
+					state.newSugPoint.y += playground.pg.AVGPoint.y;
+					state.newSugPoint.count += 1;
 					
 				}
 				
