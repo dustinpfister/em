@@ -20,6 +20,7 @@ var guy = (function () {
 		choiceRate : 5000,
 		
 		sugPoints : [],
+		sugPointLifespan : 60000,
 		maxSugPoints : 5,
 		newSugPoint : 'none'
 		
@@ -86,7 +87,15 @@ var guy = (function () {
 			
 		},
 		
+		
 		updateSugs : function(){
+			
+			
+			this.newSugCheck();
+			
+		},
+		
+		newSugCheck : function(){
 			
 			var sugPoint;
 			
@@ -131,6 +140,9 @@ var guy = (function () {
 					state.sugPoints.shift();
 					
 				}
+				
+				// add a start time
+				sugPoint.startTime = new Date();
 				
 				state.sugPoints.push(sugPoint);
 				
