@@ -37,54 +37,8 @@ var guy = (function () {
         choiceRate : 5000,
 
     },
-
-    // correct x, and y assuming valid a, and d ( use with call on points)
-	/*
-    pointCorrection = function () {
-
-	    // ref to playground
-        var pg = playground.pg;
-
-		// set x and y based on a, and d relative to playground center.
-        this.x = Math.cos(Math.PI * 2 * this.a) * (this.d * pg.maxDistance) + pg.cx;
-        this.y = Math.sin(Math.PI * 2 * this.a) * (this.d * pg.maxDistance) + pg.cy;
-
-    },
-	*/
-
-    // correct a and d assuming valid x, and y ( use with call on points)
-	/*
-    angleDistCorrection = function () {
-
-	    // ref to playground
-        var pg = playground.pg;
-
-        // set the angle
-        this.a = Math.atan2(
-                pg.cy - this.y,
-                pg.cx - this.x);
-
-        // angle should be between 0 and 1
-        this.a = (this.a + Math.PI) / (Math.PI * 2);
-
-        // set distance
-        this.d = fw.distance(this.x, this.y, pg.cx, pg.cy);
-
-        // if point distance is greater then max distance
-        if (this.d > pg.maxDistance) {
-
-            // set distance to max
-            this.d = pg.maxDistance;
-
-        }
-
-        // point distance should be between 0 and 1
-        this.d = this.d / pg.maxDistance;
-
-    },
-
-	*/
 	
+	// the public api
     api = {
 
         state : state,
@@ -183,12 +137,8 @@ var guy = (function () {
 
                 };
 
-                //angleDistCorrection.call(sugPoint);
 				point.correctAD.call(sugPoint);
-			  //pointCorrection.call(sugPoint);
                 point.correctXY.call(sugPoint);
-
-				
 				
                 // shift out old sugPoints if max is reached
                 if (state.sugPoints.length === state.maxSugPoints) {
@@ -375,3 +325,4 @@ var guy = (function () {
 
 }
     ());
+	

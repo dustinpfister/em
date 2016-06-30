@@ -4,7 +4,7 @@
  *
  *    methods that are to be used with points in playground.js, and guy.js
  *
- *    needs: playground.js
+ *    needs: framework.js, playground.js
  *
  */
  
