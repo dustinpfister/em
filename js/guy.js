@@ -73,12 +73,49 @@ var guy = (function () {
 		
 		updateLikes : function(){
 			
+			var likePoint;
+			
 			// if no points but we have a new like point
 			if (playground.pg.points.length === 0 && state.newLikePoint != 'none') {
 			
                 state.likePoints.shift();
 				
-				state.likePoints.push(state.newLikePoint);
+				//state.likePoints.push(state.newLikePoint);
+				
+				likePoint = {
+				
+				    x : Math.floor(state.newLikePoint.x / state.newLikePoint.count),
+					y : Math.floor(state.newLikePoint.y / state.newLikePoint.count)
+				
+				};
+				
+				// set the angle
+				likePoint.a = Math.atan2(
+				    playground.pg.cy - likePoint.y,
+					playground.pg.cx - likePoint.x
+				);
+				
+				// angle should be between 0 and 1
+				likePoint.a =  (likePoint.a + Math.PI) / (Math.PI * 2);
+				
+				// set distance
+				likePoint.d = distance(likePoint.x, likePoint.y, playground.pg.cx, playground.pg.cy);
+				
+				// if like point distance is greater then max distance
+				if(likePoint.d > playground.pg.maxDistance){
+					
+					// set distance to max, and adjust position
+					likePoint.d = playground.pg.maxDistance;
+					likePoint.x = Math.cos(likePoint.a * (Math.PI * 2)) * playground.pg.maxDistance + playground.pg.cx;
+					likePoint.y = Math.sin(likePoint.a * (Math.PI * 2)) * playground.pg.maxDistance + playground.pg.cy;
+					
+				}
+				
+				// like point distance should be between 0 and 1
+				likePoint.d = likePoint.d / playground.pg.maxDistance;
+				
+				
+				state.likePoints.push(likePoint);
 				
 				state.newLikePoint = 'none';
 			
@@ -87,8 +124,36 @@ var guy = (function () {
 			// if we have points
 			if(playground.pg.points.length > 0){
 				
-				// set new like point
-				state.newLikePoint = playground.pg.AVGPoint;
+				if(state.newLikePoint === 'none'){
+				
+					state.newLikePoint = {
+						
+						x : playground.pg.AVGPoint.x + 0, // adding zero creates new number not a reference
+						y : playground.pg.AVGPoint.y + 0,
+						count : 0
+						
+					};
+							
+				}else{
+					
+					state.newLikePoint.x += playground.pg.AVGPoint.x;
+					state.newLikePoint.y += playground.pg.AVGPoint.y;
+					state.newLikePoint.count += 1;
+					
+				}
+				
+				/*
+				if(state.newLikePoint === 'none'){
+				
+					state.newLikePoint = {
+						
+						x : playground.pg.AVGPoint.x + 0, // adding zero creates new number not a reference
+						y : playground.pg.AVGPoint.y + 0
+						
+					};
+							
+				}
+				
 				
 				// set the angle
 				state.newLikePoint.a = Math.atan2(
@@ -115,6 +180,7 @@ var guy = (function () {
 				// like point distance should be between 0 and 1
 				state.newLikePoint.d = state.newLikePoint.d / playground.pg.maxDistance;
 				
+				*/
 			}
 			
 			
