@@ -14,8 +14,6 @@
 	
 	newGame : function(){
 		
-		console.log( 'gamestate.js:  new game started. ' );
-		
 		this.points = new points.PointCollection();
 		
 	},
@@ -27,8 +25,6 @@
 	},
 	
 	update : function(){
-		
-		console.log('gamestate.js: update');
 		
 		// kill any old points
 		this.points.killOld();

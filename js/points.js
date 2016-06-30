@@ -21,7 +21,7 @@ var points = (function () {
             this.a = a;
             this.d = d;
             this.startTime = new Date();
-            this.lifespan = l === undefined ? 1000 : l;
+            this.lifespan = l === undefined ? 5000 : l;
 
         },
 
@@ -76,7 +76,7 @@ var points = (function () {
 
             // the point collection array
             this.points = [];
-            this.maxPoints = 10;
+            this.maxPoints = 100;
 
         },
 
@@ -185,12 +185,8 @@ var points = (function () {
 
                 if (now - this.points[i].startTime >= this.points[i].lifespan) {
 
-				    console.log('old point kiled');
-				
                     // kill old point
-                    this.points.splice(i, 1);
-					
-					
+                    this.points.splice(i, 1);					
 
                 }
 

@@ -43,6 +43,13 @@
 		ctx.closePath();
 		ctx.stroke();
 		
+		// max distance of playground
+		ctx.strokeStyle = '#808080';
+		ctx.beginPath();
+		ctx.arc(playground.cx, playground.cy, playground.maxDistance, 0, Math.PI*2);
+		ctx.closePath();
+		ctx.stroke();
+		
 		drawPoints();
 		
     },
@@ -51,6 +58,7 @@
 	
 	    var points = gameState.points.points,i=0,len=points.length;
 		
+		// draw points
 		while(i < len){
 		
 		    ctx.strokeStyle = '#ffffff';
