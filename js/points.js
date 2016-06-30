@@ -30,42 +30,36 @@ var points = (function () {
         // correct x, and y assuming valid a, and d
         pro.correctXY = function () {
 
-            // ref to playground
-            var pg = playground.pg;
-
             // set x and y based on a, and d relative to playground center.
-            this.x = Math.cos(Math.PI * 2 * this.a) * (this.d * pg.maxDistance) + pg.cx;
-            this.y = Math.sin(Math.PI * 2 * this.a) * (this.d * pg.maxDistance) + pg.cy;
+            this.x = Math.cos(Math.PI * 2 * this.a) * (this.d * playground.maxDistance) + playground.cx;
+            this.y = Math.sin(Math.PI * 2 * this.a) * (this.d * playground.maxDistance) + playground.cy;
 
         },
 
         // correct a and d assuming valid x, and y
         pro.correctAD = function () {
 
-            // ref to playground
-            var pg = playground.pg;
-
             // set the angle
             this.a = Math.atan2(
-                    pg.cy - this.y,
-                    pg.cx - this.x);
+                    playground.cy - this.y,
+                    playground.cx - this.x);
 
             // angle should be between 0 and 1
             this.a = (this.a + Math.PI) / (Math.PI * 2);
 
             // set distance
-            this.d = fw.distance(this.x, this.y, pg.cx, pg.cy);
+            this.d = fw.distance(this.x, this.y, playground.cx, playground.cy);
 
             // if point distance is greater then max distance
-            if (this.d > pg.maxDistance) {
+            if (this.d > playground.maxDistance) {
 
                 // set distance to max
-                this.d = pg.maxDistance;
+                this.d = playground.maxDistance;
 
             }
 
             // point distance should be between 0 and 1
-            this.d = this.d / pg.maxDistance;
+            this.d = this.d / playground.maxDistance;
 
         };
 
@@ -91,17 +85,18 @@ var points = (function () {
         // push a new point to the collection
         pro.pushPoint = function (x, y, a, d, l) {
 
-		    
+		    var thePoint;
 		
             if (this.points.length < this.maxPoints) {
 
+			    thePoint = new Point(x, y, a, d, l);
+					
+				thePoint.correctAD();
+				thePoint.correctXY();
 			    
-			
-                if (this.pointGood(x, y)) {
+                if (this.pointGood(thePoint.x, thePoint.y)) {
 
-				    console.log('point pushed');
-				
-                    this.points.push(new Point(x, y, a, d, l))
+                    this.points.push(thePoint);
 
                 }
 
