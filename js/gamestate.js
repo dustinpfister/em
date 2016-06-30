@@ -31,6 +31,12 @@
 		this.points.update();
 		
 		
+	},
+	
+	resize : function(){
+		
+		this.points.correctXY();
+		
 	}
 	 
  };

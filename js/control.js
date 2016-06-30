@@ -51,7 +51,8 @@
 		resize : function(canvas){
 			
 			playground.resize(canvas);
-			
+            gameState.resize();		
+		
 		}
 		
 	};

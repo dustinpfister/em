@@ -200,6 +200,17 @@ var points = (function () {
             }
 
         };
+		
+		// call point.correctXY for all points
+		pro.correctXY = function(){
+			
+			this.points.forEach(function(point){
+				
+				point.correctXY();
+				
+			});
+			
+		};
 
         // return the constructor and prototype to Point local variable
         return PointCollection;
