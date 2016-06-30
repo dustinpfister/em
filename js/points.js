@@ -103,8 +103,31 @@ var points = (function () {
 
         };
 
+        // find and return the AVG point (use with call on pg)
+
+            var i = 0,
+            len = this.points.length,
+            x = 0,
+            y = 0;
+            while (i < len) {
+
+                x += this.points[i].x;
+                y += this.points[i].y;
+
+                i += 1;
+            }
+
+            return {
+
+                x : x / len,
+                y : y / len
+
+            };
+
+        };
+
         // find AVG distance of a collection from the given point
-        AVGDistance = function (x,y) {
+        pro.AVGDistance = function (x, y) {
 
             var d = 0,
             i = 0,
@@ -120,17 +143,17 @@ var points = (function () {
             this.AVGDistance = d / len;
 
         };
-		
-		AVGAngle = function(x,y){
-		
-		    var AVGPoint = this.AVGPoint();
-		
-		    return Math.atan2(y - AVGPoint.y, x - AVGPoint.x ) + Math.PI;
-		
-	    };
+
+        pro.AVGAngle = function (x, y) {
+
+            var AVGPoint = this.AVGPoint();
+
+            return Math.atan2(y - AVGPoint.y, x - AVGPoint.x) + Math.PI;
+
+        };
 
         // check if the given x, and y is to close to a previous point (use with call on pg)
-        pointGood = function (x, y) {
+        pro.pointGood = function (x, y) {
 
             var i = 0,
             len = this.points.length;
