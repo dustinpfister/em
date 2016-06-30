@@ -87,15 +87,19 @@ var guy = (function () {
 					// else might leave home to do a suggestion
 					}else{
 						
-						roll = Math.random();
+						if(state.sugPoints.length > 0){
 						
-						if(roll <= state.sugChance){
+						    roll = Math.random();
 						
-                            index = Math.floor(Math.random() * state.sugPoints.length);
+						    if(roll <= state.sugChance){
+						
+                                index = Math.floor(Math.random() * state.sugPoints.length);
 								
-                            state.targetX = state.sugPoints[index].x;
-						    state.targetY = state.sugPoints[index].y;
+                                state.targetX = state.sugPoints[index].x;
+						        state.targetY = state.sugPoints[index].y;
 								
+						    }
+						
 						}
 						
 					}
