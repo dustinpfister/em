@@ -3,6 +3,7 @@ var guy = (function () {
 
     var state = {
 
+	    // position and movement
         homeX : playground.pg.cx,
         homeY : playground.pg.cy,
         targetX : playground.pg.cx,
@@ -13,6 +14,9 @@ var guy = (function () {
         dy : 0,
         moveRate : 20,
 
+		// happy
+		happy: 0.1,
+		
         // points that the guy likes
         likePoints : [],
 		likeChance : .3,

@@ -58,6 +58,17 @@
 	
 	    drawLikePoints();
 		drawSugPoints();
+	    drawHappy();
+	
+	},
+	
+	drawHappy = function(){
+	
+	    ctx.fillStyle = '#808080';
+	    ctx.fillRect(20, 20, playground.pg.xMax - 40, 20);
+	
+	    ctx.fillStyle = '#ff0000';
+	    ctx.fillRect(20, 20, (playground.pg.xMax - 40) * guy.state.happy, 20);
 	
 	},
 	
