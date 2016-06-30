@@ -16,6 +16,8 @@ var guy = (function () {
 
 		// happy
 		happy: 0.1,
+		lastHappyUpdate: new Date(),
+		happyRate: 500,
 		
         // points that the guy likes
         likePoints : [],
@@ -219,6 +221,35 @@ var guy = (function () {
 			}
 			
 		},
+		
+		updateHappy : function(){
+			
+			var d, now = new Date();
+			
+			if(now - state.lastHappyUpdate >= state.happyRate){
+			
+			    d = Math.floor(distance(state.x, state.y, state.homeX, state.homeY));
+			
+			    if(d > playground.maxDistance){ d = playground.maxDistance; }
+			
+			    state.happy +=  - 0.001 + 0.004 * d / playground.pg.maxDistance;
+			
+			    if(state.happy > 1){
+				
+				    state.happy = 1;
+				
+			    }
+			
+			    if(state.happy < 0){
+				
+				    state.happy = 0;
+		    	}
+				
+				state.lastHappyUpdate = new Date();
+			
+			}
+			
+		},
 
         update : function () {
 
@@ -241,22 +272,7 @@ var guy = (function () {
             state.y += state.dy;
 			
 			
-			d = Math.floor(distance(state.x, state.y, state.homeX, state.homeY));
-			
-			if(d > playground.maxDistance){ d = playground.maxDistance; }
-			
-			state.happy +=  - 0.001 + 0.004 * d / playground.pg.maxDistance;
-			
-			if(state.happy > 1){
-				
-				state.happy = 1;
-				
-			}
-			
-			if(state.happy < 0){
-				
-				state.happy = 0;
-			}
+			this.updateHappy();
 
         },
 
