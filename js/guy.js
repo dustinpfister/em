@@ -88,13 +88,9 @@ var guy = (function () {
 			
 			var sugPoint;
 			
-			// if no points but we have a new like point
+			// if no points but we have a new sug point
 			if (playground.pg.points.length === 0 && state.newSugPoint != 'none') {
 			
-                // state.likePoints.shift();
-				
-				//state.likePoints.push(state.newSugPoint);
-				
 				sugPoint = {
 				
 				    x : Math.floor(state.newSugPoint.x / state.newSugPoint.count),
@@ -114,7 +110,7 @@ var guy = (function () {
 				// set distance
 				sugPoint.d = distance(sugPoint.x, sugPoint.y, playground.pg.cx, playground.pg.cy);
 				
-				// if like point distance is greater then max distance
+				// if sug point distance is greater then max distance
 				if(sugPoint.d > playground.pg.maxDistance){
 					
 					// set distance to max, and adjust position
@@ -122,12 +118,10 @@ var guy = (function () {
 					
 				}
 				
-				// like point distance should be between 0 and 1
+				// sug point distance should be between 0 and 1
 				sugPoint.d = sugPoint.d / playground.pg.maxDistance;
 				
 				pointCorrection.call(sugPoint);
-				
-				//state.likePoints.push(sugPoint);
 				
 				state.sugPoints.push(sugPoint);
 				
@@ -138,7 +132,7 @@ var guy = (function () {
 			// if we have points
 			if(playground.pg.points.length > 0){
 				
-				// if no new like point start one
+				// if no new sug point start one
 				if(state.newSugPoint === 'none'){
 				
 					state.newSugPoint = {
