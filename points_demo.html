@@ -99,8 +99,8 @@
         ctx.beginPath();
 	    ctx.moveTo(playground.cx, playground.cy);
 	    ctx.lineTo(
-	        Math.cos(gameState.points.AVGAngle) * gameState.points.AVGDistance + gameState.points.cx, 
-	    	Math.sin(gameState.points.AVGAngle) * gameState.points.AVGDistance + gameState.points.cy
+	        Math.cos(gameState.points.AVGAngle) * gameState.points.AVGDistance + playground.cx, 
+	    	Math.sin(gameState.points.AVGAngle) * gameState.points.AVGDistance + playground.cy
 	    );
         ctx.closePath();
         ctx.stroke();
