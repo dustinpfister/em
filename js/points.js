@@ -67,12 +67,24 @@ var points = (function () {
 	 */
 	 
 	 // find and return the AVG point (use with call on pg)
-	var getAVGPoint = function () {
+	var setAVGPoint = function () {
 
         var i = 0,
         len = this.points.length,
         x = 0,
         y = 0;
+		
+		if(len === 0){
+		
+            this.AVGPoint = {
+
+                x : 0,
+                y : 0
+
+            };		
+			
+		}else{
+		
         while (i < len) {
 
             x += this.points[i].x;
@@ -81,39 +93,44 @@ var points = (function () {
             i += 1;
         }
 
-        return {
+        this.AVGPoint = {
 
             x : x / len,
             y : y / len
 
         };
+		
+		}
 
     },
 
     // find AVG distance of a collection from the given point
-    getAVGDistance = function (x, y) {
+    setAVGDistance = function () {
 
         var d = 0,
         i = 0,
         len = this.points.length;
         while (i < len) {
 
-            d += fw.distance(x, y, this.points[i].x, this.points[i].y);
+            d += fw.distance(playground.cx, playground.cy, this.points[i].x, this.points[i].y);
 
             i += 1;
 
         }
-
-        return d / len;
+		
+		
+        this.AVGDistance = d === 0 ? 0 : d / len;
 
     },
 
-    getAVGAngle = function (x, y) {
+    setAVGAngle = function () {
 
-        var AVGPoint = this.AVGPoint();
+        setAVGPoint.call(this);
+		
+        this.AVGAngle = Math.atan2(playground.cy - this.AVGPoint.y, playground.cx - this.AVGPoint.x) + Math.PI;
 
-        return Math.atan2(y - AVGPoint.y, x - AVGPoint.x) + Math.PI;
-
+		console.log(this.AVGAngle);
+		
     };
 	
 	
@@ -136,9 +153,15 @@ var points = (function () {
     pro.update = function () {
 
         this.killOld();
-		this.AVGPoint = getAVGPoint.call(this);
-
-    };
+		//this.AVGPoint = getAVGPoint.call(this);
+		//this.AVGDistance = getAVGDistance.call(this);
+		//this.AVGAngle = getAVGAngle.call(this);
+        setAVGPoint.call(this);
+		setAVGDistance.call(this);
+		setAVGAngle.call(this);
+    
+	
+	};
 
     // push a new point to the collection
     pro.pushPoint = function (x, y, a, d, l) {

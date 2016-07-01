@@ -71,7 +71,7 @@
 		}
 		
 		drawAVGPoint();
-	
+	    drawAVGAngle();
 	},
 	
 	drawAVGPoint = function(){
@@ -89,6 +89,21 @@
 	        ctx.stroke();
 	
 		}
+	
+	},
+	
+	drawAVGAngle = function(){
+	
+        ctx.strokeStyle = '#ff0000';
+	
+        ctx.beginPath();
+	    ctx.moveTo(playground.cx, playground.cy);
+	    ctx.lineTo(
+	        Math.cos(gameState.points.AVGAngle) * gameState.points.AVGDistance + gameState.points.cx, 
+	    	Math.sin(gameState.points.AVGAngle) * gameState.points.AVGDistance + gameState.points.cy
+	    );
+        ctx.closePath();
+        ctx.stroke();
 	
 	},
 	
