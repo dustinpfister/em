@@ -69,6 +69,26 @@
 		
 		    i += 1;
 		}
+		
+		drawAVGPoint();
+	
+	},
+	
+	drawAVGPoint = function(){
+	
+	    var AVG = gameState.points.AVGPoint;
+	
+	    if(gameState.points.points.length > 0){
+		
+		    //drawAVGAngle();
+		
+	        ctx.strokeStyle = '#0000ff';
+	        ctx.beginPath();
+	        ctx.arc(AVG.x, AVG.y, 15, 0, Math.PI*2);
+	        ctx.closePath();
+	        ctx.stroke();
+	
+		}
 	
 	},
 	

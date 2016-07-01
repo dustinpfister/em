@@ -60,13 +60,74 @@ var points = (function () {
 
     };
 
+	
+	/*   Helper methods for PointCollection that do not need to be public
+	 *   many of these are used with call in PointCollection.update, but are not part
+	 *   of the prototype.
+	 */
+	 
+	 // find and return the AVG point (use with call on pg)
+	var getAVGPoint = function () {
+
+        var i = 0,
+        len = this.points.length,
+        x = 0,
+        y = 0;
+        while (i < len) {
+
+            x += this.points[i].x;
+            y += this.points[i].y;
+
+            i += 1;
+        }
+
+        return {
+
+            x : x / len,
+            y : y / len
+
+        };
+
+    },
+
+    // find AVG distance of a collection from the given point
+    getAVGDistance = function (x, y) {
+
+        var d = 0,
+        i = 0,
+        len = this.points.length;
+        while (i < len) {
+
+            d += fw.distance(x, y, this.points[i].x, this.points[i].y);
+
+            i += 1;
+
+        }
+
+        return d / len;
+
+    },
+
+    getAVGAngle = function (x, y) {
+
+        var AVGPoint = this.AVGPoint();
+
+        return Math.atan2(y - AVGPoint.y, x - AVGPoint.x) + Math.PI;
+
+    };
+	
+	
+	
     // the PointCollcetion constructor
     var PointCollection = function () {
 
         // the point collection array
         this.points = [];
         this.maxPoints = 100;
-
+		this.AVGPoint = 0;
+        this.AVGDistance = 0;
+		this.AVGANgle = 0;
+		
     },
 
     pro = PointCollection.prototype;
@@ -75,6 +136,7 @@ var points = (function () {
     pro.update = function () {
 
         this.killOld();
+		this.AVGPoint = getAVGPoint.call(this);
 
     };
 
@@ -101,6 +163,7 @@ var points = (function () {
     };
 
     // find and return the AVG point (use with call on pg)
+	/*
     pro.AVGPoint = function () {
 
         var i = 0,
@@ -149,6 +212,7 @@ var points = (function () {
         return Math.atan2(y - AVGPoint.y, x - AVGPoint.x) + Math.PI;
 
     };
+	*/
 
     // check if the given x, and y is to close to a previous point (use with call on pg)
     pro.pointGood = function (x, y) {
