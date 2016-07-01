@@ -10,213 +10,196 @@
 
 var points = (function () {
 
-    // Point Constructor and Prototype returned to Point so I can type var just once,
-    // and keep the prototype directly bellow the constrictor
-    var Point = (function () {
+    // Point Constructor
+    var Point = function (x, y, a, d, l) {
 
-        var Point = function (x, y, a, d, l) {
+        this.x = x;
+        this.y = y;
+        this.a = a;
+        this.d = d;
+        this.startTime = new Date();
+        this.lifespan = l === undefined ? 5000 : l;
 
-            this.x = x;
-            this.y = y;
-            this.a = a;
-            this.d = d;
-            this.startTime = new Date();
-            this.lifespan = l === undefined ? 5000 : l;
+    },
 
-        },
+    pro = Point.prototype;
 
-        pro = Point.prototype;
+    // correct x, and y assuming valid a, and d
+    pro.correctXY = function () {
 
-        // correct x, and y assuming valid a, and d
-        pro.correctXY = function () {
+        // set x and y based on a, and d relative to playground center.
+        this.x = Math.cos(Math.PI * 2 * this.a) * (this.d * playground.maxDistance) + playground.cx;
+        this.y = Math.sin(Math.PI * 2 * this.a) * (this.d * playground.maxDistance) + playground.cy;
 
-            // set x and y based on a, and d relative to playground center.
-            this.x = Math.cos(Math.PI * 2 * this.a) * (this.d * playground.maxDistance) + playground.cx;
-            this.y = Math.sin(Math.PI * 2 * this.a) * (this.d * playground.maxDistance) + playground.cy;
+    },
 
-        },
+    // correct a and d assuming valid x, and y
+    pro.correctAD = function () {
 
-        // correct a and d assuming valid x, and y
-        pro.correctAD = function () {
+        // set the angle
+        this.a = Math.atan2(
+                playground.cy - this.y,
+                playground.cx - this.x);
 
-            // set the angle
-            this.a = Math.atan2(
-                    playground.cy - this.y,
-                    playground.cx - this.x);
+        // angle should be between 0 and 1
+        this.a = (this.a + Math.PI) / (Math.PI * 2);
 
-            // angle should be between 0 and 1
-            this.a = (this.a + Math.PI) / (Math.PI * 2);
+        // set distance
+        this.d = fw.distance(this.x, this.y, playground.cx, playground.cy);
 
-            // set distance
-            this.d = fw.distance(this.x, this.y, playground.cx, playground.cy);
+        // if point distance is greater then max distance
+        if (this.d > playground.maxDistance) {
 
-            // if point distance is greater then max distance
-            if (this.d > playground.maxDistance) {
+            // set distance to max
+            this.d = playground.maxDistance;
 
-                // set distance to max
-                this.d = playground.maxDistance;
+        }
 
-            }
+        // point distance should be between 0 and 1
+        this.d = this.d / playground.maxDistance;
 
-            // point distance should be between 0 and 1
-            this.d = this.d / playground.maxDistance;
+    };
 
-        };
+    // the PointCollcetion constructor
+    var PointCollection = function () {
 
-        // return the constructor and prototype to Point local variable
-        return Point;
+        // the point collection array
+        this.points = [];
+        this.maxPoints = 100;
 
-    }
-        ()),
+    },
 
-    // PointCollection constructor and prototype
-    PointCollection = (function () {
+    pro = PointCollection.prototype;
 
-        var PointCollection = function () {
+    // what to do on a per frame tick basis.
+    pro.update = function () {
 
-            // the point collection array
-            this.points = [];
-            this.maxPoints = 100;
+        this.killOld();
 
-        },
+    };
 
-        pro = PointCollection.prototype;
-		
-		// what to do on a per frame tick basis.
-		pro.update = function(){
-			
-			this.killOld();
-			
-		};
+    // push a new point to the collection
+    pro.pushPoint = function (x, y, a, d, l) {
 
-        // push a new point to the collection
-        pro.pushPoint = function (x, y, a, d, l) {
+        var thePoint;
 
-		    var thePoint;
-		
-            if (this.points.length < this.maxPoints) {
+        if (this.points.length < this.maxPoints) {
 
-			    thePoint = new Point(x, y, a, d, l);
-					
-				thePoint.correctAD();
-				thePoint.correctXY();
-			    
-                if (this.pointGood(thePoint.x, thePoint.y)) {
+            thePoint = new Point(x, y, a, d, l);
 
-                    this.points.push(thePoint);
+            thePoint.correctAD();
+            thePoint.correctXY();
 
-                }
+            if (this.pointGood(thePoint.x, thePoint.y)) {
+
+                this.points.push(thePoint);
 
             }
 
-        };
+        }
 
-        // find and return the AVG point (use with call on pg)
-        pro.AVGPoint = function () {
+    };
 
-            var i = 0,
-            len = this.points.length,
-            x = 0,
-            y = 0;
-            while (i < len) {
+    // find and return the AVG point (use with call on pg)
+    pro.AVGPoint = function () {
 
-                x += this.points[i].x;
-                y += this.points[i].y;
+        var i = 0,
+        len = this.points.length,
+        x = 0,
+        y = 0;
+        while (i < len) {
 
-                i += 1;
-            }
+            x += this.points[i].x;
+            y += this.points[i].y;
 
-            return {
+            i += 1;
+        }
 
-                x : x / len,
-                y : y / len
+        return {
 
-            };
-
-        };
-
-        // find AVG distance of a collection from the given point
-        pro.AVGDistance = function (x, y) {
-
-            var d = 0,
-            i = 0,
-            len = this.points.length;
-            while (i < len) {
-
-                d += fw.distance(x, y, this.points[i].x, this.points[i].y);
-
-                i += 1;
-
-            }
-
-            this.AVGDistance = d / len;
+            x : x / len,
+            y : y / len
 
         };
 
-        pro.AVGAngle = function (x, y) {
+    };
 
-            var AVGPoint = this.AVGPoint();
+    // find AVG distance of a collection from the given point
+    pro.AVGDistance = function (x, y) {
 
-            return Math.atan2(y - AVGPoint.y, x - AVGPoint.x) + Math.PI;
+        var d = 0,
+        i = 0,
+        len = this.points.length;
+        while (i < len) {
 
-        };
+            d += fw.distance(x, y, this.points[i].x, this.points[i].y);
 
-        // check if the given x, and y is to close to a previous point (use with call on pg)
-        pro.pointGood = function (x, y) {
+            i += 1;
 
-            var i = 0,
-            len = this.points.length;
-            while (i < len) {
+        }
 
-                // ALERT! just a fixed distance of 20?
-                if (fw.distance(x, y, this.points[i].x, this.points[i].y) <= 20) {
+        this.AVGDistance = d / len;
 
-                    return false;
+    };
 
-                }
+    pro.AVGAngle = function (x, y) {
 
-                i += 1;
+        var AVGPoint = this.AVGPoint();
 
-            }
+        return Math.atan2(y - AVGPoint.y, x - AVGPoint.x) + Math.PI;
 
-            return true;
+    };
 
-        };
+    // check if the given x, and y is to close to a previous point (use with call on pg)
+    pro.pointGood = function (x, y) {
 
-        // purge any old points from the collection
-        pro.killOld = function () {
+        var i = 0,
+        len = this.points.length;
+        while (i < len) {
 
-            var i = this.points.length,
-            now = new Date();
-            while (i--) {
+            // ALERT! just a fixed distance of 20?
+            if (fw.distance(x, y, this.points[i].x, this.points[i].y) <= 20) {
 
-                if (now - this.points[i].startTime >= this.points[i].lifespan) {
-
-                    // kill old point
-                    this.points.splice(i, 1);					
-
-                }
+                return false;
 
             }
 
-        };
-		
-		// call point.correctXY for all points
-		pro.correctXY = function(){
-			
-			this.points.forEach(function(point){
-				
-				point.correctXY();
-				
-			});
-			
-		};
+            i += 1;
 
-        // return the constructor and prototype to Point local variable
-        return PointCollection;
+        }
 
-    }
-        ()),
+        return true;
+
+    };
+
+    // purge any old points from the collection
+    pro.killOld = function () {
+
+        var i = this.points.length,
+        now = new Date();
+        while (i--) {
+
+            if (now - this.points[i].startTime >= this.points[i].lifespan) {
+
+                // kill old point
+                this.points.splice(i, 1);
+
+            }
+
+        }
+
+    };
+
+    // call point.correctXY for all points
+    pro.correctXY = function () {
+
+        this.points.forEach(function (point) {
+
+            point.correctXY();
+
+        });
+
+    };
 
     // the public API
     api = {
