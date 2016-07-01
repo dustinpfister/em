@@ -49,10 +49,12 @@ var guy = (function () {
             index;
 
             // if points follow them
-            if (gameState.points.length > 0) {
+            if (gameState.points.points.length > 0) {
 
                 state.targetX = gameState.points.AVGPoint.x;
                 state.targetY = gameState.points.AVGPoint.y;
+				
+				console.log(state.targetX);
 
                 state.lastChoice = new Date();
 
