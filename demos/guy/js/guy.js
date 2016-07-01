@@ -21,7 +21,7 @@ var guy = (function () {
 
         // points that the guy likes
         likePoints : [],
-        likeChance : .3,
+        likeChance : 1,
         lastLikeUpdate : new Date(),
         likeRate : 100,
 
@@ -70,31 +70,34 @@ var guy = (function () {
                     roll = Math.random();
 
                     // might leave home to do a like
-                    if (roll <= state.likeChance) {
+                    if (roll <= state.likeChance && state.likePoints.points.length > 0) {
+					
+                        index = Math.floor(Math.random() * state.likePoints.points.length);
 
-                        index = Math.floor(Math.random() * state.likePoints.length);
-
-                        state.targetX = state.likePoints[index].x;
-                        state.targetY = state.likePoints[index].y;
+                        state.targetX = state.likePoints.points[index].x;
+                        state.targetY = state.likePoints.points[index].y;
 
                     // else might leave home to do a suggestion
                     } else {
 
-                        if (state.sugPoints.length > 0) {
+					/*
+                        if (state.sugPoints.points.length > 0) {
 
                             roll = Math.random();
 
                             if (roll <= state.sugChance) {
 
-                                index = Math.floor(Math.random() * state.sugPoints.length);
+                                index = Math.floor(Math.random() * state.sugPoints.points.length);
 
-                                state.targetX = state.sugPoints[index].x;
-                                state.targetY = state.sugPoints[index].y;
+                                state.targetX = state.sugPoints.points[index].x;
+                                state.targetY = state.sugPoints.points[index].y;
 
                             }
 
                         }
 
+					*/
+						
                     }
 
                     state.lastChoice = new Date();
@@ -280,9 +283,12 @@ var guy = (function () {
             state.targetX = playground.cx;
             state.targetY = playground.cy;
 
+			state.likePoints.correctXY();
+			
+			/*
             // update like points
             var i = 0,
-            len = state.likePoints.length;
+            len = state.likePoints.points.length;
             while (i < len) {
 
                 //point.correctXY.call(state.likePoints[i]);
@@ -298,12 +304,14 @@ var guy = (function () {
 
                 i += 1;
             }
+			*/
 
         }
 
     };
 
     // set up some starting like points
+/*
     var i = 0;
     while (i < 4) {
 
@@ -321,6 +329,12 @@ var guy = (function () {
         i += 1;
     }
 
+	*/
+	
+	state.likePoints = new points.PointCollection();
+	
+	state.likePoints.pushPoint(0,200,0,1,0);
+	
     return api;
 
 }
