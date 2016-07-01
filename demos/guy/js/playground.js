@@ -1,3 +1,41 @@
+/*
+ *    playground.js
+ *    Copyright 2016 by Dustin Pfister (GPL v3)
+ *
+ *    A module for working with "a playground" that has a certain width, and height.
+ *    The playground also has a certain center point, and a max distance from that point
+ *
+ *    needs: nothing
+ *
+ */
+
+var playground = {
+	
+	width: 640,
+	height: 480,
+	cx: 320,
+	cy: 240,
+	maxDistance : 240,
+	
+	resize : function(canvas){
+			
+		this.width = window.innerWidth;
+		this.height = window.innerHeight;
+			
+		canvas.width = this.width;
+		canvas.height = this.height;
+			
+		this.cx = this.width / 2;
+		this.cy = this.height / 2;
+			
+		this.maxDistance = this.width < this.height ? this.width / 2 * 0.9 : this.height / 2 * 0.9;
+			
+	}
+	
+};
+
+
+/*
 var playground = (function(){
 	
 	var pg = {
@@ -211,3 +249,4 @@ var playground = (function(){
 	return api;
 	
 }());
+*/
