@@ -52,6 +52,7 @@
 			
 			playground.resize(canvas);
             gameState.resize();		
+			guy.resize();
 		
 		}
 		
