@@ -21,14 +21,14 @@ var guy = (function () {
 
         // points that the guy likes
         likePoints : new points.PointCollection(),
-        likeChance : 0.3,
+        likeChance : .3,
         lastLikeUpdate : new Date(),
         likeRate : 100,
 
         // suggestion points
         sugPoints : new points.PointCollection(),
         sugChance : .5,
-        sugPointLifespan : 15000,
+        sugPointLifespan : 60000,
         maxSugPoints : 5,
         newSugPoint : 'none',
 
@@ -78,6 +78,22 @@ var guy = (function () {
                     // else might leave home to do a suggestion
                     } else {
 
+					
+					    if (state.sugPoints.points.length > 0) {
+
+                            roll = Math.random();
+
+                            if (roll <= state.sugChance) {
+
+                                index = Math.floor(Math.random() * state.sugPoints.points.length);
+
+                                state.targetX = state.sugPoints.points[index].x;
+                                state.targetY = state.sugPoints.points[index].y;
+
+                            }
+
+                        }
+					
 					/*
                         if (state.sugPoints.points.length > 0) {
 
