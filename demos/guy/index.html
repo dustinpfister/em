@@ -37,6 +37,8 @@
         ctx.fillStyle = '#000000';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         
+		ctx.lineWidth = 3;
+		
 		// show playground.cx/cy point
 		ctx.strokeStyle = '#00ff00';
 		ctx.beginPath();
@@ -66,9 +68,27 @@
 		ctx.closePath();
 		ctx.stroke();
 	
-	    //drawLikePoints();
+	    drawLikePoints();
 		//drawSugPoints();
 	    //drawHappy();
+	
+	},
+	
+	drawLikePoints = function(){
+	
+	    var points = guy.state.likePoints.points,i=0,len=points.length;
+		
+	    // draw points
+		while(i < len){
+		
+		    ctx.strokeStyle = '#ff00ff';
+		    ctx.beginPath();
+		    ctx.arc(points[i].x, points[i].y, 10, 0, Math.PI*2);
+		    ctx.closePath();
+		    ctx.stroke();
+		
+		    i += 1;
+		}
 	
 	},
 	
