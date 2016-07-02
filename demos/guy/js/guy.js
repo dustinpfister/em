@@ -332,8 +332,10 @@ var guy = (function () {
 	*/
 	
 	state.likePoints = new points.PointCollection();
-	
-	state.likePoints.pushPoint(0,200,0,1,0);
+	state.likePoints.pushByAD(0,0.5,0);
+	state.likePoints.pushByAD(0.25,0.5,0);
+	state.likePoints.pushByAD(0.5,0.5,0);
+	state.likePoints.pushByAD(0.75,0.5,0);
 	
     return api;
 

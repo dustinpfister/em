@@ -182,6 +182,27 @@ var points = (function () {
         }
 
     };
+	
+	// push a new point based on angle and distance relative to playground center
+	pro.pushByAD = function(a,d,l){
+		
+		var thePoint;
+
+        if (this.points.length < this.maxPoints) {
+
+            thePoint = new Point(0, 0, a, d, l);
+
+            thePoint.correctXY();
+
+            if (this.pointGood(thePoint.x, thePoint.y)) {
+
+                this.points.push(thePoint);
+
+            }
+
+        }
+				
+	},
 
     // check if the given x, and y is to close to a previous point (use with call on pg)
     pro.pointGood = function (x, y) {
