@@ -20,13 +20,13 @@ var guy = (function () {
         happyRate : 33,
 
         // points that the guy likes
-        likePoints : [],
+        likePoints : new points.PointCollection(),
         likeChance : 1,
         lastLikeUpdate : new Date(),
         likeRate : 100,
 
         // suggestion points
-        sugPoints : [],
+        sugPoints : new points.PointCollection(),
         sugChance : .5,
         sugPointLifespan : 5000,
         maxSugPoints : 5,
@@ -111,7 +111,11 @@ var guy = (function () {
             // check new sugs
             this.newSugCheck();
 
+			// kill old sugPoints
+			state.sugPoints.killOld();
+			
             // kill old ones
+			/*
             var i = state.sugPoints.length,
             now = new Date();
             while (i--) {
@@ -123,6 +127,7 @@ var guy = (function () {
                 }
 
             }
+			*/
 
         },
 
@@ -419,11 +424,11 @@ var guy = (function () {
 
 	*/
 	
-	state.likePoints = new points.PointCollection();
 	state.likePoints.pushByAD(0,0.5,0);
 	state.likePoints.pushByAD(0.25,0.5,0);
 	state.likePoints.pushByAD(0.5,0.5,0);
 	state.likePoints.pushByAD(0.75,0.5,0);
+	
 	
     return api;
 
