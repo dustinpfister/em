@@ -21,14 +21,14 @@ var guy = (function () {
 
         // points that the guy likes
         likePoints : new points.PointCollection(),
-        likeChance : 1,
+        likeChance : 0.3,
         lastLikeUpdate : new Date(),
         likeRate : 100,
 
         // suggestion points
         sugPoints : new points.PointCollection(),
         sugChance : .5,
-        sugPointLifespan : 5000,
+        sugPointLifespan : 15000,
         maxSugPoints : 5,
         newSugPoint : 'none',
 

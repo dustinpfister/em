@@ -69,7 +69,7 @@
 		ctx.stroke();
 	
 	    drawLikePoints();
-		//drawSugPoints();
+		drawSugPoints();
 	    //drawHappy();
 	
 	},
@@ -82,6 +82,24 @@
 		while(i < len){
 		
 		    ctx.strokeStyle = '#ff00ff';
+		    ctx.beginPath();
+		    ctx.arc(points[i].x, points[i].y, 10, 0, Math.PI*2);
+		    ctx.closePath();
+		    ctx.stroke();
+		
+		    i += 1;
+		}
+	
+	},
+	
+	drawSugPoints = function(){
+	
+	    var points = guy.state.sugPoints.points,i=0,len=points.length;
+		
+	    // draw points
+		while(i < len){
+		
+		    ctx.strokeStyle = '#ff0000';
 		    ctx.beginPath();
 		    ctx.arc(points[i].x, points[i].y, 10, 0, Math.PI*2);
 		    ctx.closePath();
