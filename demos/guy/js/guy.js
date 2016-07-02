@@ -54,8 +54,6 @@ var guy = (function () {
                 state.targetX = gameState.points.AVGPoint.x;
                 state.targetY = gameState.points.AVGPoint.y;
 				
-				console.log(state.targetX);
-
                 state.lastChoice = new Date();
 
             // else autonomy
@@ -108,6 +106,94 @@ var guy = (function () {
 
         },
 
+		updateSugs : function () {
+
+            // check new sugs
+            this.newSugCheck();
+
+            // kill old ones
+            var i = state.sugPoints.length,
+            now = new Date();
+            while (i--) {
+
+                if (now - state.sugPoints[i].startTime >= state.sugPoints[i].lifespan) {
+
+                    state.sugPoints.splice(i, 1);
+
+                }
+
+            }
+
+        },
+
+        newSugCheck : function () {
+
+            var sugPoint;
+			
+
+            // if no points but we have a new sug point
+            if (gameState.points.points.length === 0 && state.newSugPoint != 'none') {
+
+			/*
+                sugPoint = {
+
+                    x : Math.floor(state.newSugPoint.x / state.newSugPoint.count),
+                    y : Math.floor(state.newSugPoint.y / state.newSugPoint.count)
+
+                };
+
+				point.correctAD.call(sugPoint);
+                point.correctXY.call(sugPoint);
+				
+                // shift out old sugPoints if max is reached
+                if (state.sugPoints.length === state.maxSugPoints) {
+
+                    state.sugPoints.shift();
+
+                }
+
+                // add a start time, and lifespan
+                sugPoint.startTime = new Date();
+                sugPoint.lifespan = state.sugPointLifespan;
+				
+                state.sugPoints.push(sugPoint);
+
+				*/
+				
+				console.log(state.newSugPoint);
+				
+                state.newSugPoint = 'none';
+
+            }
+
+            // if we have points
+            if (gameState.points.points.length > 0) {
+
+                // if no new sug point start one
+                if (state.newSugPoint === 'none') {
+
+                    state.newSugPoint = {
+
+                        x : gameState.points.AVGPoint.x + 0, // adding zero creates new number not a reference
+                        y : gameState.points.AVGPoint.y + 0,
+                        count : 0
+
+                    };
+
+                // else add to it
+                } else {
+
+                    state.newSugPoint.x += gameState.points.AVGPoint.x;
+                    state.newSugPoint.y += gameState.points.AVGPoint.y;
+                    state.newSugPoint.count += 1;
+
+                }
+
+            }
+
+        },
+		
+		/*
         updateSugs : function () {
 
             // check new sugs
@@ -189,6 +275,8 @@ var guy = (function () {
 
         },
 
+		*/
+		
         updateHappy : function () {
 
             var d,
@@ -259,7 +347,6 @@ var guy = (function () {
             var a,
             d;
 
-            this.updateSugs();
             this.findTarget();
 
             a = Math.atan2(state.targetY - state.y, state.targetX - state.x),
@@ -273,7 +360,8 @@ var guy = (function () {
 
             this.updateHappy();
             this.updateLikePoints();
-
+            this.updateSugs();
+			
         },
 
         resize : function () {
