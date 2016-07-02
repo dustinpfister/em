@@ -160,6 +160,17 @@ var points = (function () {
     
 	
 	};
+	
+	// shift out an old point if the max is reached
+	pro.shiftIfMax = function(){
+		
+		if(this.points.length === this.maxPoints){
+			
+			this.points.shift();
+			
+		}
+		
+	},
 
     // push a new point to the collection
     pro.pushPoint = function (x, y, a, d, l) {

@@ -139,6 +139,20 @@ var guy = (function () {
             // if no points but we have a new sug point
             if (gameState.points.points.length === 0 && state.newSugPoint != 'none') {
 
+			    sugPoint = {
+
+                    x : Math.floor(state.newSugPoint.x / state.newSugPoint.count),
+                    y : Math.floor(state.newSugPoint.y / state.newSugPoint.count)
+
+                };
+				
+				state.sugPoints.shiftIfMax();
+				state.sugPoints.pushPoint(sugPoint.x, sugPoint.y,0,0, state.sugPointLifespan);
+			
+			    console.log(state.sugPoints.points);
+			
+			    state.newSugPoint = 'none';
+			
 			/*
                 sugPoint = {
 
@@ -163,11 +177,12 @@ var guy = (function () {
 				
                 state.sugPoints.push(sugPoint);
 
+				state.newSugPoint = 'none';
+				
 				*/
 				
-				console.log(state.newSugPoint);
 				
-                state.newSugPoint = 'none';
+                
 
             }
 
