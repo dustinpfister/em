@@ -21,7 +21,7 @@ var guy = (function () {
 
         // points that the guy likes
         likePoints : new points.PointCollection(),
-        likeChance : .3,
+        likeChance : .5,
         lastLikeUpdate : new Date(),
         likeRate : 100,
 
@@ -43,6 +43,7 @@ var guy = (function () {
 
         state : state,
 
+		/*
         findTarget : function () {
 
             var roll,
@@ -104,6 +105,7 @@ var guy = (function () {
 
         },
 
+		*/
 		updateSugs : function () {
 
             // check new sugs
@@ -235,8 +237,10 @@ var guy = (function () {
             var a,
             d;
 
-            this.findTarget();
+            //this.findTarget();
 
+			guyAI['stubborn'].update(state);
+			
             a = Math.atan2(state.targetY - state.y, state.targetX - state.x),
             d = fw.distance(state.x, state.y, state.targetX, state.targetY);
 
