@@ -93,24 +93,6 @@ var guy = (function () {
                             }
 
                         }
-					
-					/*
-                        if (state.sugPoints.points.length > 0) {
-
-                            roll = Math.random();
-
-                            if (roll <= state.sugChance) {
-
-                                index = Math.floor(Math.random() * state.sugPoints.points.length);
-
-                                state.targetX = state.sugPoints.points[index].x;
-                                state.targetY = state.sugPoints.points[index].y;
-
-                            }
-
-                        }
-
-					*/
 						
                     }
 
@@ -129,21 +111,6 @@ var guy = (function () {
 
 			// kill old sugPoints
 			state.sugPoints.killOld();
-			
-            // kill old ones
-			/*
-            var i = state.sugPoints.length,
-            now = new Date();
-            while (i--) {
-
-                if (now - state.sugPoints[i].startTime >= state.sugPoints[i].lifespan) {
-
-                    state.sugPoints.splice(i, 1);
-
-                }
-
-            }
-			*/
 
         },
 
@@ -168,37 +135,6 @@ var guy = (function () {
 			    console.log(state.sugPoints.points);
 			
 			    state.newSugPoint = 'none';
-			
-			/*
-                sugPoint = {
-
-                    x : Math.floor(state.newSugPoint.x / state.newSugPoint.count),
-                    y : Math.floor(state.newSugPoint.y / state.newSugPoint.count)
-
-                };
-
-				point.correctAD.call(sugPoint);
-                point.correctXY.call(sugPoint);
-				
-                // shift out old sugPoints if max is reached
-                if (state.sugPoints.length === state.maxSugPoints) {
-
-                    state.sugPoints.shift();
-
-                }
-
-                // add a start time, and lifespan
-                sugPoint.startTime = new Date();
-                sugPoint.lifespan = state.sugPointLifespan;
-				
-                state.sugPoints.push(sugPoint);
-
-				state.newSugPoint = 'none';
-				
-				*/
-				
-				
-                
 
             }
 
@@ -228,90 +164,6 @@ var guy = (function () {
             }
 
         },
-		
-		/*
-        updateSugs : function () {
-
-            // check new sugs
-            this.newSugCheck();
-
-            // kill old ones
-            var i = state.sugPoints.length,
-            now = new Date();
-            while (i--) {
-
-                if (now - state.sugPoints[i].startTime >= state.sugPoints[i].lifespan) {
-
-                    state.sugPoints.splice(i, 1);
-
-                }
-
-            }
-
-        },
-
-        newSugCheck : function () {
-
-            var sugPoint;
-
-            // if no points but we have a new sug point
-            if (gameState.points.length === 0 && state.newSugPoint != 'none') {
-
-                sugPoint = {
-
-                    x : Math.floor(state.newSugPoint.x / state.newSugPoint.count),
-                    y : Math.floor(state.newSugPoint.y / state.newSugPoint.count)
-
-                };
-
-				point.correctAD.call(sugPoint);
-                point.correctXY.call(sugPoint);
-				
-                // shift out old sugPoints if max is reached
-                if (state.sugPoints.length === state.maxSugPoints) {
-
-                    state.sugPoints.shift();
-
-                }
-
-                // add a start time, and lifespan
-                sugPoint.startTime = new Date();
-                sugPoint.lifespan = state.sugPointLifespan;
-				
-                state.sugPoints.push(sugPoint);
-
-                state.newSugPoint = 'none';
-
-            }
-
-            // if we have points
-            if (gameState.points.length > 0) {
-
-                // if no new sug point start one
-                if (state.newSugPoint === 'none') {
-
-                    state.newSugPoint = {
-
-                        x : gameState.points.AVGPoint.x + 0, // adding zero creates new number not a reference
-                        y : gameState.points.AVGPoint.y + 0,
-                        count : 0
-
-                    };
-
-                // else add to it
-                } else {
-
-                    state.newSugPoint.x += gameState.points.AVGPoint.x;
-                    state.newSugPoint.y += gameState.points.AVGPoint.y;
-                    state.newSugPoint.count += 1;
-
-                }
-
-            }
-
-        },
-
-		*/
 		
         updateHappy : function () {
 
@@ -409,51 +261,10 @@ var guy = (function () {
 
 			state.likePoints.correctXY();
 			
-			/*
-            // update like points
-            var i = 0,
-            len = state.likePoints.points.length;
-            while (i < len) {
-
-                //point.correctXY.call(state.likePoints[i]);
-
-                i += 1;
-            }
-
-            i = 0,
-            len = state.sugPoints.length;
-            while (i < len) {
-
-                //point.correctXY.call(state.sugPoints[i]);
-
-                i += 1;
-            }
-			*/
 
         }
 
     };
-
-    // set up some starting like points
-/*
-    var i = 0;
-    while (i < 4) {
-
-        state.likePoints.push({
-
-            // angle and distance stored in values of 0 to 1 so that the x and y values change based on playground size
-            a : 1 / 4 * i,
-            d : 0.5,
-
-            x : 0,
-            y : 0
-
-        });
-
-        i += 1;
-    }
-
-	*/
 	
 	state.likePoints.pushByAD(0,0.5,0);
 	state.likePoints.pushByAD(0.25,0.5,0);
