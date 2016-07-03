@@ -260,7 +260,7 @@ var guy = (function () {
             state.targetY = playground.cy;
 
 			state.likePoints.correctXY();
-			
+			state.sugPoints.correctXY();
 
         }
 
