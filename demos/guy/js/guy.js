@@ -13,7 +13,12 @@ var guy = (function () {
         dx : 0,
         dy : 0,
         moveRate : 20,
-
+		
+		// isolated, stubborn, likestouch, follower
+		//currentAI : 'follower',
+        currentAI : 'follower',
+		
+		
         // happy
         happy : 0.1,
         lastHappyUpdate : new Date(),
@@ -239,7 +244,7 @@ var guy = (function () {
 
             //this.findTarget();
 
-			guyAI['isolated'].update(state);
+			guyAI[state.currentAI].update(state);
 			//guyAI['stubborn'].update(state);
 			//guyAI['likestouch'].update(state);
 			//guyAI['follower'].update(state);
