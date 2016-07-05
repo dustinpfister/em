@@ -14,9 +14,9 @@ var guy = (function () {
         dy : 0,
         moveRate : 20,
 		
-		// isolated, stubborn, likestouch, follower
+		// isolated, stubborn, likestouch, follower, dependent
 		//currentAI : 'follower',
-        currentAI : 'follower',
+        currentAI : 'dependent',
 		
 		
         // happy
