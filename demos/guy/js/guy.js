@@ -239,7 +239,10 @@ var guy = (function () {
 
             //this.findTarget();
 
-			guyAI['stubborn'].update(state);
+			//guyAI['stubborn'].update(state);
+			guyAI['likestouch'].update(state);
+			
+			
 			
             a = Math.atan2(state.targetY - state.y, state.targetX - state.x),
             d = fw.distance(state.x, state.y, state.targetX, state.targetY);
