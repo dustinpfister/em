@@ -68,6 +68,8 @@ var guyAI = (function(){
 		
 		    update : function(state){
 				
+				var roll, index;
+				
 			    if (new Date() - state.lastChoice >= state.choiceRate) {
 
                     // default to home
@@ -92,7 +94,17 @@ var guyAI = (function(){
 			
 		    }
 		
-	    }
+	    },
+		
+		// responds to being touched, but does not respond to suggestion points 
+		likestouch : {
+			
+			update : function(){
+				
+				
+			}
+			
+		}
 
     };
 	
