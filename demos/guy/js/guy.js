@@ -239,9 +239,10 @@ var guy = (function () {
 
             //this.findTarget();
 
+			guyAI['isolated'].update(state);
 			//guyAI['stubborn'].update(state);
 			//guyAI['likestouch'].update(state);
-			guyAI['follower'].update(state);
+			//guyAI['follower'].update(state);
 			
 			
 			

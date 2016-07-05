@@ -62,7 +62,19 @@ var guyAI = (function () {
 
     return {
 
-        // does not respond to touching, and suggestion points have no effect on like points
+	    // never leaves home
+	    isolated : {
+			
+			update : function(state){
+			
+			    state.targetX = state.homeX;
+                state.targetY = state.homeY;
+
+			}
+			
+		},
+	
+        // goes to like points, but does not respond to touching, and suggestion points have no effect on like points
         stubborn : {
 
             update : function (state) {
