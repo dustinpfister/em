@@ -21,7 +21,7 @@ var guy = (function () {
 
         // points that the guy likes
         likePoints : new points.PointCollection(),
-        likeChance : .5,
+        likeChance : .3,
         lastLikeUpdate : new Date(),
         likeRate : 100,
 
@@ -240,7 +240,8 @@ var guy = (function () {
             //this.findTarget();
 
 			//guyAI['stubborn'].update(state);
-			guyAI['likestouch'].update(state);
+			//guyAI['likestouch'].update(state);
+			guyAI['follower'].update(state);
 			
 			
 			
