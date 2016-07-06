@@ -214,8 +214,6 @@ var guyAI = (function () {
 
                         lp = state.likePoints.points[index];
 
-                        console.log('near point: ' + lp.x + ', ' + lp.y);
-
                         lp.x = sp.x;
                         lp.y = sp.y;
 

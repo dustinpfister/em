@@ -54,6 +54,8 @@ var gameState = (function () {
 	pro.stateUpdate = function(){
 		
 		
+		this.guy = guy.getStateData();
+		
 	};
 	
 	// autosave this SaveState instance to the autosave slot, if enough time has elapsed.
@@ -65,6 +67,7 @@ var gameState = (function () {
 			
 			console.log('autosave of SaveState instance.');
 			
+			this.stateUpdate();
 			this.lastAutoSave = now
 			
 			localStorage.setItem('autosave', JSON.stringify(this));
