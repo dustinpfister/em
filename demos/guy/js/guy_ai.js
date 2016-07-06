@@ -216,6 +216,9 @@ var guyAI = (function () {
 
                         lp.x = sp.x;
                         lp.y = sp.y;
+						
+						lp.correctAD();
+						
 
                     }
 

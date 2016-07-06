@@ -22,8 +22,8 @@ var gameState = (function () {
             // the saved state of the guys like points
             likePoints : [
                 {
-                    angle : 0,
-                    distance : 0.5
+                    a : 0,
+                    d : 0.5
                 }
 
             ]
@@ -46,6 +46,8 @@ var gameState = (function () {
 			// default it to this
 			localStorage.setItem('autosave', JSON.stringify(this));
 			
+			console.log('new autosave state');
+			
 		}
 		
 	};
@@ -55,6 +57,7 @@ var gameState = (function () {
 		
 		
 		this.guy = guy.getStateData();
+		
 		
 	};
 	
@@ -72,6 +75,7 @@ var gameState = (function () {
 			
 			localStorage.setItem('autosave', JSON.stringify(this));
 			
+			
 		}
 		
 	};
@@ -81,22 +85,32 @@ var gameState = (function () {
 		
 		var item = JSON.parse(localStorage.getItem(storageItem));
 		
+		//console.log(item);
 		
 		for(var prop in item){
 			
-			this[prop] = item[prop];
+			//this[prop] = fw.clone(item[prop]);
+			
+			//console.log(prop);
+			//console.log(item[prop]);
 			
 		}
 		
-		// convert date string to actual Date instance
+		this.guy = fw.clone(item.guy);
+		
+		console.log(item.guy);
+		
+		// convert date string to actual Date instance for lastAutoSave
 		this.lastAutoSave = new Date(item.lastAutoSave);
+		
+		//console.log(this);
 		
 	};
 	
 	// default currentSave to a clean SaveState instance.
 	currentSave = new SaveState();
 	
-	currentSave.fromStorage('autosave');
+	//currentSave.fromStorage('autosave');
 	
 	// the public API.
     return {
@@ -108,6 +122,10 @@ var gameState = (function () {
 
 		    // make currentSave a clean, new, instance of SaveState.
 	        currentSave = new SaveState();
+		
+		    currentSave.fromStorage('autosave');
+	
+	
 		
             this.points = new points.PointCollection();
 

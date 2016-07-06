@@ -286,8 +286,8 @@ var guy = (function () {
 				
 				state.likePoints.pushByAD(
 				
-				    like.angle,
-					like.distance,
+				    like.a,
+					like.d,
 					0
 				
 				);

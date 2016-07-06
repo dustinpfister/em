@@ -243,6 +243,14 @@ var points = (function () {
         var i = this.points.length,
         now = new Date();
         while (i--) {
+			
+			if(typeof this.points[i].startTime === 'string'){
+				
+				this.points[i].startTime = new Date(this.points[i].startTime);
+				
+				console.log('timestamp is a string!');
+				
+			}
 
             if (now - this.points[i].startTime >= this.points[i].lifespan) {
 
@@ -265,6 +273,7 @@ var points = (function () {
         });
 
     };
+	
 
     // the public API
     api = {
