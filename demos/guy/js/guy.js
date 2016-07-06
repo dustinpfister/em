@@ -16,7 +16,7 @@ var guy = (function () {
 		
 		// isolated, stubborn, likestouch, follower, dependent
 		//currentAI : 'follower',
-        currentAI : 'dependent',
+        currentAI : 'stubborn',
 		
 		
         // happy
@@ -26,13 +26,13 @@ var guy = (function () {
 
         // points that the guy likes
         likePoints : new points.PointCollection(),
-        likeChance : .8,
+        likeChance : .3,
         lastLikeUpdate : new Date(),
         likeRate : 100,
 
         // suggestion points
         sugPoints : new points.PointCollection(),
-        sugChance : .5,
+        sugChance : 1,
         sugPointLifespan : 60000,
         maxSugPoints : 5,
         newSugPoint : 'none',

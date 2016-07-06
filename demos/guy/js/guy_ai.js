@@ -32,7 +32,41 @@ var guyAI = (function () {
 
         }
 
-    };
+    },
+
+    likeSugBasic = function (state, roll, checkSugs) {
+
+	    var index;
+	
+	    if(checkSugs === undefined){checkSugs = false;}
+	
+        // might leave home to do a like
+        if (roll <= state.likeChance && state.likePoints.points.length > 0) {
+
+            index = Math.floor(Math.random() * state.likePoints.points.length);
+
+            state.targetX = state.likePoints.points[index].x;
+            state.targetY = state.likePoints.points[index].y;
+
+            // else might leave home to do a suggestion
+        } else {
+
+            if (state.sugPoints.points.length > 0 && checkSugs) {
+
+                if (roll <= state.sugChance) {
+
+                    index = Math.floor(Math.random() * state.sugPoints.points.length);
+
+                    state.targetX = state.sugPoints.points[index].x;
+                    state.targetY = state.sugPoints.points[index].y;
+
+                }
+
+            }
+
+        }
+
+    }
 
     return {
 
@@ -67,19 +101,9 @@ var guyAI = (function () {
 
             update : function (state) {
 
-                var index;
-
                 choiceBasic(state, function (roll) {
 
-                    // might leave home to do a like
-                    if (roll <= state.likeChance && state.likePoints.points.length > 0) {
-
-                        index = Math.floor(Math.random() * state.likePoints.points.length);
-
-                        state.targetX = state.likePoints.points[index].x;
-                        state.targetY = state.likePoints.points[index].y;
-
-                    }
+				    likeSugBasic(state, roll, false);
 
                 });
 
