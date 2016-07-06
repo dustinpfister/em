@@ -129,15 +129,7 @@ var guyAI = (function () {
 
                 touchBasic(state, function (roll) {
 
-                    // might leave home to do a like
-                    if (roll <= state.likeChance && state.likePoints.points.length > 0) {
-
-                        index = Math.floor(Math.random() * state.likePoints.points.length);
-
-                        state.targetX = state.likePoints.points[index].x;
-                        state.targetY = state.likePoints.points[index].y;
-
-                    }
+                    likeSugBasic(state, roll, false);
 
                 });
 
