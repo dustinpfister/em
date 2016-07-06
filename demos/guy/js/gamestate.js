@@ -30,11 +30,49 @@ var gameState = (function () {
 
         } 
 		
+	},
+	
+	pro = SaveState.prototype;
+	
+	// create save state slots if they are not there.
+	pro.slotCheck = function(){
+		
+		// if no autosave
+		if(!localStorage.getItem('autosave')){
+			
+			// default it to this
+			localStorage.setItem('autosave', JSON.stringify(this));
+			
+		}
+		
+	};
+	
+	// configure this SaveState to the given localStorage item
+	pro.fromStorage = function(storageItem){
+		
+		var item = JSON.parse(localStorage.getItem(storageItem));
+		
+		console.log(item);
+		
+		for(var prop in item){
+			
+			this[prop] = item[prop];
+			
+		}
+		
+		console.log(this);
+		
 	};
 	
 	// default currentSave to a clean SaveState instance.
 	currentSave = new SaveState();
 
+	currentSave.slotCheck();
+	
+	console.log(localStorage);
+	
+	currentSave.fromStorage('autosave');
+	
 	// the public API.
     return {
 
