@@ -15,6 +15,23 @@ var guyAI = (function () {
 
         }
 		
+	},
+	
+	touchBasic = function(state, theChoice){
+		
+		// if points follow them
+        if (gameState.points.points.length > 0) {
+
+            state.targetX = gameState.points.AVGPoint.x;
+            state.targetY = gameState.points.AVGPoint.y;
+
+        // else autonomy
+        } else {
+
+    	    choiceBasic(state, theChoice);
+			
+		}
+		
 	};
 
     return {
@@ -86,32 +103,19 @@ var guyAI = (function () {
 
                 var index;
 
-                // if points follow them
-                if (gameState.points.points.length > 0) {
-
-                    state.targetX = gameState.points.AVGPoint.x;
-                    state.targetY = gameState.points.AVGPoint.y;
-
-                    state.lastChoice = new Date();
-
-                // else autonomy
-                } else {
-
-				    choiceBasic(state, function(roll){
+				touchBasic(state, function(roll){
 						
-						// might leave home to do a like
-                        if (roll <= state.likeChance && state.likePoints.points.length > 0) {
+					// might leave home to do a like
+                    if (roll <= state.likeChance && state.likePoints.points.length > 0) {
 
-                            index = Math.floor(Math.random() * state.likePoints.points.length);
+                        index = Math.floor(Math.random() * state.likePoints.points.length);
 
-                            state.targetX = state.likePoints.points[index].x;
-                            state.targetY = state.likePoints.points[index].y;
+                        state.targetX = state.likePoints.points[index].x;
+                        state.targetY = state.likePoints.points[index].y;
 
-                        }
+                    }
 						
-					});
-
-                }
+				});
 
             }
 

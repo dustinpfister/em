@@ -16,7 +16,7 @@ var guy = (function () {
 		
 		// isolated, stubborn, likestouch, follower, dependent
 		//currentAI : 'follower',
-        currentAI : 'follower',
+        currentAI : 'likestouch',
 		
 		
         // happy
@@ -39,7 +39,7 @@ var guy = (function () {
 
         // making choices
         lastChoice : new Date(),
-        choiceRate : 5000,
+        choiceRate : 500,
 
     },
 	
