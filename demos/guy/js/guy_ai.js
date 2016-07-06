@@ -98,15 +98,9 @@ var guyAI = (function () {
                 // else autonomy
                 } else {
 
-                    if (new Date() - state.lastChoice >= state.choiceRate) {
-
-                        // default to home
-                        state.targetX = state.homeX;
-                        state.targetY = state.homeY;
-
-                        roll = Math.random();
-
-                        // might leave home to do a like
+				    choiceBasic(state, function(roll){
+						
+						// might leave home to do a like
                         if (roll <= state.likeChance && state.likePoints.points.length > 0) {
 
                             index = Math.floor(Math.random() * state.likePoints.points.length);
@@ -115,10 +109,8 @@ var guyAI = (function () {
                             state.targetY = state.likePoints.points[index].y;
 
                         }
-
-                        state.lastChoice = new Date();
-
-                    }
+						
+					});
 
                 }
 
