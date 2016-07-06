@@ -28,7 +28,10 @@ var gameState = (function () {
 
             ]
 
-        } 
+        };
+        this.lastAutoSave = new Date();		
+		
+		this.slotCheck();
 		
 	},
 	
@@ -47,12 +50,28 @@ var gameState = (function () {
 		
 	};
 	
+	// autosave this SaveState instance to the autosave slot, if enough time has elapsed.
+	pro.autoSave = function(){
+		
+		var now = new Date();
+		
+		if(now - this.lastAutoSave >= 10000){
+			
+			console.log('autosave of SaveState instance.');
+			
+			this.lastAutoSave = now
+			
+			localStorage.setItem('autosave', JSON.stringify(this));
+			
+		}
+		
+	};
+	
 	// configure this SaveState to the given localStorage item
 	pro.fromStorage = function(storageItem){
 		
 		var item = JSON.parse(localStorage.getItem(storageItem));
 		
-		console.log(item);
 		
 		for(var prop in item){
 			
@@ -60,18 +79,19 @@ var gameState = (function () {
 			
 		}
 		
-		console.log(this);
+		// convert date string to actual Date instance
+		this.lastAutoSave = new Date(item.lastAutoSave);
+		
+		
+		console.log(typeof this.lastAutoSave);
 		
 	};
 	
 	// default currentSave to a clean SaveState instance.
 	currentSave = new SaveState();
-
-	currentSave.slotCheck();
-	
-	console.log(localStorage);
 	
 	currentSave.fromStorage('autosave');
+	currentSave.autoSave();
 	
 	// the public API.
     return {
@@ -101,6 +121,9 @@ var gameState = (function () {
             // kill any old points
             //this.points.killOld();
             this.points.update();
+			
+			// autosave
+			currentSave.autoSave();
 
         },
 
