@@ -1,5 +1,5 @@
 var guyAI = (function () {
-
+/*
     var findTarget = function (state) {
 
         var roll,
@@ -59,6 +59,7 @@ var guyAI = (function () {
         }
 
     };
+	*/
 
     return {
 
