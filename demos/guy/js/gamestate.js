@@ -12,9 +12,29 @@
 	 
 	points : {},
 	
+	// the current save state
+	save : {
+		
+		xp: 0,
+		
+		guy: {
+			
+			// the saved state of the guys like points
+			likePoints : [
+			
+			    {angle: 0, distance: 0.5}
+			
+			]
+			
+		}
+		
+	},
+	
 	newGame : function(){
 		
 		this.points = new points.PointCollection();
+		
+		guy.setLikes(this.save.guy.likePoints);
 		
 	},
 	

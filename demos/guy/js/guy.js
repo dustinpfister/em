@@ -39,7 +39,7 @@ var guy = (function () {
 
         // making choices
         lastChoice : new Date(),
-        choiceRate : 500,
+        choiceRate : 3000,
 
     },
 	
@@ -276,14 +276,32 @@ var guy = (function () {
 			state.likePoints.correctXY();
 			state.sugPoints.correctXY();
 
-        }
+        },
+		
+		setLikes : function(likeData){
+			
+			state.likePoints = new points.PointCollection();
+			
+			likeData.forEach(function(like){
+				
+				state.likePoints.pushByAD(
+				
+				    like.angle,
+					like.distance,
+					0
+				
+				);
+				
+			});
+			
+		}
 
     };
 	
-	state.likePoints.pushByAD(0,0.5,0);
-	state.likePoints.pushByAD(0.25,0.5,0);
-	state.likePoints.pushByAD(0.5,0.5,0);
-	state.likePoints.pushByAD(0.75,0.5,0);
+	//state.likePoints.pushByAD(0,0.5,0);
+	//state.likePoints.pushByAD(0.25,0.5,0);
+	//state.likePoints.pushByAD(0.5,0.5,0);
+	//state.likePoints.pushByAD(0.75,0.5,0);
 	
 	
     return api;
