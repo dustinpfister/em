@@ -7,7 +7,21 @@ drawTitle = function(){
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-	
+	var points = gameState.points.points,
+    i = 0,
+    len = points.length;
+
+    // draw points
+    while (i < len) {
+
+        ctx.strokeStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(points[i].x, points[i].y, 10, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.stroke();
+
+        i += 1;
+    }
 },
 
 draw = function () {
