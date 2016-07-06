@@ -50,6 +50,12 @@ var gameState = (function () {
 		
 	};
 	
+	// update this SaveState instance, but do not actually save it to local storage.
+	pro.stateUpdate = function(){
+		
+		
+	};
+	
 	// autosave this SaveState instance to the autosave slot, if enough time has elapsed.
 	pro.autoSave = function(){
 		
@@ -82,16 +88,12 @@ var gameState = (function () {
 		// convert date string to actual Date instance
 		this.lastAutoSave = new Date(item.lastAutoSave);
 		
-		
-		console.log(typeof this.lastAutoSave);
-		
 	};
 	
 	// default currentSave to a clean SaveState instance.
 	currentSave = new SaveState();
 	
 	currentSave.fromStorage('autosave');
-	currentSave.autoSave();
 	
 	// the public API.
     return {

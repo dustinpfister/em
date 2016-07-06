@@ -294,6 +294,17 @@ var guy = (function () {
 				
 			});
 			
+		},
+		
+		// get Data that is to be saved to a SaveState
+		getStateData : function(){
+			
+			return {
+				
+				likePoints : state.likePoints.points
+				
+			}
+			
 		}
 
     };
