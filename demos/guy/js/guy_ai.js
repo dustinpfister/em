@@ -64,17 +64,13 @@ var guyAI = (function () {
 	// choice basic is making some kind of choice, or defaulting to staying home.
 	var choiceBasic = function(state, theChoice){
 		
-		var roll;
-		
 		if (new Date() - state.lastChoice >= state.choiceRate) {
 
             // default to home
             state.targetX = state.homeX;
             state.targetY = state.homeY;
 
-            roll = Math.random();
-
-			theChoice(roll);
+			theChoice(Math.random());
 
             state.lastChoice = new Date();
 
