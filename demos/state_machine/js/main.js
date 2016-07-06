@@ -138,59 +138,6 @@
 	
 	},
 	
-	/*
-	drawPoints = function(){
-	
-	    var points = playground.pg.points,i=0,len=points.length;
-		
-		while(i < len){
-		
-		    ctx.strokeStyle = '#ffffff';
-		    ctx.beginPath();
-		    ctx.arc(points[i].x, points[i].y, 10, 0, Math.PI*2);
-		    ctx.closePath();
-		    ctx.stroke();
-		
-		    i += 1;
-		}
-	
-	},
-	
-	drawAVGAngle = function(){
-	
-        ctx.strokeStyle = '#ff0000';
-	
-        ctx.beginPath();
-	    ctx.moveTo(playground.pg.cx, playground.pg.cy);
-	    ctx.lineTo(
-	        Math.cos(playground.pg.AVGAngle) * playground.pg.AVGDistance + playground.pg.cx, 
-	    	Math.sin(playground.pg.AVGAngle) * playground.pg.AVGDistance + playground.pg.cy
-	    );
-        ctx.closePath();
-        ctx.stroke();
-	
-	},
-	
-	drawAVGPoint = function(){
-	
-	    var AVG = playground.pg.AVGPoint;
-	
-	    if(playground.pg.points.length > 0){
-		
-		    drawAVGAngle();
-		
-	        ctx.strokeStyle = '#0000ff';
-	        ctx.beginPath();
-	        ctx.arc(AVG.x, AVG.y, 15, 0, Math.PI*2);
-	        ctx.closePath();
-	        ctx.stroke();
-	
-		}
-	
-	},
-	
-	*/
-	
 	loop = function(){
 	
 	    setTimeout(loop, 33);
