@@ -125,8 +125,6 @@ var guyAI = (function () {
 
             update : function (state) {
 
-                var index;
-
                 touchBasic(state, function (roll) {
 
                     likeSugBasic(state, roll, false);
@@ -229,8 +227,6 @@ var guyAI = (function () {
             },
 
             update : function (state) {
-
-                var index;
 
                 this.likeChange(state);
 
