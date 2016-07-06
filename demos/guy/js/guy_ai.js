@@ -60,6 +60,27 @@ var guyAI = (function () {
 
     };
 	*/
+	
+	// choice basic is making some kind of choice, or defaulting to staying home.
+	var choiceBasic = function(state, theChoice){
+		
+		var roll;
+		
+		if (new Date() - state.lastChoice >= state.choiceRate) {
+
+            // default to home
+            state.targetX = state.homeX;
+            state.targetY = state.homeY;
+
+            roll = Math.random();
+
+			theChoice(roll);
+
+            state.lastChoice = new Date();
+
+        }
+		
+	};
 
     return {
 
@@ -97,6 +118,21 @@ var guyAI = (function () {
                 var roll,
                 index;
 
+				choiceBasic(state, function(roll){
+
+                    // might leave home to do a like
+                    if (roll <= state.likeChance && state.likePoints.points.length > 0) {
+
+                        index = Math.floor(Math.random() * state.likePoints.points.length);
+
+                        state.targetX = state.likePoints.points[index].x;
+                        state.targetY = state.likePoints.points[index].y;
+
+                    }
+					
+				});
+				
+				/*
                 if (new Date() - state.lastChoice >= state.choiceRate) {
 
                     // default to home
@@ -118,6 +154,7 @@ var guyAI = (function () {
                     state.lastChoice = new Date();
 
                 }
+				*/
 
             }
 
