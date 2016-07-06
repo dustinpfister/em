@@ -231,4 +231,17 @@ var loop = function () {
 	}
 };
 
+//window.addEventListener('resize', function(){ playground.resize(canvas) } );
+	window.addEventListener('resize', function(){control.resize(canvas);} );
+	
+	// attach mouse events
+    canvas.addEventListener('mousedown', control.inMaster);
+    canvas.addEventListener('mouseup', control.inMaster);
+    //canvas.addEventListener('mousemove', control.inMaster);
+
+    // attach touch events
+    canvas.addEventListener('touchstart', control.inMaster);
+    canvas.addEventListener('touchend', control.inMaster);
+    canvas.addEventListener('touchmove', control.inMaster);
+
 loop();
