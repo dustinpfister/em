@@ -141,17 +141,70 @@ drawAVGAngle = function () {
 machine = {
 
     current : 'start',
+    firstRun : true,
+	
+	start : {
+		
+		firstRun : function () {
 
+            playground.resize(canvas);
+            guy.resize();
+            gameState.newGame();
+
+            machine.current = 'title';
+
+        },
+		
+		update : function(){}
+		
+	},
+
+	title : {
+		
+		firstRun : function(){
+			
+			title.firstRun();
+			machine.firstRun = false;
+			
+		},
+		
+		update : function(){
+		
+	    	title.update();
+		
+	    }
+		
+	},
+	
+    game : {
+		
+		update : function () {
+
+            gameState.update();
+            guy.update();
+            draw();
+
+        }
+		
+	}
+	
+	/*
     start : function () {
 
         playground.resize(canvas);
         guy.resize();
         gameState.newGame();
 
-        machine.current = 'game';
+        machine.current = 'title';
 
     },
 
+	title : function(){
+		
+		title.update();
+		
+	},
+	
     game : function () {
 
         gameState.update();
@@ -159,6 +212,7 @@ machine = {
         draw();
 
     }
+	*/
 
 };
 
@@ -166,8 +220,15 @@ var loop = function () {
 
     setTimeout(loop, 33);
 
-    machine[machine.current]();
+	if(machine.firstRun){
+		
+		machine[machine.current].firstRun();
+		
+	}else{
+	
+        machine[machine.current].update();
 
+	}
 };
 
 loop();
