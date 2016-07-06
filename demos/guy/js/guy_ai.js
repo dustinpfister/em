@@ -166,7 +166,7 @@ var guyAI = (function () {
                     }
 
                 });
-				
+
             }
 
         },
@@ -240,63 +240,39 @@ var guyAI = (function () {
 
             update : function (state) {
 
-                var roll,
-                index;
+                var index;
 
                 this.likeChange(state);
 
-                // if points follow them
-                if (gameState.points.points.length > 0) {
+                touchBasic(state, function (roll) {
 
-                    state.targetX = gameState.points.AVGPoint.x;
-                    state.targetY = gameState.points.AVGPoint.y;
+                    // might leave home to do a like
+                    if (roll <= state.likeChance && state.likePoints.points.length > 0) {
 
-                    state.lastChoice = new Date();
+                        index = Math.floor(Math.random() * state.likePoints.points.length);
 
-                    // else autonomy
-                } else {
+                        state.targetX = state.likePoints.points[index].x;
+                        state.targetY = state.likePoints.points[index].y;
 
-                    if (new Date() - state.lastChoice >= state.choiceRate) {
+                        // else might leave home to do a suggestion
+                    } else {
 
-                        // default to home
-                        state.targetX = state.homeX;
-                        state.targetY = state.homeY;
+                        if (state.sugPoints.points.length > 0) {
 
-                        roll = Math.random();
+                            if (roll <= state.sugChance) {
 
-                        // might leave home to do a like
-                        if (roll <= state.likeChance && state.likePoints.points.length > 0) {
+                                index = Math.floor(Math.random() * state.sugPoints.points.length);
 
-                            index = Math.floor(Math.random() * state.likePoints.points.length);
-
-                            state.targetX = state.likePoints.points[index].x;
-                            state.targetY = state.likePoints.points[index].y;
-
-                            // else might leave home to do a suggestion
-                        } else {
-
-                            if (state.sugPoints.points.length > 0) {
-
-                                roll = Math.random();
-
-                                if (roll <= state.sugChance) {
-
-                                    index = Math.floor(Math.random() * state.sugPoints.points.length);
-
-                                    state.targetX = state.sugPoints.points[index].x;
-                                    state.targetY = state.sugPoints.points[index].y;
-
-                                }
+                                state.targetX = state.sugPoints.points[index].x;
+                                state.targetY = state.sugPoints.points[index].y;
 
                             }
 
                         }
 
-                        state.lastChoice = new Date();
-
                     }
 
-                }
+                });
 
             }
 
