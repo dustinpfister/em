@@ -1,6 +1,15 @@
 var canvas = document.getElementById('thecanvas'),
 ctx = canvas.getContext('2d'),
 
+drawTitle = function(){
+	
+	// background
+    ctx.fillStyle = '#000000';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+	
+},
+
 draw = function () {
 
     // background
@@ -171,6 +180,7 @@ machine = {
 		update : function(){
 		
 	    	title.update();
+			drawTitle();
 		
 	    }
 		

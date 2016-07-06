@@ -16,7 +16,7 @@ var title = (function(){
 	
         update : function(){
 			
-			
+			gameState.update();
 			
 		}	
 		
