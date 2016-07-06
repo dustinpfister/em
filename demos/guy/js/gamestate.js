@@ -7,56 +7,72 @@
  *    needs: ALERT! update this into it is important
  *
  */
- 
- var gameState = {
-	 
-	points : {},
+
+var gameState = (function () {
 	
-	// the current save state
-	save : {
-		
-		xp: 0,
-		
-		guy: {
-			
-			// the saved state of the guys like points
-			likePoints : [
-			
-			    {angle: 0, distance: 0.5}
-			
-			]
-			
-		}
-		
-	},
+	// as the name suggests currentSave will store the current save state of the game
+	var currentSave,
 	
-	newGame : function(){
+	// the SaveState constructor function
+	SaveState = function(){
 		
-		this.points = new points.PointCollection();
+		this.xp = 0;
+		this.guy = {
+
+            // the saved state of the guys like points
+            likePoints : [
+                {
+                    angle : 0,
+                    distance : 0.5
+                }
+
+            ]
+
+        } 
 		
-		guy.setLikes(this.save.guy.likePoints);
-		
-	},
+	};
 	
-	pushPoint : function(x,y){
-	
-         this.points.pushPoint(x,y);	
+	// default currentSave to a clean SaveState instance.
+	currentSave = new SaveState();
+
+	// the public API.
+    return {
+
+        points : {},
+
+		// As the name suggests this is to be called to start a new game.
+        newGame : function () {
+
+		    // make currentSave a clean, new, instance of SaveState.
+	        currentSave = new SaveState();
 		
-	},
-	
-	update : function(){
-		
-		// kill any old points
-		//this.points.killOld();
-		this.points.update();
-		
-		
-	},
-	
-	resize : function(){
-		
-		this.points.correctXY();
-		
-	}
-	 
- };
+            this.points = new points.PointCollection();
+
+            guy.setLikes(currentSave.guy.likePoints);
+
+        },
+
+        pushPoint : function (x, y) {
+
+            this.points.pushPoint(x, y);
+
+        },
+
+        update : function () {
+
+            // kill any old points
+            //this.points.killOld();
+            this.points.update();
+
+        },
+
+        resize : function () {
+
+            this.points.correctXY();
+
+        }
+
+    };
+
+}
+    ());
