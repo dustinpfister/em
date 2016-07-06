@@ -95,7 +95,7 @@ var guyAI = (function () {
 
                     state.lastChoice = new Date();
 
-                    // else autonomy
+                // else autonomy
                 } else {
 
                     if (new Date() - state.lastChoice >= state.choiceRate) {
@@ -114,7 +114,6 @@ var guyAI = (function () {
                             state.targetX = state.likePoints.points[index].x;
                             state.targetY = state.likePoints.points[index].y;
 
-                            // else might leave home to do a suggestion
                         }
 
                         state.lastChoice = new Date();
@@ -152,7 +151,7 @@ var guyAI = (function () {
 
                     state.lastChoice = new Date();
 
-                    // else autonomy
+                // else autonomy
                 } else {
 
                     if (new Date() - state.lastChoice >= state.choiceRate) {
@@ -171,9 +170,8 @@ var guyAI = (function () {
                             state.targetX = state.likePoints.points[index].x;
                             state.targetY = state.likePoints.points[index].y;
 
-                            // else might leave home to do a suggestion
+                        // else might leave home to do a suggestion
                         } else {
-
 						
                             if (state.sugPoints.points.length > 0) {
 
@@ -189,8 +187,6 @@ var guyAI = (function () {
                                 }
 
                             }
-
-							
 							
                         }
 
@@ -260,7 +256,6 @@ var guyAI = (function () {
 						
 					}
 					
-					
 					spi += 1;
 				}
 				
@@ -281,7 +276,7 @@ var guyAI = (function () {
 
                     state.lastChoice = new Date();
 
-                    // else autonomy
+                // else autonomy
                 } else {
 
                     if (new Date() - state.lastChoice >= state.choiceRate) {
@@ -300,10 +295,9 @@ var guyAI = (function () {
                             state.targetX = state.likePoints.points[index].x;
                             state.targetY = state.likePoints.points[index].y;
 
-                            // else might leave home to do a suggestion
+                        // else might leave home to do a suggestion
                         } else {
-
-						
+			
                             if (state.sugPoints.points.length > 0) {
 
                                 roll = Math.random();
@@ -318,8 +312,6 @@ var guyAI = (function () {
                                 }
 
                             }
-
-							
 							
                         }
 
@@ -330,7 +322,6 @@ var guyAI = (function () {
                 }
 				
 			}
-			
 			
 		}
 
