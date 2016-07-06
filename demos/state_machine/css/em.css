@@ -1,0 +1,14 @@
+body{
+	
+	margin: 0px;
+	padding: 0px;
+	
+}
+
+#thecanvas{
+
+    position:absolute; 
+    left:0px; 
+    top:0px;
+	
+}
