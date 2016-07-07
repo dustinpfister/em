@@ -21,6 +21,17 @@
 	 
 	return {
 		
+		// set the point push delay
+		setDelay : function(time){
+			
+			if(time === undefined){ time = 3000; }
+			
+			pointDelay.active = true;
+			pointDelay.time = time;
+			pointDelay.activeAt = new Date();
+			
+		},
+		
 		pushPoint : function(e,x,y){
 			
 			if(!pointDelay.active){
