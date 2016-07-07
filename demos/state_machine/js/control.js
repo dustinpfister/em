@@ -14,7 +14,7 @@
 	var pointDelay = {
 			
 		active : true,
-		time : 5000,
+		time : 1000,
 		activeAt : new Date()
 			
 	};
@@ -27,7 +27,16 @@
 			
 			    gameState.pushPoint(x,y)
 			
+			}else{
+			
+                if(new Date() - pointDelay.activeAt >= pointDelay.time){
+					
+					pointDelay.active = false;
+					
+				}			
+				
 			}
+			
 		},
 		
 		inMaster : function(e){
