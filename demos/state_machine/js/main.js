@@ -224,6 +224,8 @@ machine = {
 		
 		firstRun : function(){
 			
+			control.setDelay(5000);
+			
 			machine.firstRun = false;
 			
 		},
