@@ -1,22 +1,26 @@
 var title = (function(){
 	
-	var findAnySave = function(){
-		
-		
-	};
 	
 	return {
 		
+	    canContinue : false,
+	    startGame : false,
+		
 		firstRun : function(){
 			
-			console.log(gameState.findAnySave());
-			
-			
+			this.canContinue = gameState.findAnySave();
+			this.startGame = false;
 		},
 	
         update : function(){
 			
 			gameState.update();
+			
+			if(gameState.points.points.length > 0){
+				
+				this.startGame = true;
+				
+			}
 			
 		}	
 		

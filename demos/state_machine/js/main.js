@@ -174,6 +174,7 @@ machine = {
             guy.resize();
             gameState.newGame();
 
+			machine.firstRun = true;
             machine.current = 'title';
 
         },
@@ -194,6 +195,14 @@ machine = {
 		update : function(){
 		
 	    	title.update();
+			
+			if(title.startGame){
+			
+                machine.firstRun = true;			
+				machine.current = 'game';
+				
+			}
+			
 			drawTitle();
 		
 	    }
@@ -201,6 +210,12 @@ machine = {
 	},
 	
     game : {
+		
+		firstRun : function(){
+			
+			machine.firstRun = false;
+			
+		},
 		
 		update : function () {
 
