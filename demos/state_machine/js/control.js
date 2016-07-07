@@ -11,13 +11,23 @@
  
  var control = (function(){
 	 
+	var pointDelay = {
+			
+		active : true,
+		time : 5000,
+		activeAt : new Date()
+			
+	};
 	 
 	return {
 		
 		pushPoint : function(e,x,y){
 			
-			gameState.pushPoint(x,y)
+			if(!pointDelay.active){
 			
+			    gameState.pushPoint(x,y)
+			
+			}
 		},
 		
 		inMaster : function(e){
