@@ -7,6 +7,17 @@ drawTitle = function(){
     ctx.fillStyle = '#000000';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+	// title text
+	ctx.fillStyle = '#ffffff';
+	ctx.font = '50px arial';
+	ctx.textBaseline = 'top';
+	ctx.textAlign='center';
+	ctx.fillText('EM', canvas.width / 2, 50);
+	
+	ctx.font = '20px arial';
+	ctx.fillText('touch to start', canvas.width / 2, 120);
+	
+	
 	var points = gameState.points.points,
     i = 0,
     len = points.length;
