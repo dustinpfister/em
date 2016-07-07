@@ -224,6 +224,7 @@ machine = {
 		
 		firstRun : function(){
 			
+			gameState.points = new points.PointCollection();
 			control.setDelay(5000);
 			
 			machine.firstRun = false;
